@@ -39,6 +39,11 @@
                 background-color: white;
             }
 
+            &--select {
+                border-radius: 3px;
+                width: 255px;
+            }
+
             *:focus {
                 outline: none;
             }

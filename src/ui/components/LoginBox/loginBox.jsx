@@ -1,14 +1,26 @@
 import './login.scss';
 import React, { useState } from 'react'
+import { useApi } from '../../../hooks/api'
+import { useHistory } from 'react-router-dom'
 
 export function LoginBox() {
     const [username, setUsername] = useState("")
     const [password, setPassword] = useState("")
+    const history = useHistory()
+    const api = useApi();
+
+    async function gerarToken() {
+        const response = await api.gerarToken(username, password)
+        if (response.status === 200) {
+          history.push("/home")
+      } else if (response.status === 400) {
+          alert("ai erremo")
+      }
+    }
 
     function handleSubmit (event) {
         event.preventDefault()
-        // funcao api pra login
-        console.log(username, password);
+        gerarToken()
     }
     
     function onChangeUsername(event){
