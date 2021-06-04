@@ -1,0 +1,18 @@
+server:
+  port: 8090
+
+spring:
+  datasource:
+    username: SA
+    password: Senha123$
+    url: jdbc:sqlserver://localhost;databaseName=TCC
+    driver-class-name: com.microsoft.sqlserver.jdbc.SQLServerDriver
+    driver-class-name=com: com.microsoft.sqlserver.jdbc.SQLServerDriver
+    testOnBorrow: false
+    validationQuery: SELECT 1
+
+security:
+  oauth2:
+    client:
+      client-id: meu-client-id
+      client-secret: meu-secret-id

@@ -13,14 +13,7 @@ export function useApi() {
 
   const autenticarLogin = useAxios(
     'http://localhost:8090/',
-    {     
-        params: {},
-        withCredentials: true,
-        auth: {
-            username: '05aaa927-46fe-415d-abfa-2f56d7ede1e7',
-            password: '295e8b13-3659-4395-89cd-d47290cf4935'
-        }
-    }
+    { Authorization: 'Basic bWV1LWNsaWVudC1pZDptZXUtc2VjcmV0LWlk' }
   )
 
   const cadastroUsuario = useAxios(
@@ -46,7 +39,8 @@ export function useApi() {
     })
       .then(function (response) {
         setUser(response.data.access_token);
-        return response.data
+        console.log(response)
+        return response
       })
       .catch(function (error) {
         return error.response

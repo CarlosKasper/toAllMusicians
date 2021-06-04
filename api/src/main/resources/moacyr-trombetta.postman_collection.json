@@ -1,0 +1,1487 @@
+{
+	"info": {
+		"_postman_id": "ff2f8bd3-6de0-459d-82f7-63236565e2bd",
+		"name": "moacyr-trombetta",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Gerar Token",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "1fc05ee9-8b60-4670-ab8a-b6cd9d4d5b8b",
+						"exec": [
+							"pm.environment.set(\"token\", pm.response.json().access_token);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "meu-secret-id",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "meu-client-id",
+							"type": "string"
+						},
+						{
+							"key": "saveHelperData",
+							"value": true,
+							"type": "boolean"
+						},
+						{
+							"key": "showPassword",
+							"value": false,
+							"type": "boolean"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "grant_type",
+							"value": "password",
+							"type": "text"
+						},
+						{
+							"key": "scope",
+							"value": "any",
+							"type": "text"
+						},
+						{
+							"key": "username",
+							"value": "moacyr2@gmail.com",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "12345",
+							"type": "text"
+						}
+					],
+					"options": {
+						"formdata": {}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8090/tcc-java/oauth/token",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8090",
+					"path": [
+						"tcc-java",
+						"oauth",
+						"token"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "iniciarAtividade",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "rhgypbCemkLJShQqT9Dm8je38JE=",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"modalidade\": \"PEDAL\",\n    \"xfinal\": \"5\",\n    \"xinicial\": \"1\",\n    \"yfinal\": \"5\",\n    \"yinicial\": \"1\"\n}",
+					"options": {
+						"raw": {}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8090/tcc-java/atividade",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8090",
+					"path": [
+						"tcc-java",
+						"atividade"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Unauthorized",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\": \"<string>\",\n    \"modalidade\": \"<string>\",\n    \"xfinal\": \"<double>\",\n    \"xinicial\": \"<double>\",\n    \"yfinal\": \"<double>\",\n    \"yinicial\": \"<double>\"\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/atividade",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"atividade"
+							]
+						}
+					},
+					"status": "Unauthorized",
+					"code": 401,
+					"_postman_previewlanguage": "text",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "text/plain"
+						}
+					],
+					"cookie": [],
+					"body": ""
+				},
+				{
+					"name": "Forbidden",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\": \"<string>\",\n    \"modalidade\": \"<string>\",\n    \"xfinal\": \"<double>\",\n    \"xinicial\": \"<double>\",\n    \"yfinal\": \"<double>\",\n    \"yinicial\": \"<double>\"\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/atividade",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"atividade"
+							]
+						}
+					},
+					"status": "Forbidden",
+					"code": 403,
+					"_postman_previewlanguage": "text",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "text/plain"
+						}
+					],
+					"cookie": [],
+					"body": ""
+				},
+				{
+					"name": "Not Found",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\": \"<string>\",\n    \"modalidade\": \"<string>\",\n    \"xfinal\": \"<double>\",\n    \"xinicial\": \"<double>\",\n    \"yfinal\": \"<double>\",\n    \"yinicial\": \"<double>\"\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/atividade",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"atividade"
+							]
+						}
+					},
+					"status": "Not Found",
+					"code": 404,
+					"_postman_previewlanguage": "text",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "text/plain"
+						}
+					],
+					"cookie": [],
+					"body": ""
+				},
+				{
+					"name": "Created",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\": \"<string>\",\n    \"modalidade\": \"<string>\",\n    \"xfinal\": \"<double>\",\n    \"xinicial\": \"<double>\",\n    \"yfinal\": \"<double>\",\n    \"yinicial\": \"<double>\"\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/atividade",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"atividade"
+							]
+						}
+					},
+					"status": "Created",
+					"code": 201,
+					"_postman_previewlanguage": "text",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "text/plain"
+						}
+					],
+					"cookie": [],
+					"body": ""
+				}
+			]
+		},
+		{
+			"name": "EnviarSolicitacao",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "rhgypbCemkLJShQqT9Dm8je38JE=",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:8090/tcc-java/amizade/:email-usuario",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8090",
+					"path": [
+						"tcc-java",
+						"amizade",
+						":email-usuario"
+					],
+					"query": [
+						{
+							"key": "",
+							"value": "",
+							"disabled": true
+						}
+					],
+					"variable": [
+						{
+							"key": "email-usuario",
+							"value": ""
+						}
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Unauthorized",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\": \"<string>\",\n    \"modalidade\": \"<string>\",\n    \"xfinal\": \"<double>\",\n    \"xinicial\": \"<double>\",\n    \"yfinal\": \"<double>\",\n    \"yinicial\": \"<double>\"\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/atividade",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"atividade"
+							]
+						}
+					},
+					"status": "Unauthorized",
+					"code": 401,
+					"_postman_previewlanguage": "text",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "text/plain"
+						}
+					],
+					"cookie": [],
+					"body": ""
+				},
+				{
+					"name": "Forbidden",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\": \"<string>\",\n    \"modalidade\": \"<string>\",\n    \"xfinal\": \"<double>\",\n    \"xinicial\": \"<double>\",\n    \"yfinal\": \"<double>\",\n    \"yinicial\": \"<double>\"\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/atividade",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"atividade"
+							]
+						}
+					},
+					"status": "Forbidden",
+					"code": 403,
+					"_postman_previewlanguage": "text",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "text/plain"
+						}
+					],
+					"cookie": [],
+					"body": ""
+				},
+				{
+					"name": "Created",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\": \"<string>\",\n    \"modalidade\": \"<string>\",\n    \"xfinal\": \"<double>\",\n    \"xinicial\": \"<double>\",\n    \"yfinal\": \"<double>\",\n    \"yinicial\": \"<double>\"\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/atividade",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"atividade"
+							]
+						}
+					},
+					"status": "Created",
+					"code": 201,
+					"_postman_previewlanguage": "text",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "text/plain"
+						}
+					],
+					"cookie": [],
+					"body": ""
+				},
+				{
+					"name": "Not Found",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\": \"<string>\",\n    \"modalidade\": \"<string>\",\n    \"xfinal\": \"<double>\",\n    \"xinicial\": \"<double>\",\n    \"yfinal\": \"<double>\",\n    \"yinicial\": \"<double>\"\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/atividade",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"atividade"
+							]
+						}
+					},
+					"status": "Not Found",
+					"code": 404,
+					"_postman_previewlanguage": "text",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "text/plain"
+						}
+					],
+					"cookie": [],
+					"body": ""
+				}
+			]
+		},
+		{
+			"name": "AceitarSolicitacao",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "HDPoLj8GucDn6sRemgzktjiLp84=",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:8090/tcc-java/amizade/aceitar/:id-relacionamento",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8090",
+					"path": [
+						"tcc-java",
+						"amizade",
+						"aceitar",
+						":id-relacionamento"
+					],
+					"variable": [
+						{
+							"key": "id-relacionamento",
+							"value": ""
+						}
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Unauthorized",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\": \"<string>\",\n    \"modalidade\": \"<string>\",\n    \"xfinal\": \"<double>\",\n    \"xinicial\": \"<double>\",\n    \"yfinal\": \"<double>\",\n    \"yinicial\": \"<double>\"\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/atividade",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"atividade"
+							]
+						}
+					},
+					"status": "Unauthorized",
+					"code": 401,
+					"_postman_previewlanguage": "text",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "text/plain"
+						}
+					],
+					"cookie": [],
+					"body": ""
+				},
+				{
+					"name": "Not Found",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\": \"<string>\",\n    \"modalidade\": \"<string>\",\n    \"xfinal\": \"<double>\",\n    \"xinicial\": \"<double>\",\n    \"yfinal\": \"<double>\",\n    \"yinicial\": \"<double>\"\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/atividade",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"atividade"
+							]
+						}
+					},
+					"status": "Not Found",
+					"code": 404,
+					"_postman_previewlanguage": "text",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "text/plain"
+						}
+					],
+					"cookie": [],
+					"body": ""
+				},
+				{
+					"name": "Created",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\": \"<string>\",\n    \"modalidade\": \"<string>\",\n    \"xfinal\": \"<double>\",\n    \"xinicial\": \"<double>\",\n    \"yfinal\": \"<double>\",\n    \"yinicial\": \"<double>\"\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/atividade",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"atividade"
+							]
+						}
+					},
+					"status": "Created",
+					"code": 201,
+					"_postman_previewlanguage": "text",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "text/plain"
+						}
+					],
+					"cookie": [],
+					"body": ""
+				},
+				{
+					"name": "Forbidden",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\": \"<string>\",\n    \"modalidade\": \"<string>\",\n    \"xfinal\": \"<double>\",\n    \"xinicial\": \"<double>\",\n    \"yfinal\": \"<double>\",\n    \"yinicial\": \"<double>\"\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/atividade",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"atividade"
+							]
+						}
+					},
+					"status": "Forbidden",
+					"code": 403,
+					"_postman_previewlanguage": "text",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "text/plain"
+						}
+					],
+					"cookie": [],
+					"body": ""
+				}
+			]
+		},
+		{
+			"name": "RecusarSolicitacao",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "S7Z/3akhtdKfIa6zZdgBbP5zMs4=",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:8090/tcc-java/amizade/recusar/:id-relacionamento",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8090",
+					"path": [
+						"tcc-java",
+						"amizade",
+						"recusar",
+						":id-relacionamento"
+					],
+					"variable": [
+						{
+							"key": "id-relacionamento",
+							"value": ""
+						}
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Not Found",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\": \"<string>\",\n    \"modalidade\": \"<string>\",\n    \"xfinal\": \"<double>\",\n    \"xinicial\": \"<double>\",\n    \"yfinal\": \"<double>\",\n    \"yinicial\": \"<double>\"\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/atividade",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"atividade"
+							]
+						}
+					},
+					"status": "Not Found",
+					"code": 404,
+					"_postman_previewlanguage": "text",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "text/plain"
+						}
+					],
+					"cookie": [],
+					"body": ""
+				},
+				{
+					"name": "Forbidden",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\": \"<string>\",\n    \"modalidade\": \"<string>\",\n    \"xfinal\": \"<double>\",\n    \"xinicial\": \"<double>\",\n    \"yfinal\": \"<double>\",\n    \"yinicial\": \"<double>\"\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/atividade",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"atividade"
+							]
+						}
+					},
+					"status": "Forbidden",
+					"code": 403,
+					"_postman_previewlanguage": "text",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "text/plain"
+						}
+					],
+					"cookie": [],
+					"body": ""
+				},
+				{
+					"name": "Created",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\": \"<string>\",\n    \"modalidade\": \"<string>\",\n    \"xfinal\": \"<double>\",\n    \"xinicial\": \"<double>\",\n    \"yfinal\": \"<double>\",\n    \"yinicial\": \"<double>\"\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/atividade",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"atividade"
+							]
+						}
+					},
+					"status": "Created",
+					"code": 201,
+					"_postman_previewlanguage": "text",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "text/plain"
+						}
+					],
+					"cookie": [],
+					"body": ""
+				},
+				{
+					"name": "Unauthorized",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\": \"<string>\",\n    \"modalidade\": \"<string>\",\n    \"xfinal\": \"<double>\",\n    \"xinicial\": \"<double>\",\n    \"yfinal\": \"<double>\",\n    \"yinicial\": \"<double>\"\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/atividade",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"atividade"
+							]
+						}
+					},
+					"status": "Unauthorized",
+					"code": 401,
+					"_postman_previewlanguage": "text",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "text/plain"
+						}
+					],
+					"cookie": [],
+					"body": ""
+				}
+			]
+		},
+		{
+			"name": "finalizarAtividade",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "s34na+Fn0HdDl+mpgAhDzMyhH8I=",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PUT",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8090/tcc-java/atividade/:id-atividade",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8090",
+					"path": [
+						"tcc-java",
+						"atividade",
+						":id-atividade"
+					],
+					"variable": [
+						{
+							"key": "id-atividade",
+							"value": ""
+						}
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Created",
+					"originalRequest": {
+						"method": "PUT",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/atividade?email=<string>&id=<long>",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"atividade"
+							],
+							"query": [
+								{
+									"key": "email",
+									"value": "<string>"
+								},
+								{
+									"key": "id",
+									"value": "<long>"
+								}
+							]
+						}
+					},
+					"status": "Created",
+					"code": 201,
+					"_postman_previewlanguage": "text",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "text/plain"
+						}
+					],
+					"cookie": [],
+					"body": ""
+				},
+				{
+					"name": "OK",
+					"originalRequest": {
+						"method": "PUT",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/atividade?email=<string>&id=<long>",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"atividade"
+							],
+							"query": [
+								{
+									"key": "email",
+									"value": "<string>"
+								},
+								{
+									"key": "id",
+									"value": "<long>"
+								}
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "text",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "*/*"
+						}
+					],
+					"cookie": [],
+					"body": ""
+				},
+				{
+					"name": "Not Found",
+					"originalRequest": {
+						"method": "PUT",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/atividade?email=<string>&id=<long>",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"atividade"
+							],
+							"query": [
+								{
+									"key": "email",
+									"value": "<string>"
+								},
+								{
+									"key": "id",
+									"value": "<long>"
+								}
+							]
+						}
+					},
+					"status": "Not Found",
+					"code": 404,
+					"_postman_previewlanguage": "text",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "text/plain"
+						}
+					],
+					"cookie": [],
+					"body": ""
+				},
+				{
+					"name": "Forbidden",
+					"originalRequest": {
+						"method": "PUT",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/atividade?email=<string>&id=<long>",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"atividade"
+							],
+							"query": [
+								{
+									"key": "email",
+									"value": "<string>"
+								},
+								{
+									"key": "id",
+									"value": "<long>"
+								}
+							]
+						}
+					},
+					"status": "Forbidden",
+					"code": 403,
+					"_postman_previewlanguage": "text",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "text/plain"
+						}
+					],
+					"cookie": [],
+					"body": ""
+				},
+				{
+					"name": "Unauthorized",
+					"originalRequest": {
+						"method": "PUT",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/atividade?email=<string>&id=<long>",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"atividade"
+							],
+							"query": [
+								{
+									"key": "email",
+									"value": "<string>"
+								},
+								{
+									"key": "id",
+									"value": "<long>"
+								}
+							]
+						}
+					},
+					"status": "Unauthorized",
+					"code": 401,
+					"_postman_previewlanguage": "text",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "text/plain"
+						}
+					],
+					"cookie": [],
+					"body": ""
+				}
+			]
+		},
+		{
+			"name": "CriarPost",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "rhgypbCemkLJShQqT9Dm8je38JE=",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"id\": \"1\",\r\n    \"titulo\": \"pedalada\",\r\n    \"privacidade\": \"PUBLICO\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8090/tcc-java/post",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8090",
+					"path": [
+						"tcc-java",
+						"post"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Curtir",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "rhgypbCemkLJShQqT9Dm8je38JE=",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8090/tcc-java/curtida/:id-post",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8090",
+					"path": [
+						"tcc-java",
+						"curtida",
+						":id-post"
+					],
+					"variable": [
+						{
+							"key": "id-post",
+							"value": ""
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "DeletarCurtida",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "lSKi0TQMAZqn+064svFmtHAeXx0=",
+							"type": "string"
+						}
+					]
+				},
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8090/tcc-java/curtida/deletar/:id-post/:id-curtida",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8090",
+					"path": [
+						"tcc-java",
+						"curtida",
+						"deletar",
+						":id-post",
+						":id-curtida"
+					],
+					"variable": [
+						{
+							"key": "id-post",
+							"value": ""
+						},
+						{
+							"key": "id-curtida",
+							"value": ""
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "DeletarRelacionamento",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "lSKi0TQMAZqn+064svFmtHAeXx0=",
+							"type": "string"
+						}
+					]
+				},
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "2",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8090/tcc-java/amizade/remover/:email",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8090",
+					"path": [
+						"tcc-java",
+						"amizade",
+						"remover",
+						":email"
+					],
+					"variable": [
+						{
+							"key": "email",
+							"value": ""
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Cadastro",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"nome\": \"lalala\",\r\n    \"email\": \"moacyr2@gmail.com\",\r\n    \"apelido\": \"LOL\",\r\n    \"dataNascimento\": \"01/01/2000\",\r\n    \"senha\": \"12345\",\r\n    \"imagem\": \"url\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8090/tcc-java/usuario/cadastro",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8090",
+					"path": [
+						"tcc-java",
+						"usuario",
+						"cadastro"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "ListarDadosDoUsuarioLogado",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "iBZRfRr/p9ANzkDLU181NEPlzn4=",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"nome\": \"lalala\",\r\n    \"email\": \"moacyr2@gmail.com\",\r\n    \"apelido\": \"LOL\",\r\n    \"dataNascimento\": \"01/01/2000\",\r\n    \"senha\": \"12345\",\r\n    \"imagem\": \"url\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8090/tcc-java/usuario",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8090",
+					"path": [
+						"tcc-java",
+						"usuario"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "ListarUsuarios",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "iBZRfRr/p9ANzkDLU181NEPlzn4=",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"nome\": \"lalala\",\r\n    \"email\": \"moacyr2@gmail.com\",\r\n    \"apelido\": \"LOL\",\r\n    \"dataNascimento\": \"01/01/2000\",\r\n    \"senha\": \"12345\",\r\n    \"imagem\": \"url\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8090/tcc-java/usuario/listar",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8090",
+					"path": [
+						"tcc-java",
+						"usuario",
+						"listar"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "ListarPostAmigos",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "iBZRfRr/p9ANzkDLU181NEPlzn4=",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8090/tcc-java/post",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8090",
+					"path": [
+						"tcc-java",
+						"post"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "ListaSolicitacoes",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "iBZRfRr/p9ANzkDLU181NEPlzn4=",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"nome\": \"lalala\",\r\n    \"email\": \"moacyr2@gmail.com\",\r\n    \"apelido\": \"LOL\",\r\n    \"dataNascimento\": \"01/01/2000\",\r\n    \"senha\": \"12345\",\r\n    \"imagem\": \"url\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8090/tcc-java/usuario/:solicitacao",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8090",
+					"path": [
+						"tcc-java",
+						"usuario",
+						":solicitacao"
+					],
+					"variable": [
+						{
+							"key": "solicitacao",
+							"value": ""
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "ListarAmigos",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "4Il/xOVQIa9lDcmuHMwWI0JmENo=",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"nome\": \"lalala\",\r\n    \"email\": \"moacyr2@gmail.com\",\r\n    \"apelido\": \"LOL\",\r\n    \"dataNascimento\": \"01/01/2000\",\r\n    \"senha\": \"12345\",\r\n    \"imagem\": \"url\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8090/tcc-java/usuario/relacionamentos",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8090",
+					"path": [
+						"tcc-java",
+						"usuario",
+						"relacionamentos"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "ExibirDadosPerfil",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "4Il/xOVQIa9lDcmuHMwWI0JmENo=",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"nome\": \"lalala\",\r\n    \"email\": \"moacyr2@gmail.com\",\r\n    \"apelido\": \"LOL\",\r\n    \"dataNascimento\": \"01/01/2000\",\r\n    \"senha\": \"12345\",\r\n    \"imagem\": \"url\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8090/tcc-java/usuario/buscar/:email-usuario",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8090",
+					"path": [
+						"tcc-java",
+						"usuario",
+						"buscar",
+						":email-usuario"
+					],
+					"variable": [
+						{
+							"key": "email-usuario",
+							"value": ""
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "ListarPostsDoUsuario",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "4Il/xOVQIa9lDcmuHMwWI0JmENo=",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8090/tcc-java/usuario/post/:email-usuario",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8090",
+					"path": [
+						"tcc-java",
+						"usuario",
+						"post",
+						":email-usuario"
+					],
+					"variable": [
+						{
+							"key": "email-usuario",
+							"value": ""
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"protocolProfileBehavior": {}
+}
