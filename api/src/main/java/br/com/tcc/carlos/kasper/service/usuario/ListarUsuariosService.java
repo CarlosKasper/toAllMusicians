@@ -1,7 +1,7 @@
-package br.com.cwi.crescer.tcc.moacyr.trombetta.service.usuario;
+package br.com.tcc.carlos.kasper.service.usuario;
 
-import br.com.cwi.crescer.tcc.moacyr.trombetta.domain.Musico;
-import br.com.cwi.crescer.tcc.moacyr.trombetta.repository.UsuarioRepository;
+import br.com.tcc.carlos.kasper.domain.Musico;
+import br.com.tcc.carlos.kasper.repository.UsuarioRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;

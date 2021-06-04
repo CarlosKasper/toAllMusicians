@@ -1,4 +1,4 @@
-package br.com.cwi.crescer.tcc.moacyr.trombetta.security;
+package br.com.tcc.carlos.kasper.security;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

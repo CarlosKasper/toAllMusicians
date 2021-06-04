@@ -1,8 +1,8 @@
-package br.com.cwi.crescer.tcc.moacyr.trombetta.service.relacionamento;
+package br.com.tcc.carlos.kasper.service.relacionamento;
 
-import br.com.cwi.crescer.tcc.moacyr.trombetta.domain.Relacionamento;
-import br.com.cwi.crescer.tcc.moacyr.trombetta.exception.RegistroNaoEncontradoException;
-import br.com.cwi.crescer.tcc.moacyr.trombetta.repository.RelacionamentoRepository;
+import br.com.tcc.carlos.kasper.domain.Relacionamento;
+import br.com.tcc.carlos.kasper.exception.RegistroNaoEncontradoException;
+import br.com.tcc.carlos.kasper.repository.RelacionamentoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

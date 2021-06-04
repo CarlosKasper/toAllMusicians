@@ -1,8 +1,8 @@
-package br.com.cwi.crescer.tcc.moacyr.trombetta.repository;
+package br.com.tcc.carlos.kasper.repository;
 
-import br.com.cwi.crescer.tcc.moacyr.trombetta.domain.Musico;
-import br.com.cwi.crescer.tcc.moacyr.trombetta.domain.Relacionamento;
-import br.com.cwi.crescer.tcc.moacyr.trombetta.domain.Status;
+import br.com.tcc.carlos.kasper.domain.Musico;
+import br.com.tcc.carlos.kasper.domain.Relacionamento;
+import br.com.tcc.carlos.kasper.domain.Status;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.Query;

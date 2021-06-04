@@ -1,4 +1,4 @@
-package br.com.cwi.crescer.tcc.moacyr.trombetta.domain;
+package br.com.tcc.carlos.kasper.domain;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

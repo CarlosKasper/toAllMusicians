@@ -1,8 +1,8 @@
-package br.com.cwi.crescer.tcc.moacyr.trombetta.interceptor;
+package br.com.tcc.carlos.kasper.interceptor;
 
-import br.com.cwi.crescer.tcc.moacyr.trombetta.controller.response.ErrorResponse;
-import br.com.cwi.crescer.tcc.moacyr.trombetta.exception.RegistroNaoEncontradoException;
-import br.com.cwi.crescer.tcc.moacyr.trombetta.exception.ValidacaoNegocioException;
+import br.com.tcc.carlos.kasper.controller.response.ErrorResponse;
+import br.com.tcc.carlos.kasper.exception.RegistroNaoEncontradoException;
+import br.com.tcc.carlos.kasper.exception.ValidacaoNegocioException;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ExceptionHandler;

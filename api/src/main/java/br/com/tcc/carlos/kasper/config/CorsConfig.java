@@ -1,4 +1,4 @@
-package br.com.cwi.crescer.tcc.moacyr.trombetta.config;
+package br.com.tcc.carlos.kasper.config;
 
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;

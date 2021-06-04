@@ -1,7 +1,7 @@
-package br.com.cwi.crescer.tcc.moacyr.trombetta.security;
+package br.com.tcc.carlos.kasper.security;
 
-import br.com.cwi.crescer.tcc.moacyr.trombetta.domain.Musico;
-import br.com.cwi.crescer.tcc.moacyr.trombetta.repository.UsuarioRepository;
+import br.com.tcc.carlos.kasper.domain.Musico;
+import br.com.tcc.carlos.kasper.repository.UsuarioRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;

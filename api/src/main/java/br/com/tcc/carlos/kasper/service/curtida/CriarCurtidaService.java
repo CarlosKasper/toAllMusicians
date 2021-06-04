@@ -1,13 +1,13 @@
-package br.com.cwi.crescer.tcc.moacyr.trombetta.service.curtida;
+package br.com.tcc.carlos.kasper.service.curtida;
 
-import br.com.cwi.crescer.tcc.moacyr.trombetta.domain.Curtida;
-import br.com.cwi.crescer.tcc.moacyr.trombetta.domain.Musico;
-import br.com.cwi.crescer.tcc.moacyr.trombetta.domain.Post;
-import br.com.cwi.crescer.tcc.moacyr.trombetta.service.usuario.BuscarUsuarioPorEmailService;
-import br.com.cwi.crescer.tcc.moacyr.trombetta.exception.ValidacaoNegocioException;
-import br.com.cwi.crescer.tcc.moacyr.trombetta.repository.CurtidaRepository;
-import br.com.cwi.crescer.tcc.moacyr.trombetta.repository.PostRepository;
-import br.com.cwi.crescer.tcc.moacyr.trombetta.service.post.BuscarPostPorIdService;
+import br.com.tcc.carlos.kasper.domain.Curtida;
+import br.com.tcc.carlos.kasper.domain.Musico;
+import br.com.tcc.carlos.kasper.domain.Post;
+import br.com.tcc.carlos.kasper.service.usuario.BuscarUsuarioPorEmailService;
+import br.com.tcc.carlos.kasper.exception.ValidacaoNegocioException;
+import br.com.tcc.carlos.kasper.repository.CurtidaRepository;
+import br.com.tcc.carlos.kasper.repository.PostRepository;
+import br.com.tcc.carlos.kasper.service.post.BuscarPostPorIdService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

@@ -1,6 +1,6 @@
-package br.com.cwi.crescer.tcc.moacyr.trombetta.controller.request;
+package br.com.tcc.carlos.kasper.controller.request;
 
-import br.com.cwi.crescer.tcc.moacyr.trombetta.domain.Instrumento;
+import br.com.tcc.carlos.kasper.domain.Instrumento;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Data;
 

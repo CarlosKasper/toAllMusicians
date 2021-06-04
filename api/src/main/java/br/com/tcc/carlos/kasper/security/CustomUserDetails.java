@@ -1,6 +1,6 @@
-package br.com.cwi.crescer.tcc.moacyr.trombetta.security;
+package br.com.tcc.carlos.kasper.security;
 
-import br.com.cwi.crescer.tcc.moacyr.trombetta.domain.Musico;
+import br.com.tcc.carlos.kasper.domain.Musico;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;

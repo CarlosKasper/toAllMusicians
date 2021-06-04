@@ -1,9 +1,8 @@
-package br.com.cwi.crescer.tcc.moacyr.trombetta.controller;
+package br.com.tcc.carlos.kasper.controller;
 
-import br.com.cwi.crescer.tcc.moacyr.trombetta.domain.Musico;
-import br.com.cwi.crescer.tcc.moacyr.trombetta.security.CustomUserDetails;
-import br.com.cwi.crescer.tcc.moacyr.trombetta.service.curtida.CriarCurtidaService;
-import br.com.cwi.crescer.tcc.moacyr.trombetta.service.curtida.DeletarCurtidaService;
+import br.com.tcc.carlos.kasper.security.CustomUserDetails;
+import br.com.tcc.carlos.kasper.service.curtida.CriarCurtidaService;
+import br.com.tcc.carlos.kasper.service.curtida.DeletarCurtidaService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;

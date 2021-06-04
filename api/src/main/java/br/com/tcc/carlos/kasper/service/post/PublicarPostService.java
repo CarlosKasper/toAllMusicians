@@ -1,20 +1,16 @@
-package br.com.cwi.crescer.tcc.moacyr.trombetta.service.post;
+package br.com.tcc.carlos.kasper.service.post;
 
-import br.com.cwi.crescer.tcc.moacyr.trombetta.controller.request.PostRequest;
-import br.com.cwi.crescer.tcc.moacyr.trombetta.domain.Instrumento;
-import br.com.cwi.crescer.tcc.moacyr.trombetta.domain.Musico;
-import br.com.cwi.crescer.tcc.moacyr.trombetta.domain.Post;
-import br.com.cwi.crescer.tcc.moacyr.trombetta.domain.Privacidade;
-import br.com.cwi.crescer.tcc.moacyr.trombetta.repository.UsuarioRepository;
-import br.com.cwi.crescer.tcc.moacyr.trombetta.service.usuario.BuscarUsuarioPorEmailService;
-import br.com.cwi.crescer.tcc.moacyr.trombetta.controller.response.PostResponse;
-import br.com.cwi.crescer.tcc.moacyr.trombetta.mapper.PublicarPostResponseMapper;
-import br.com.cwi.crescer.tcc.moacyr.trombetta.repository.PostRepository;
+import br.com.tcc.carlos.kasper.controller.request.PostRequest;
+import br.com.tcc.carlos.kasper.domain.Musico;
+import br.com.tcc.carlos.kasper.domain.Post;
+import br.com.tcc.carlos.kasper.repository.UsuarioRepository;
+import br.com.tcc.carlos.kasper.service.usuario.BuscarUsuarioPorEmailService;
+import br.com.tcc.carlos.kasper.controller.response.PostResponse;
+import br.com.tcc.carlos.kasper.mapper.PublicarPostResponseMapper;
+import br.com.tcc.carlos.kasper.repository.PostRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestBody;
 
 import java.time.LocalDateTime;
 

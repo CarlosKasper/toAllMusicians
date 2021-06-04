@@ -1,11 +1,11 @@
-package br.com.cwi.crescer.tcc.moacyr.trombetta.service.usuario;
+package br.com.tcc.carlos.kasper.service.usuario;
 
-import br.com.cwi.crescer.tcc.moacyr.trombetta.controller.request.UsuarioRequest;
-import br.com.cwi.crescer.tcc.moacyr.trombetta.controller.response.UsuarioResponse;
-import br.com.cwi.crescer.tcc.moacyr.trombetta.domain.Musico;
-import br.com.cwi.crescer.tcc.moacyr.trombetta.domain.Perfil;
-import br.com.cwi.crescer.tcc.moacyr.trombetta.mapper.UsuarioResponseMapper;
-import br.com.cwi.crescer.tcc.moacyr.trombetta.repository.UsuarioRepository;
+import br.com.tcc.carlos.kasper.controller.request.UsuarioRequest;
+import br.com.tcc.carlos.kasper.controller.response.UsuarioResponse;
+import br.com.tcc.carlos.kasper.domain.Musico;
+import br.com.tcc.carlos.kasper.domain.Perfil;
+import br.com.tcc.carlos.kasper.mapper.UsuarioResponseMapper;
+import br.com.tcc.carlos.kasper.repository.UsuarioRepository;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;

@@ -1,7 +1,7 @@
-package br.com.cwi.crescer.tcc.moacyr.trombetta.service.usuario;
+package br.com.tcc.carlos.kasper.service.usuario;
 
-import br.com.cwi.crescer.tcc.moacyr.trombetta.repository.UsuarioRepository;
-import br.com.cwi.crescer.tcc.moacyr.trombetta.exception.ValidacaoNegocioException;
+import br.com.tcc.carlos.kasper.repository.UsuarioRepository;
+import br.com.tcc.carlos.kasper.exception.ValidacaoNegocioException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

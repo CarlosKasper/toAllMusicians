@@ -1,9 +1,8 @@
-package br.com.cwi.crescer.tcc.moacyr.trombetta.controller;
+package br.com.tcc.carlos.kasper.controller;
 
-import br.com.cwi.crescer.tcc.moacyr.trombetta.domain.Musico;
-import br.com.cwi.crescer.tcc.moacyr.trombetta.domain.Relacionamento;
-import br.com.cwi.crescer.tcc.moacyr.trombetta.security.CustomUserDetails;
-import br.com.cwi.crescer.tcc.moacyr.trombetta.service.relacionamento.*;
+import br.com.tcc.carlos.kasper.domain.Relacionamento;
+import br.com.tcc.carlos.kasper.security.CustomUserDetails;
+import br.com.tcc.carlos.kasper.service.relacionamento.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;

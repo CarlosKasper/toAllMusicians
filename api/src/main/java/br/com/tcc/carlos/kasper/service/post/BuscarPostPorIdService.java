@@ -1,8 +1,8 @@
-package br.com.cwi.crescer.tcc.moacyr.trombetta.service.post;
+package br.com.tcc.carlos.kasper.service.post;
 
-import br.com.cwi.crescer.tcc.moacyr.trombetta.domain.Post;
-import br.com.cwi.crescer.tcc.moacyr.trombetta.exception.RegistroNaoEncontradoException;
-import br.com.cwi.crescer.tcc.moacyr.trombetta.repository.PostRepository;
+import br.com.tcc.carlos.kasper.domain.Post;
+import br.com.tcc.carlos.kasper.exception.RegistroNaoEncontradoException;
+import br.com.tcc.carlos.kasper.repository.PostRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

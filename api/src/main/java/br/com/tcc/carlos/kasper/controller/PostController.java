@@ -1,13 +1,12 @@
-package br.com.cwi.crescer.tcc.moacyr.trombetta.controller;
+package br.com.tcc.carlos.kasper.controller;
 
-import br.com.cwi.crescer.tcc.moacyr.trombetta.controller.request.PostRequest;
-import br.com.cwi.crescer.tcc.moacyr.trombetta.domain.Musico;
-import br.com.cwi.crescer.tcc.moacyr.trombetta.domain.Post;
-import br.com.cwi.crescer.tcc.moacyr.trombetta.security.CustomUserDetails;
-import br.com.cwi.crescer.tcc.moacyr.trombetta.service.post.PublicarPostService;
-import br.com.cwi.crescer.tcc.moacyr.trombetta.controller.response.PostResponse;
-import br.com.cwi.crescer.tcc.moacyr.trombetta.service.post.ListarPostDoUsuarioService;
-import br.com.cwi.crescer.tcc.moacyr.trombetta.service.post.ListarPostsDosRelacionamentosService;
+import br.com.tcc.carlos.kasper.controller.request.PostRequest;
+import br.com.tcc.carlos.kasper.domain.Post;
+import br.com.tcc.carlos.kasper.security.CustomUserDetails;
+import br.com.tcc.carlos.kasper.service.post.PublicarPostService;
+import br.com.tcc.carlos.kasper.controller.response.PostResponse;
+import br.com.tcc.carlos.kasper.service.post.ListarPostDoUsuarioService;
+import br.com.tcc.carlos.kasper.service.post.ListarPostsDosRelacionamentosService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;

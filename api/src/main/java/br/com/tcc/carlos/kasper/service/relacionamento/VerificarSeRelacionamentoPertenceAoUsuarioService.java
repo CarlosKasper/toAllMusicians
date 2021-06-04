@@ -1,8 +1,8 @@
-package br.com.cwi.crescer.tcc.moacyr.trombetta.service.relacionamento;
+package br.com.tcc.carlos.kasper.service.relacionamento;
 
-import br.com.cwi.crescer.tcc.moacyr.trombetta.domain.Musico;
-import br.com.cwi.crescer.tcc.moacyr.trombetta.domain.Relacionamento;
-import br.com.cwi.crescer.tcc.moacyr.trombetta.exception.ValidacaoNegocioException;
+import br.com.tcc.carlos.kasper.domain.Musico;
+import br.com.tcc.carlos.kasper.domain.Relacionamento;
+import br.com.tcc.carlos.kasper.exception.ValidacaoNegocioException;
 import org.springframework.stereotype.Service;
 
 @Service

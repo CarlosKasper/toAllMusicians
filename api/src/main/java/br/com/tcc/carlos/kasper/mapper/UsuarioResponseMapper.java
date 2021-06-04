@@ -1,7 +1,7 @@
-package br.com.cwi.crescer.tcc.moacyr.trombetta.mapper;
+package br.com.tcc.carlos.kasper.mapper;
 
-import br.com.cwi.crescer.tcc.moacyr.trombetta.controller.response.UsuarioResponse;
-import br.com.cwi.crescer.tcc.moacyr.trombetta.domain.Musico;
+import br.com.tcc.carlos.kasper.controller.response.UsuarioResponse;
+import br.com.tcc.carlos.kasper.domain.Musico;
 import org.springframework.stereotype.Component;
 
 @Component

@@ -1,4 +1,4 @@
-package br.com.cwi.crescer.tcc.moacyr.trombetta.exception;
+package br.com.tcc.carlos.kasper.exception;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ResponseStatus;

@@ -1,9 +1,9 @@
-package br.com.cwi.crescer.tcc.moacyr.trombetta.service.curtida;
+package br.com.tcc.carlos.kasper.service.curtida;
 
-import br.com.cwi.crescer.tcc.moacyr.trombetta.domain.Curtida;
-import br.com.cwi.crescer.tcc.moacyr.trombetta.domain.Musico;
-import br.com.cwi.crescer.tcc.moacyr.trombetta.domain.Post;
-import br.com.cwi.crescer.tcc.moacyr.trombetta.repository.CurtidaRepository;
+import br.com.tcc.carlos.kasper.domain.Curtida;
+import br.com.tcc.carlos.kasper.domain.Musico;
+import br.com.tcc.carlos.kasper.domain.Post;
+import br.com.tcc.carlos.kasper.repository.CurtidaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
