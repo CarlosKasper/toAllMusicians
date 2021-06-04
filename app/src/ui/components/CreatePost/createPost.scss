@@ -23,17 +23,28 @@
             }
         }
 
-        &__submit {
+        &__selects {
+            display: flex;
+            flex-direction: row;
+            width: 75%;
+            justify-content: space-between;
+            padding-bottom: 10px;
+
+            .post-select {
+                width: 40%;
+            }
         }
 
-        &__button {
-            height: 45px;
-            border: none;
-            background-color: black;
-            color: white;
-            width: 225px;
-            font-weight: 700;
-            font-size: 16px;
+        &__submit {
+            &--button {
+                height: 45px;
+                border: none;
+                background-color: black;
+                color: white;
+                width: 225px;
+                font-weight: 700;
+                font-size: 16px;
+            }
         }
     }
 }

@@ -1,16 +1,43 @@
 import './createPost.scss';
+import { useApi } from '../../../hooks/api'
 import React, { useState } from 'react'
+import Select from 'react-select';
 
 export function CreatePost() {
-    const [newPost, setNewPost] = useState("")
+    const api = useApi();
+    const [title, setTitle] = useState("")
+    const [instrument, setInstrument] = useState("")
+    const [privacity, setPrivacity] = useState("")
 
-    function handleSubmit() {
-        console.log('jasd')
+    async function publicarPost() {
+        const response = await api.criarPost(title, privacity, instrument)
+        if (response.status === 201) {
+            alert('post criado com sucesso')
+        } else if (response.status === 400) {
+            alert('tem algo de errado amigao')
+        }
     }
     
     function handlePost(event){
-        setNewPost(event.target.value);
+        setTitle(event.target.value);
     }
+
+    function onChangeInstrument(event){
+        setInstrument(event.value)
+    }
+
+    function onChangePrivacity(event){
+        setPrivacity(event.value)
+    }
+
+    const optionsInsrument = [
+        { value: 'GUITARRA', label: 'Guitarra' },
+    ];
+
+    const optionsPrivacity = [
+        { value: 'PUBLICO', label: 'Público' },
+        { value: 'PRIVADO', label: 'Privado' }
+    ];
 
 
     return (
@@ -19,8 +46,20 @@ export function CreatePost() {
                 <div className="container__input">
                     <textarea type="text" className="container__input--text" placeholder="Digite algo sobre música..." onChange={handlePost}></textarea>
                 </div>
+                <div className="container__selects">
+                    <Select
+                            className="post-select"
+                            onChange={onChangeInstrument}
+                            options={optionsInsrument}
+                    />
+                    <Select
+                        className="post-select"
+                        onChange={onChangePrivacity}
+                        options={optionsPrivacity}
+                    />
+                </div>
                 <div className="container__submit">
-                    <input type="button" className="container__button" onClick={handleSubmit} value="Compartilhar" />
+                    <input type="button" className="container__submit--button" onClick={publicarPost} value="Compartilhar" />
                 </div>
             </div>
         </div>

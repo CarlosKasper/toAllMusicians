@@ -65,8 +65,24 @@ export function useApi() {
     }
   }
 
+  async function criarPost(titulo, privacidade, instrumento) {
+    try {
+      const response = await axios.post(`/post/publicar`,
+        {
+          titulo: titulo,
+          privacidade: privacidade,
+          instrumento: instrumento
+        }
+      )
+      return response
+    } catch (error) {
+      return error.response.data
+    }
+  }
+
   return useCallback({
     gerarToken,
-    registroUsuario
+    registroUsuario,
+    criarPost
   }, [])
 }
