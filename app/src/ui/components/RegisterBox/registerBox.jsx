@@ -96,6 +96,7 @@ export function RegisterBox() {
                         className="container__login--select"
                         onChange={onChangeInstrument}
                         options={options}
+                        placeholder="Seu instrumento"
                     />
                     </div>
                     <div className="container__login">

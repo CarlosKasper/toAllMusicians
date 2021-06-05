@@ -21,7 +21,6 @@ public class ListarPostsDosRelacionamentosService {
     public Page<Post> listar(String email, Pageable pageable) {
 
         Musico musico = buscarUsuarioPorEmailService.buscar(email);
-        System.out.println(musico.getId());
 
         return postRepository.findByFriendsPost(musico.getId(), pageable);
     }

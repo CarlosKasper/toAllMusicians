@@ -1,0 +1,53 @@
+.profile {
+    display: flex;
+    justify-content: center;
+    width: 40%;
+    flex-direction: column;
+    margin: auto;
+    padding-top: 25px;
+
+    .container {
+        display: flex;
+        padding-bottom: 15px;
+
+        &__image {
+            display: flex;
+            width: 150px;
+            height: 150px;
+            background-color: gray;
+
+            .hiddenFileInput > input {
+                opacity: 0;
+                cursor: pointer;
+                height: 100%;
+                width: 100;
+            }
+
+            .hiddenFileInput {
+                overflow: hidden;
+                background: center center no-repeat;
+                background-size: 50% 50%;
+                background-image: url(../../../images/profile.png);
+            }
+        }
+        
+        &__info {
+            padding-left: 10px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        &__name {
+            padding-bottom: 10px;
+
+            .nome-perfil {
+                font-size: 24px;
+            }
+        }
+
+        .instrumento {
+            font-size: 18px; 
+            text-transform: lowercase;
+        }
+    }
+}

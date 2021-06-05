@@ -39,7 +39,6 @@ export function useApi() {
     })
       .then(function (response) {
         setUser(response.data.access_token);
-        console.log(response)
         return response
       })
       .catch(function (error) {
@@ -80,9 +79,49 @@ export function useApi() {
     }
   }
 
+  async function listarPostsAmigos() {
+    try {
+      const response = await axios.get('/post/listar')
+      return response
+    } catch (error) {
+      return error.response.data
+    }
+  }
+
+  async function listarDadosUsuario() {
+    try {
+      const response = await axios.get('/usuario')
+      return response
+    } catch (error) {
+      return error.response.data
+    }
+  }
+
+  async function listarPostsUsuario(email) {
+    try {
+      const response = await axios.get(`/post/${email}`)
+      return response
+    } catch (error) {
+      return error.response.data
+    }
+  }
+
+  async function curtirPost(idPost) {
+    try {
+      const response = await axios.post(`/curtida/${idPost}`)
+      return response
+    } catch (error) {
+      return error.response.data
+    }
+  }
+
   return useCallback({
     gerarToken,
     registroUsuario,
-    criarPost
+    criarPost,
+    listarPostsAmigos,
+    listarDadosUsuario,
+    listarPostsUsuario,
+    curtirPost
   }, [])
 }

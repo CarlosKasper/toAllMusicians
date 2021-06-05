@@ -10,16 +10,25 @@
         justify-content: space-between;
         width: 100%;
 
+        &__link--name {
+            text-decoration: none;
+        }
+
         &__wrapper {
             display: flex;
             justify-content: space-between;
 
             &--links {
                 padding: 0 10px;
+                display: flex;
 
                 a {
                     color: white;
                 }
+            }
+
+            .lupa {
+                padding-right: 10px;
             }
 
             &--input {
@@ -31,6 +40,11 @@
                 color: white;
                 padding-left: 10px;
                 border-radius: 3px;
+            }
+
+            .button {
+                border: none;
+                background: transparent;
             }
             
             &--input::placeholder { 

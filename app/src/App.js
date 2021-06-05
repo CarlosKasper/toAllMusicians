@@ -9,25 +9,26 @@ import {
   FriendScreen, 
   ProfileScreen } from './ui/screens';
 
-
 function App() {
+  const [user] = useGlobalUser()
+  
   return (
     <div>
       <Switch>
         <Route path="/" exact>
           <LoginScreen />
         </Route>
-        <Route path="/register" exact>
+          <Route path="/register" exact>
           <RegisterScreen />
         </Route>
         <Route path="/home" exact>
-          <HomeScreen />
+          {!user ? <LoginScreen/> : <HomeScreen />}
         </Route>
         <Route path="/friendship" exact>
-          <FriendScreen />
+          {!user ? <LoginScreen/> : <FriendScreen />}
         </Route>
-        <Route path="/profile" exact>
-          <ProfileScreen />
+        <Route path="/profile/:email" exact>
+          {!user ? <LoginScreen/> : <ProfileScreen />}
         </Route>
       </Switch>
     </div>

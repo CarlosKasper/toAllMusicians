@@ -10,12 +10,12 @@ export function LoginBox() {
     const api = useApi();
 
     async function gerarToken() {
-        const response = await api.gerarToken(username, password)
+        const response = await api.gerarToken("carlos@gmail.com", "12345")
         if (response.status === 200) {
           history.push("/home")
-      } else if (response.status === 400) {
+        } else if (response.status === 400) {
           alert("ai erremo")
-      }
+        }
     }
 
     function handleSubmit (event) {

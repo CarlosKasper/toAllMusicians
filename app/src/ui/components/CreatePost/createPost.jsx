@@ -2,17 +2,20 @@ import './createPost.scss';
 import { useApi } from '../../../hooks/api'
 import React, { useState } from 'react'
 import Select from 'react-select';
+import { useGlobalFeed } from '../../../context/index'
 
 export function CreatePost() {
     const api = useApi();
     const [title, setTitle] = useState("")
     const [instrument, setInstrument] = useState("")
     const [privacity, setPrivacity] = useState("")
+    const [feed, setFeed] = useGlobalFeed(false)
 
     async function publicarPost() {
         const response = await api.criarPost(title, privacity, instrument)
         if (response.status === 201) {
             alert('post criado com sucesso')
+            setFeed(!feed)
         } else if (response.status === 400) {
             alert('tem algo de errado amigao')
         }
@@ -51,11 +54,13 @@ export function CreatePost() {
                             className="post-select"
                             onChange={onChangeInstrument}
                             options={optionsInsrument}
+                            placeholder="Seu instrumento"
                     />
                     <Select
                         className="post-select"
                         onChange={onChangePrivacity}
                         options={optionsPrivacity}
+                        placeholder="Privacidade"
                     />
                 </div>
                 <div className="container__submit">

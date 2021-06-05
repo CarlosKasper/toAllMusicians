@@ -4,7 +4,7 @@ export function LoginScreen() {
 
     return (
         <>
-            <Header logged={false}/>
+            <Header/>
             <LoginBox />
         </>
     );
