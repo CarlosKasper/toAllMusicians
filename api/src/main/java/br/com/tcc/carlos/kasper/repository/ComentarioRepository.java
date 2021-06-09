@@ -1,7 +1,6 @@
 package br.com.tcc.carlos.kasper.repository;
 
 import br.com.tcc.carlos.kasper.domain.Comentario;
-import br.com.tcc.carlos.kasper.domain.Curtida;
 import br.com.tcc.carlos.kasper.domain.Musico;
 import br.com.tcc.carlos.kasper.domain.Post;
 import org.springframework.data.domain.Page;
@@ -10,15 +9,15 @@ import org.springframework.data.repository.Repository;
 
 import java.util.Optional;
 
-public interface CurtidaRepository extends Repository<Curtida, Long> {
+public interface ComentarioRepository extends Repository<Comentario, Long> {
 
-    Optional<Curtida> findById(Long id);
+    Optional<Comentario> findById(Long id);
 
-    Optional<Curtida> findByMusicoAndPostEquals(Musico musico, Post post);
+    Optional<Comentario> findByMusicoAndPostEquals(Musico musico, Post post);
 
-    Page<Curtida> findByPost(Post post, Pageable pageable);
+    Page<Comentario> findByPost(Post post, Pageable pageable);
 
-    Curtida save(Curtida curtida);
+    Comentario save(Comentario comentario);
 
-    Curtida delete(Curtida curtida);
+    Comentario delete(Comentario comentario);
 }

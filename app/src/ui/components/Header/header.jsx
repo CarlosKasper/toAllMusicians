@@ -6,7 +6,8 @@ import { Link } from 'react-router-dom';
 import profile from '../../../images/profileHeader.png'
 import envelope from '../../../images/envelope.png'
 import lupa from '../../../images/lupa.png'
-
+import { Nav, Navbar, Form, FormControl, Button } from "react-bootstrap";
+import "bootstrap/dist/css/bootstrap.min.css";
     
 export function Header() {
     const api = useApi();
@@ -37,36 +38,32 @@ export function Header() {
     function isLogged() {
         if(user) {
             return (
-                <>      
-                    <div className="container__wrapper--links">
-                        <input type="text" className="container__wrapper--input" onChange={onChangeUserSearch} placeholder="Busque aqui" />
-                        <button className="button lupa" onCLick={handleSearch}><img src={lupa} width="25" /></button>
-                    </div>
-                    <div className="container__wrapper--links">
-                        {userData ?  <Link to={`/profile/${userData.email}`}><img src={profile} width="25" /></Link> : null} 
-                    </div>
-                    <div className="container__wrapper--links">
-                        {userData ?  <Link to={`/friendship`}><img src={envelope} width="25" /></Link> : null} 
-                    </div>
+                <>       
+                    <Form inline className="form__search">
+                        <FormControl type="text" placeholder="Search" className="mr-sm-2" />
+                        <Button variant="outline-secondary" className="form__btn">Procurar</Button>
+                    </Form>
+                    {userData ?  <Nav.Link><Link to={`/profile/${userData.email}`}><img src={profile} width="25" /><label className="burger__mobile">Perfil</label></Link></Nav.Link> : null} 
+                    {userData ?  <Nav.Link><Link to={`/friendship`}><img src={envelope} width="25" /><label className="burger__mobile">Solicitações</label></Link></Nav.Link> : null} 
                 </>
             );
         }
     }
 
     return (
-        <div className="header">
-            <div className="container">
-                <Link to='/home' className="container__link--name">
-                    <div>
-                        <label className="container__social-name">
-                            toAllMusicians
-                        </label>
-                    </div>
-                </Link>
-                <div className="container__wrapper">
-                   {isLogged()}
-                </div>
-            </div>
-        </div>
+        <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
+        <Navbar.Brand>
+            <Link to='/home'>
+                toAllMusicians
+            </Link>
+        </Navbar.Brand>
+        <Navbar.Toggle aria-controls="responsive-navbar-nav" />
+        <Navbar.Collapse id="responsive-navbar-nav">
+            <Nav className="mr-auto"></Nav>
+            <Nav>
+                {isLogged()}
+            </Nav>
+        </Navbar.Collapse>
+      </Navbar>
     );
 }

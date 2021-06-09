@@ -115,6 +115,24 @@ export function useApi() {
     }
   }
 
+  async function listarComentario(idPublicacao) {
+    try {
+        const response = await axios.get(`/comentario/listar/${idPublicacao}`) 
+        return response.data.content
+    } catch (error) {
+        return error.response
+    }
+  }
+
+  async function listarCurtida(idPublicacao) {
+    try {
+        const response = await axios.get(`/curtida/listar/${idPublicacao}`) 
+        return response.data.content
+    } catch (error) {
+        return error.response
+    }
+  }
+
   return useCallback({
     gerarToken,
     registroUsuario,
@@ -122,6 +140,8 @@ export function useApi() {
     listarPostsAmigos,
     listarDadosUsuario,
     listarPostsUsuario,
-    curtirPost
+    curtirPost,
+    listarCurtida,
+    listarComentario
   }, [])
 }

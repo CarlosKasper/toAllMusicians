@@ -40,7 +40,7 @@ public class CadastrarUsuarioService {
 
         musico.setInstrumento(usuarioRequest.getInstrumento());
 
-        musico.setSenha((usuarioRequest.getSenha()));
+        musico.setSenha(passwordEncoder.encode(usuarioRequest.getSenha()));
 
         usuarioRepository.save(musico);
 

@@ -12,7 +12,6 @@ export function FeedList({postId, postUser, postPrivacity, postDescription, post
             <div className="container">
                 <div className="container__info">
                     <div className="container__picture">
-                        foto
                     </div>
                     <div className="container__wrapper">
                         <div className="container__user">

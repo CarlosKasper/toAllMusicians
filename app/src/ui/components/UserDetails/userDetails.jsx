@@ -26,7 +26,7 @@ export function UserDetails({userData}) {
                    </div>
                </div>
            </div>
-           <div>
+           <div className="friends">
                AMIGOS 123
            </div>
         </div>

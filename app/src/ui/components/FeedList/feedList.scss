@@ -14,13 +14,13 @@
             display: flex;
             justify-content: space-between;
             flex-direction: row;
-            width: 100%;
+            width: 75%;
+            padding-left: 10px;
         }
 
         &__instrument {
             display: flex;
             justify-content: center;
-            align-items: center;
         }
 
         &__info {
@@ -29,19 +29,19 @@
         }
         
         &__picture {
-            width: 80px;
-            background-color: gray;
-            height: 80px;    
-            justify-content: center;
-            align-items: center;
             display: flex;
-            margin-right: 10px;
+            width: 80px;
+            height: 80px;
+            background-color: gray;
+            border-radius: 50%;
+            background: gray center no-repeat;
+            background-size: 50% 50%;
+            background-image: url(../../../images/profile.png);
         }
         
         &__user {
             flex-direction: column;
             display: flex;
-            justify-content: space-evenly;
         }
 
         &__content {
@@ -73,6 +73,14 @@
             width: 150px;
             font-weight: 700;
             font-size: 16px;
+        }
+    }
+}
+
+@media (max-width: 768px) {
+    .feedList {
+        .container {
+            width: 90%;
         }
     }
 }

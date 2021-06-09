@@ -14,7 +14,6 @@ export function CreatePost() {
     async function publicarPost() {
         const response = await api.criarPost(title, privacity, instrument)
         if (response.status === 201) {
-            alert('post criado com sucesso')
             setFeed(!feed)
         } else if (response.status === 400) {
             alert('tem algo de errado amigao')

@@ -1,7 +1,9 @@
 package br.com.tcc.carlos.kasper.domain;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
 
 import javax.persistence.*;
 
@@ -16,7 +18,7 @@ public class Curtida {
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "SEQ_CURTIDA")
     private Long id;
 
-    @ManyToOne
+    @OneToOne
     @JoinColumn(name = "IDMUSICO")
     private Musico musico;
 

@@ -8,13 +8,14 @@
 
     .container {
         display: flex;
-        padding-bottom: 15px;
+        padding: 0 0 15px 0;
 
         &__image {
             display: flex;
             width: 150px;
             height: 150px;
             background-color: gray;
+            border-radius: 50%;
 
             .hiddenFileInput > input {
                 opacity: 0;
@@ -38,7 +39,6 @@
         }
 
         &__name {
-            padding-bottom: 10px;
 
             .nome-perfil {
                 font-size: 24px;
@@ -49,5 +49,15 @@
             font-size: 18px; 
             text-transform: lowercase;
         }
+    }
+
+    .friends {
+        padding-left: 15px;
+    }
+}
+
+@media (max-width: 768px) {
+    .profile {
+        width: 90%;
     }
 }
