@@ -18,7 +18,7 @@ public class Curtida {
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "SEQ_CURTIDA")
     private Long id;
 
-    @OneToOne
+    @ManyToOne
     @JoinColumn(name = "IDMUSICO")
     private Musico musico;
 

@@ -115,10 +115,19 @@ export function useApi() {
     }
   }
 
+  async function descurtirPost(idPost, idCurtida) {
+    try {
+      const response = await axios.post(`/curtida/deletar/${idPost}/${idCurtida}`)
+      return response
+    } catch (error) {
+      return error.response.data
+    }
+  }
+
   async function listarComentario(idPublicacao) {
     try {
         const response = await axios.get(`/comentario/listar/${idPublicacao}`) 
-        return response.data.content
+        return response
     } catch (error) {
         return error.response
     }
@@ -127,7 +136,7 @@ export function useApi() {
   async function listarCurtida(idPublicacao) {
     try {
         const response = await axios.get(`/curtida/listar/${idPublicacao}`) 
-        return response.data.content
+        return response
     } catch (error) {
         return error.response
     }
@@ -141,6 +150,7 @@ export function useApi() {
     listarDadosUsuario,
     listarPostsUsuario,
     curtirPost,
+    descurtirPost,
     listarCurtida,
     listarComentario
   }, [])

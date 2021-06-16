@@ -42,6 +42,8 @@ public class CadastrarUsuarioService {
 
         musico.setSenha(passwordEncoder.encode(usuarioRequest.getSenha()));
 
+        musico.setImagem(usuarioRequest.getImagem());
+
         usuarioRepository.save(musico);
 
         return mapper.apply(musico);

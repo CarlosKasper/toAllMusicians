@@ -1,19 +1,24 @@
 import './userDetails.scss';
-import React from 'react'
+import React, { useState } from 'react'
+import { useApi } from '../../../hooks/api'
 
 export function UserDetails({userData}) {
+    const [imagem, setImagem] = useState();
+    const api = useApi();
+ 
+  
+    async function addPhoto(e) {
+        var file = e.target.files[0];
+        var fileName = e.target.name;
 
-    function handlePicture(event) {
-        console.log(event.files.name)
     }
 
     return (
         <div className="profile">
             <div className="container">  
                 <div className="container__image">
-                    {userData.url ? <img src={userData.url} alt="WIN-20200813-19-34-19-Pro" width="150" height="150" />: 
-                    <span className="hiddenFileInput">
-                        <input type="file" name="theFile" onChange={handlePicture}/>
+                    {imagem ? <img src="https://toallmusiciansbase.s3.sa-east-1.amazonaws.com/comentary.png" alt="foto do usuario"/> : <span className="hiddenFileInput">
+                        <input type="file" name="theFile" onChange={addPhoto}/>
                     </span>
                     }
                 </div>

@@ -1,5 +1,5 @@
 .feedList {
-    padding-top: 30px;
+    padding: 15px 0;
 
     .container {
         display: flex;
@@ -8,7 +8,7 @@
         flex-direction: column;
         margin: auto;
         padding: 5px;
-        background: gainsboro;
+		box-shadow: 5px 0px 19px rgba(50, 50, 50, 0.44);
 
         &__wrapper {
             display: flex;
@@ -30,8 +30,8 @@
         
         &__picture {
             display: flex;
-            width: 80px;
-            height: 80px;
+            width: 60px;
+            height: 60px;
             background-color: gray;
             border-radius: 50%;
             background: gray center no-repeat;
@@ -46,7 +46,7 @@
 
         &__content {
             display: flex;
-            padding-top: 10px;
+            padding-top: 20px;
         }
 
         &__description {
@@ -57,22 +57,9 @@
 
         }
 
-        &__likes {
-            font-size: 14px;
-        }
-
-        &__button {
-            padding: 10px 0;
-        }
-
-        &__like {
-            height: 35px;
-            border: none;
-            background-color: black;
-            color: white;
-            width: 150px;
-            font-weight: 700;
-            font-size: 16px;
+        &__interation {
+            display: flex;
+            flex-direction: row;
         }
     }
 }

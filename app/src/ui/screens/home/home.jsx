@@ -1,7 +1,7 @@
 import { CreatePost, FeedList, Header } from "../../components";
-import { useApi } from '../../../hooks/api'
 import { useGlobalFeed } from '../../../context/index'
 import React, { useEffect, useState } from 'react'
+import { useApi } from '../../../hooks/api'
 
 export function HomeScreen() {
     const api = useApi();    
@@ -24,8 +24,12 @@ export function HomeScreen() {
 
     async function curtirPost(idPost) {
         const response = await api.curtirPost(idPost)
-        if (response.status === 400) {
-            alert('perdemo nos post')
+        console.log(response)
+        if (response.status === 200) {
+            setFeed(!feed)
+        } else {
+            // preciso descobrir como pegar o id da curtida
+            //const response = await api.descurtirPost(idPost)
         } 
     }
     

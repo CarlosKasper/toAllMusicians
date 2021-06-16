@@ -15,6 +15,9 @@ public interface UsuarioRepository extends Repository<Musico, Long> {
 
     Optional<Musico> findById(Long id);
 
+    @Query(value = "select * from MUSICO m where m.NOME_COMPLETO like %:NOME%", nativeQuery = true)
+    Page<Musico> findByNome(@Param("NOME") String nome, Pageable pageable);
+
     Musico save(Musico musico);
 
     boolean existsByEmail(String email);

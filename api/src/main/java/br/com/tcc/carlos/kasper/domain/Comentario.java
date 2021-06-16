@@ -18,7 +18,7 @@ public class Comentario {
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "SEQ_COMENTARIO")
     private Long id;
 
-    @OneToOne
+    @ManyToOne
     @JoinColumn(name = "IDMUSICO")
     private Musico musico;
 

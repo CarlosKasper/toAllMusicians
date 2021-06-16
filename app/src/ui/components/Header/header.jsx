@@ -40,7 +40,7 @@ export function Header() {
             return (
                 <>       
                     <Form inline className="form__search">
-                        <FormControl type="text" placeholder="Search" className="mr-sm-2" />
+                        <FormControl type="text" placeholder="Digite um nome" className="mr-sm-2" />
                         <Button variant="outline-secondary" className="form__btn">Procurar</Button>
                     </Form>
                     {userData ?  <Nav.Link><Link to={`/profile/${userData.email}`}><img src={profile} width="25" /><label className="burger__mobile">Perfil</label></Link></Nav.Link> : null} 
@@ -53,7 +53,7 @@ export function Header() {
     return (
         <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
         <Navbar.Brand>
-            <Link to='/home'>
+            <Link to='/home' class="brand">
                 toAllMusicians
             </Link>
         </Navbar.Brand>

@@ -6,6 +6,7 @@ import br.com.tcc.carlos.kasper.domain.Musico;
 import br.com.tcc.carlos.kasper.domain.Relacionamento;
 import br.com.tcc.carlos.kasper.security.CustomUserDetails;
 import br.com.tcc.carlos.kasper.service.usuario.BuscarUsuarioPorEmailService;
+import br.com.tcc.carlos.kasper.service.usuario.BuscarUsuarioPorNomeService;
 import br.com.tcc.carlos.kasper.service.usuario.CadastrarUsuarioService;
 import br.com.tcc.carlos.kasper.service.relacionamento.ListarConvitesDeRelacionamentoPendentesService;
 import br.com.tcc.carlos.kasper.service.relacionamento.ListarRelacionamentosDoUsuarioService;
@@ -42,6 +43,9 @@ public class UsuarioController {
 
     @Autowired
     private ListarUsuariosService listarUsuariosService;
+
+    @Autowired
+    private BuscarUsuarioPorNomeService buscarUsuarioPorNomeService;
 
     @PostMapping("/cadastro")
     @ResponseStatus(HttpStatus.CREATED)
@@ -89,6 +93,15 @@ public class UsuarioController {
     public Page<Relacionamento> exibirRelacionamentos(@AuthenticationPrincipal CustomUserDetails usuarioLogado, @PageableDefault Pageable pageable) {
 
         return listarRelacionamentosDoUsuarioService.listar(usuarioLogado.getUsername(), pageable);
+
+    }
+
+    @RolesAllowed({"ROLE_USUARIO"})
+    @GetMapping("/buscar/musico/{nome-usuario}")
+    @ResponseStatus(HttpStatus.OK)
+    public Page<Musico> listarUsuarioPorNome(@PathVariable("nome-usuario") String nome, @PageableDefault Pageable pageable) {
+
+        return buscarUsuarioPorNomeService.buscar(nome, pageable);
 
     }
 }

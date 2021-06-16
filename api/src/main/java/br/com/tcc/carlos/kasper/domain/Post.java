@@ -1,6 +1,5 @@
 package br.com.tcc.carlos.kasper.domain;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -24,6 +23,9 @@ public class Post {
 
     @Column(name = "TITULO")
     private String titulo;
+
+    @Column(name = "IMAGEM")
+    private String imagem;
 
     @Enumerated(value = EnumType.STRING)
     private Privacidade privacidade;

@@ -6,6 +6,21 @@ a {
     color: white !important;
 }
 
+@font-face {
+    font-family: 'MateSC-Regular';
+    src: url('../../../fonts/MateSC-Regular.ttf'); /* IE9 Compat Modes */
+}
+
+.brand {
+    font-family: 'MateSC-Regular';
+    font-size: 22px;
+    font-weight: 700;
+}
+
+.form__search {
+    margin-right: 20px;
+}
+
 @media (max-width: 768px) {
     .form__search  {
         display: flex !important;
@@ -14,6 +29,7 @@ a {
         width: 70%;
         flex-flow: row !important;
         padding-top: 15px;
+        margin-right: 0;
     }
 
     .form__btn {

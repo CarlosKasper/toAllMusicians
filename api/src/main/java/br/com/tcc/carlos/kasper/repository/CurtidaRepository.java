@@ -1,6 +1,5 @@
 package br.com.tcc.carlos.kasper.repository;
 
-import br.com.tcc.carlos.kasper.domain.Comentario;
 import br.com.tcc.carlos.kasper.domain.Curtida;
 import br.com.tcc.carlos.kasper.domain.Musico;
 import br.com.tcc.carlos.kasper.domain.Post;

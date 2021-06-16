@@ -39,7 +39,7 @@ public class Musico {
     @Column(name = "SENHA")
     private String senha;
 
-    @Column(name = "IMG_PERFIL_URL")
+    @Column(name = "IMAGEM")
     private String imagem;
 
     @Enumerated(value = EnumType.STRING)

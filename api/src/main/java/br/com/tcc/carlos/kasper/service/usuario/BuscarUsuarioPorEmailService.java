@@ -16,11 +16,11 @@ public class BuscarUsuarioPorEmailService {
 
     public Musico buscar(String email) {
 
-        Optional<Musico> usuario = usuarioRepository.findByEmail(email);
+        Optional<Musico> musico = usuarioRepository.findByEmail(email);
 
-        if (!usuario.isPresent()) {
+        if (!musico.isPresent()) {
             throw new RegistroNaoEncontradoException("Usuario não encontrado!");
         }
-        return (usuario.get());
+        return (musico.get());
     }
 }
