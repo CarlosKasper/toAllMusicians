@@ -24,8 +24,9 @@ public class Post {
     @Column(name = "TITULO")
     private String titulo;
 
-    @Column(name = "IMAGEM")
-    private String imagem;
+    @OneToOne
+    @JoinColumn(name = "IDIMAGEM")
+    private Imagem imagem;
 
     @Enumerated(value = EnumType.STRING)
     private Privacidade privacidade;
