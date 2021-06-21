@@ -112,11 +112,18 @@
             <version>2.3.1.RELEASE</version>
         </dependency>
 
-        <!-- FlyWay-->
+        <!-- FlyWay -->
         <dependency>
             <groupId>org.flywaydb</groupId>
             <artifactId>flyway-core</artifactId>
             <version>6.5.7</version>
+        </dependency>
+
+        <!-- AWS  -->
+        <dependency>
+            <groupId>com.amazonaws</groupId>
+            <artifactId>aws-java-sdk</artifactId>
+            <version>1.11.486</version>
         </dependency>
 
     </dependencies>
