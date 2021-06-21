@@ -9,7 +9,10 @@ import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
+import javax.annotation.security.RolesAllowed;
+
 @RestController
+@RolesAllowed({"ROLE_USUARIO"})
 @RequestMapping("/imagem")
 public class ImagemController {
 
@@ -18,7 +21,7 @@ public class ImagemController {
     @Autowired
     private StorageService storageService;
 
-    @PostMapping("/upload/perfil")
+    @PostMapping("/upload/profile")
     public ResponseEntity<String> uploadImagemPerfil(@AuthenticationPrincipal CustomUserDetails user, @RequestParam(value = "image") MultipartFile file) {
         try {
             storageService.uploadImagemPerfil(file, user.getId());

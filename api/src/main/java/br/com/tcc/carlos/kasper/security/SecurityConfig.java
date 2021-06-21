@@ -37,9 +37,8 @@ public class SecurityConfig extends ResourceServerConfigurerAdapter {
                 .cors().and().csrf().disable()
 
                 // definir regras abertas
-                //TODO Conferir as regras
                 .authorizeRequests()
-                .antMatchers("/usuario/cadastro", "/imagem/**").permitAll()
+                .antMatchers("/usuario/cadastro").permitAll()
 
                 // Somente quem é admin pode acessar
                 .antMatchers("/admin").hasRole("ADMINISTRADOR")

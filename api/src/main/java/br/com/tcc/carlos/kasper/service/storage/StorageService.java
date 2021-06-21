@@ -61,14 +61,8 @@ public class StorageService {
         postRepository.save(post);
     }
 
-    private Imagem createNewImage() {
-        Imagem imagem = new Imagem();
-        return imagemRepository.save(imagem);
-    }
-
     private Imagem uploadImagem(MultipartFile multipartFile) {
         Imagem imagem = createNewImage();
-
         String fileName = imagem.getId().toString();
 
         File file = convertMultiPartFileToFile(multipartFile);
@@ -76,6 +70,11 @@ public class StorageService {
         file.delete();
 
         imagem.setUrl(IMAGENS_URL.concat(fileName));
+        return imagemRepository.save(imagem);
+    }
+
+    private Imagem createNewImage() {
+        Imagem imagem = new Imagem();
         return imagemRepository.save(imagem);
     }
 
