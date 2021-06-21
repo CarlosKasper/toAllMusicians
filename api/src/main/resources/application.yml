@@ -45,3 +45,4 @@ cloud:
             static: sa-east-1
         s3:
             bucket-name: toallmusiciansbase
+            url: https://toallmusiciansbase.s3.sa-east-1.amazonaws.com/

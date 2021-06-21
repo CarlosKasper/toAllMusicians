@@ -24,7 +24,8 @@ import java.io.IOException;
 @Service
 public class StorageService {
 
-    private static final String IMAGENS_URL = "https://toallmusiciansbase.s3.sa-east-1.amazonaws.com/";
+    @Value("${cloud.aws.s3.url}")
+    private String bucketUrl;
 
     @Value("${cloud.aws.s3.bucket-name}")
     private String bucketName;
@@ -69,7 +70,7 @@ public class StorageService {
         s3Client.putObject(new PutObjectRequest(bucketName, fileName, file));
         file.delete();
 
-        imagem.setUrl(IMAGENS_URL.concat(fileName));
+        imagem.setUrl(bucketUrl.concat(fileName));
         return imagemRepository.save(imagem);
     }
 
