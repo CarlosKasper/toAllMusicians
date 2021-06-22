@@ -51,8 +51,12 @@
         }
     }
 
-    .friends {
-        padding-left: 15px;
+    .user-info {
+        display: flex;
+
+        .information {
+            padding-left: 15px;
+        }
     }
 }
 

@@ -169,6 +169,42 @@ export function useApi() {
     }
   }
 
+  async function listarSolicitacoes() {
+    try {
+        const response = await axios.get(`/amizade/solicitacoes`) 
+        return response
+    } catch (error) {
+        return error.response
+    }
+  }
+
+  async function acceptAsFriend(relationshipId) {
+    try {
+        const response = await axios.post(`/amizade/aceitar/${relationshipId}`) 
+        return response
+    } catch (error) {
+        return error.response
+    }
+  }
+
+  async function denniedAsFriend(relationshipId) {
+    try {
+        const response = await axios.post(`/amizade/recusar/${relationshipId}`) 
+        return response
+    } catch (error) {
+        return error.response
+    }
+  }
+
+  async function listFriends() {
+    try {
+        const response = await axios.get(`/amizade`) 
+        return response
+    } catch (error) {
+        return error.response
+    }
+  }
+
   return useCallback({
     gerarToken,
     registroUsuario,
@@ -182,6 +218,10 @@ export function useApi() {
     listarComentario,
     searchUser,
     addFriend,
-    exibirDadosDoPefilDoUsuario
+    exibirDadosDoPefilDoUsuario,
+    listarSolicitacoes,
+    acceptAsFriend,
+    denniedAsFriend,
+    listFriends
   }, [])
 }

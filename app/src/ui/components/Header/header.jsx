@@ -16,10 +16,6 @@ export function Header() {
     const [userInfo, setUserInfo] = useGlobalUserInfo()
     const history = useHistory()
     const [username, setUsername] = useState("")
-
-    function handleSearch() {
-        console.log(username)
-    }
     
     useEffect(() => {
         async function listarDadosUsuario() {
@@ -34,13 +30,12 @@ export function Header() {
         listarDadosUsuario()
     }, [])
 
-    function onChangeUserSearch(event){
-        setUsername(event.target.value);
+    function onChangeUserSearch(event){ 
+        setUserSearch(event.target.value);
     }
 
     function handleSearchUser() {
-        if(username) {
-            setUserSearch(username)
+        if(userSearch) {
             history.push("/search")
         }
     }
@@ -50,7 +45,7 @@ export function Header() {
             return (
                 <>       
                     <Form inline className="form__search">
-                        <FormControl type="text" placeholder="Digite um nome" className="mr-sm-2" onChange={onChangeUserSearch} />
+                        <FormControl type="text" placeholder="Digite um nome" className="mr-sm-2" id="searchUser" onChange={onChangeUserSearch} />
                         <Button variant="outline-secondary" className="form__btn" onClick={handleSearchUser}>Procurar</Button>
                     </Form>
                     {userData ?  <Nav.Link><Link to={`/profile/${userData.email}`}><img src={profile} width="25" /><label className="burger__mobile">Perfil</label></Link></Nav.Link> : null} 

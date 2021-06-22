@@ -9,7 +9,7 @@ export function SearchProfile({userProfile, addFriend}) {
     function handleAdd() {
         addFriend(userProfile.email)
     }
-    console.log(userInfo)
+    
     return (
         <div className="searchProfile">
             <div className="searchProfile__info">

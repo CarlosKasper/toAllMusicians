@@ -9,6 +9,7 @@ export function ProfileScreen() {
     const api = useApi();
     const [userData, setUserData] = useState()
     const [postsUser, setPostsUser] = useState()
+    const [userFriends, setUserFriends] = useState()
     const [feed, setFeed] = useGlobalFeed(false)
     let { email } = useParams();
 
@@ -30,6 +31,17 @@ export function ProfileScreen() {
                 alert('bugou pa caralho')
             } 
         }
+
+        async function listFriends() {
+            const response = await api.listFriends()
+            if (response.status === 200) {
+                setUserFriends(response.data.content)
+            } else if (response.status === 400) {
+                alert('bugou pa caralho')
+            } 
+        }
+
+        listFriends()
         listarPostsUsuario()
         exibirDadosDoPefilDoUsuario()
     }, [feed, email])
@@ -46,15 +58,16 @@ export function ProfileScreen() {
     return (
         <>
             <Header/>
-            {userData ? <UserDetails userData={userData} /> : null}
+            {userData && userFriends && postsUser ? 
+                <UserDetails 
+                    userData={userData} 
+                    postLength={postsUser.length} 
+                    userFriends={userFriends} /> 
+            : null}
             {postsUser ? 
-            postsUser.map((feedContent) => 
+            postsUser.map((postsUser) => 
                 <FeedList 
-                    postId={feedContent.id}
-                    postUser={feedContent.musico.nome}
-                    postPrivacity={feedContent.privacidade}
-                    postDescription={feedContent.titulo}
-                    postInstrument={feedContent.instrumento}
+                    feedContent={postsUser}
                     curtirPost={curtirPost}
                 />
             )

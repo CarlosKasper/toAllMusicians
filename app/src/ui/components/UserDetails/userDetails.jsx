@@ -2,16 +2,10 @@ import './userDetails.scss';
 import React, { useState } from 'react'
 import { useApi } from '../../../hooks/api'
 
-export function UserDetails({userData}) {
+export function UserDetails({ userData, postLength, userFriends }) {
     const [imagem, setImagem] = useState();
     const api = useApi();
- 
-  
-    async function addPhoto(e) {
-        var file = e.target.files[0];
-        var fileName = e.target.name;
-
-    }
+    console.log(userData)
 
     return (
         <div className="profile">
@@ -20,7 +14,7 @@ export function UserDetails({userData}) {
                     {imagem ? <img src="https://toallmusiciansbase.s3.sa-east-1.amazonaws.com/comentary.png" alt="foto do usuario"/> 
                     : 
                     <span className="hiddenFileInput">
-                        <input type="file" name="theFile" onChange={addPhoto}/>
+                        <input type="file" name="theFile"/>
                     </span>
                     }
                 </div>
@@ -33,8 +27,13 @@ export function UserDetails({userData}) {
                    </div>
                </div>
            </div>
-           <div className="friends">
-               AMIGOS 123
+           <div className="user-info">
+                <div className="information">
+                    Amigos {userFriends.length}
+                </div>
+                <div className="information">
+                    Post {postLength}
+                </div>
            </div>
         </div>
     );

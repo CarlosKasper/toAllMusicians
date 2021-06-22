@@ -31,6 +31,9 @@ public class RelacionamentoController {
     private ListarRelacionamentosDoUsuarioService listarRelacionamentosDoUsuarioService;
 
     @Autowired
+    private ListarConvitesDeRelacionamentoPendentesService listarConvitesDeRelacionamentoPendentesService;
+
+    @Autowired
     private RemoverAmizadeService removerAmizadeService;
 
     @GetMapping
@@ -38,6 +41,13 @@ public class RelacionamentoController {
     public Page<Relacionamento> buscar(@AuthenticationPrincipal CustomUserDetails usuarioLogado, @PageableDefault Pageable pageable) {
 
         return listarRelacionamentosDoUsuarioService.listar(usuarioLogado.getUsername(), pageable);
+    }
+
+    @GetMapping("/solicitacoes")
+    @ResponseStatus(HttpStatus.OK)
+    public Page<Relacionamento> buscarSolicitacoes(@AuthenticationPrincipal CustomUserDetails usuarioLogado, @PageableDefault Pageable pageable) {
+
+        return listarConvitesDeRelacionamentoPendentesService.listar(usuarioLogado.getUsername(), pageable);
     }
 
     @PostMapping("/{email-solicitado}")
@@ -54,7 +64,7 @@ public class RelacionamentoController {
         aceitarSolicitacaoDeRelacionamentoService.aceitar(id, usuarioLogado.getUsername());
     }
 
-    @PostMapping("/recusar/{id-relacionamento}")
+        @PostMapping("/recusar/{id-relacionamento}")
     @ResponseStatus(HttpStatus.CREATED)
     public void recusar(@AuthenticationPrincipal CustomUserDetails usuarioLogado, @PathVariable("id-relacionamento") Long id) {
 
