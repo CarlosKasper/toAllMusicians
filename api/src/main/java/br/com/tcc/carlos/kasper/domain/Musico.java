@@ -39,8 +39,9 @@ public class Musico {
     @Column(name = "SENHA")
     private String senha;
 
-    @Column(name = "IMAGEM")
-    private String imagem;
+    @OneToOne
+    @JoinColumn(name = "IDIMAGEM")
+    private Imagem imagem;
 
     @Enumerated(value = EnumType.STRING)
     private Instrumento instrumento;
@@ -59,5 +60,3 @@ public class Musico {
         this.dataNascimento = dataNascimento;
     }
 }
-
-
