@@ -21,12 +21,22 @@ export function SearchScreen() {
 
         searchUser()
     }, [])
+
+    async function handleAddFriend(email) {
+        const response = await api.addFriend(email)
+        if (response.status === 201) {
+            console.log(response)
+        } else if (response.status === 400) {
+            alert("ai erremo")
+        }
+    }   
+
     return (
         <>
             <Header />
             {users ? 
                 users.map((users) => 
-                <SearchProfile userProfile={users}/>
+                <SearchProfile userProfile={users} addFriend={handleAddFriend}/>
                 )
             : null
             }

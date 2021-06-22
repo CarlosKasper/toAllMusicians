@@ -97,6 +97,15 @@ export function useApi() {
     }
   }
 
+  async function exibirDadosDoPefilDoUsuario(email) {
+    try {
+      const response = await axios.get(`/usuario/buscar/${email}`)
+      return response
+    } catch (error) {
+      return error.response.data
+    }
+  }
+
   async function listarPostsUsuario(email) {
     try {
       const response = await axios.get(`/post/${email}`)
@@ -151,6 +160,15 @@ export function useApi() {
     }
   }
 
+  async function addFriend(email) {
+    try {
+        const response = await axios.post(`/amizade/${email}`) 
+        return response
+    } catch (error) {
+        return error.response
+    }
+  }
+
   return useCallback({
     gerarToken,
     registroUsuario,
@@ -162,6 +180,8 @@ export function useApi() {
     descurtirPost,
     listarCurtida,
     listarComentario,
-    searchUser
+    searchUser,
+    addFriend,
+    exibirDadosDoPefilDoUsuario
   }, [])
 }

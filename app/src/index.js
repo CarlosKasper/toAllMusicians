@@ -7,13 +7,16 @@ import * as serviceWorker from './serviceWorker';
 import { UserProvider } from './context';
 import { FeedProvider } from './context';
 import { UserSearchProvider } from './context';
+import { UserInfoProvider } from './context';
 
 ReactDOM.render( 
   <BrowserRouter>
     <FeedProvider>
       <UserProvider>
         <UserSearchProvider>
-          <App />
+          <UserInfoProvider>
+            <App />
+          </UserInfoProvider>
         </UserSearchProvider>
       </UserProvider>
     </FeedProvider>

@@ -1,12 +1,32 @@
 .searchProfile {
-    width: 100%;
-    display: flex;
-    justify-content: center;
+    padding-top: 10px;
+    display: flex; 
+    width: 40%;
+    margin: 10px auto;
+    padding: 5px;
+    box-shadow: 5px 0px 19px rgba(50, 50, 50, 0.44);
 
     &__info {
         display: flex;
         flex-direction: row;
+        width: 100%;
     }
+
+    &__about {
+        display: flex;
+        justify-content: space-between;
+        width: 100%;
+    }
+
+    &__add {
+        display: none;    
+    }
+    :hover {
+        .searchProfile__add {
+            display: block;
+        }
+    }
+
 
     &__image {
         display: flex;
@@ -19,7 +39,7 @@
             opacity: 0;
             cursor: pointer;
             height: 100%;
-            width: 100;
+            width: 450px;
         }
 
         .hiddenFileInput {
@@ -33,5 +53,9 @@
     &__wrapper {
         padding-top: 10px;
         padding-left: 10px;
+    }
+
+    .add-image {
+        width: 50px;
     }
 }

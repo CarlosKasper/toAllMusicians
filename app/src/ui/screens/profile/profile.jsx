@@ -13,8 +13,8 @@ export function ProfileScreen() {
     let { email } = useParams();
 
     useEffect(() => {
-        async function listarDadosUsuario() {
-            const response = await api.listarDadosUsuario()
+        async function exibirDadosDoPefilDoUsuario() {
+            const response = await api.exibirDadosDoPefilDoUsuario(email)
             if (response.status === 200) { 
                 setUserData(response.data)
             } else if (response.status === 400) {
@@ -31,8 +31,8 @@ export function ProfileScreen() {
             } 
         }
         listarPostsUsuario()
-        listarDadosUsuario()
-    }, [feed])
+        exibirDadosDoPefilDoUsuario()
+    }, [feed, email])
 
     async function curtirPost(idPost) {
         const response = await api.curtirPost(idPost)

@@ -1,6 +1,6 @@
 import './header.scss';
 import React, { useEffect, useState } from 'react'
-import { useGlobalUser, useGlobalUserSearch } from '../../../context/index'
+import { useGlobalUser, useGlobalUserInfo, useGlobalUserSearch } from '../../../context/index'
 import { useApi } from '../../../hooks/api'
 import { Link, useHistory } from 'react-router-dom';
 import profile from '../../../images/profileHeader.png'
@@ -13,6 +13,7 @@ export function Header() {
     const [userData, setUserData] = useState()
     const [user, setUser] = useGlobalUser()
     const [userSearch, setUserSearch] = useGlobalUserSearch()
+    const [userInfo, setUserInfo] = useGlobalUserInfo()
     const history = useHistory()
     const [username, setUsername] = useState("")
 
@@ -25,6 +26,7 @@ export function Header() {
             const response = await api.listarDadosUsuario()
             if (response.status === 200) {
                 setUserData(response.data)
+                setUserInfo(response.data)
             } else if (response.status === 400) {
                 alert('bugou pa caralho')
             } 
