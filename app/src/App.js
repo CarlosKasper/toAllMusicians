@@ -7,7 +7,8 @@ import {
   RegisterScreen, 
   HomeScreen, 
   FriendScreen, 
-  ProfileScreen } from './ui/screens';
+  ProfileScreen,
+  SearchScreen } from './ui/screens';
 
 function App() {
   const [user] = useGlobalUser()
@@ -29,6 +30,9 @@ function App() {
         </Route>
         <Route path="/profile/:email" exact>
           {!user ? <LoginScreen/> : <ProfileScreen />}
+        </Route>
+        <Route path="/search" exact>
+          {!user ? <LoginScreen/> : <SearchScreen />}
         </Route>
       </Switch>
     </div>

@@ -142,6 +142,15 @@ export function useApi() {
     }
   }
 
+  async function searchUser(userName) {
+    try {
+        const response = await axios.get(`/usuario/buscar/musico/${userName}`) 
+        return response
+    } catch (error) {
+        return error.response
+    }
+  }
+
   return useCallback({
     gerarToken,
     registroUsuario,
@@ -152,6 +161,7 @@ export function useApi() {
     curtirPost,
     descurtirPost,
     listarCurtida,
-    listarComentario
+    listarComentario,
+    searchUser
   }, [])
 }

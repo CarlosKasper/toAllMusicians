@@ -1,0 +1,37 @@
+.searchProfile {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+
+    &__info {
+        display: flex;
+        flex-direction: row;
+    }
+
+    &__image {
+        display: flex;
+        width: 150px;
+        height: 150px;
+        background-color: gray;
+        border-radius: 50%;
+
+        .hiddenFileInput > input {
+            opacity: 0;
+            cursor: pointer;
+            height: 100%;
+            width: 100;
+        }
+
+        .hiddenFileInput {
+            overflow: hidden;
+            background: center center no-repeat;
+            background-size: 50% 50%;
+            background-image: url(../../../images/profile.png);
+        }
+    }
+
+    &__wrapper {
+        padding-top: 10px;
+        padding-left: 10px;
+    }
+}

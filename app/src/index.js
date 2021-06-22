@@ -6,12 +6,15 @@ import { BrowserRouter } from 'react-router-dom'
 import * as serviceWorker from './serviceWorker';
 import { UserProvider } from './context';
 import { FeedProvider } from './context';
+import { UserSearchProvider } from './context';
 
 ReactDOM.render( 
   <BrowserRouter>
     <FeedProvider>
       <UserProvider>
-        <App />
+        <UserSearchProvider>
+          <App />
+        </UserSearchProvider>
       </UserProvider>
     </FeedProvider>
   </BrowserRouter>,
