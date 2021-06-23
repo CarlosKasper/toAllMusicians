@@ -16,7 +16,7 @@ export function FriendsProfile({userFriends, deletedFriend, profileEmail}) {
             <div className="friendsProfile__info">
                 <Link to={`/profile/${userFriends.email}`}>
                     <div className="friendsProfile__image">
-                        {userFriends.imagem ? <img src={userFriends.imagem.url} alt="Foto de perfil" /> 
+                        {userFriends.imagem ? <img className="profile-image" src={userFriends.imagem.url} alt="Foto de perfil" /> 
                         :
                             <span className="hiddenFileInput">
                                 <input   name="theFile" disabled/>

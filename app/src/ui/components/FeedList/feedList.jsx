@@ -46,7 +46,13 @@ export function FeedList({feedContent, curtirPost}) {
             <div className="container">
                 <Link className="link" to={`/profile/${feedContent.musico.email}`}>
                     <div className="container__info">
-                        <div className="container__picture">
+                        <div className="container__image">
+                            {feedContent.musico.imagem ? <img className="profile-image" src={feedContent.musico.imagem.url} alt="Foto de perfil" /> 
+                            :
+                                <span className="hiddenFileInput">
+                                    <input   name="theFile" disabled/>
+                                </span>
+                            }
                         </div>
                         <div className="container__wrapper">
                             <div className="container__user">
@@ -66,8 +72,6 @@ export function FeedList({feedContent, curtirPost}) {
                 <hr/>
                 <div className="container__content">
                     <label className="container__description"> {feedContent.titulo} </label>
-                </div>
-                <div className="container__image">
                 </div>
                 <hr/>
                 <div className="container__content">
