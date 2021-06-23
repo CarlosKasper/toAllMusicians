@@ -20,7 +20,7 @@ export function FriendSolicitation({ userSolicitations, acceptAsFriend, denniedA
             <div className="friendSolicitation__info">
                 <Link to={`/profile/${userSolicitations.musico1.email}`}>
                     <div className="friendSolicitation__image">
-                        {userSolicitations.musico1.imagem ? <img src={userSolicitations.musico1.imagem.url} alt="Foto de perfil" /> 
+                        {userSolicitations.musico1.imagem ? <img className="profile-image" src={userSolicitations.musico1.imagem.url} alt="Foto de perfil" /> 
                         : 
                             <span className="hiddenFileInput">
                                 <input   name="theFile" disabled/>

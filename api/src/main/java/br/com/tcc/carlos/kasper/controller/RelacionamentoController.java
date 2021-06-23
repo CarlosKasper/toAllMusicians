@@ -43,6 +43,13 @@ public class RelacionamentoController {
         return listarRelacionamentosDoUsuarioService.listar(usuarioLogado.getUsername(), pageable);
     }
 
+    @GetMapping("/{email}")
+    @ResponseStatus(HttpStatus.OK)
+    public Page<Relacionamento> buscar(@PathVariable("email") String email, @PageableDefault Pageable pageable) {
+
+        return listarRelacionamentosDoUsuarioService.listar(email, pageable);
+    }
+
     @GetMapping("/solicitacoes")
     @ResponseStatus(HttpStatus.OK)
     public Page<Relacionamento> buscarSolicitacoes(@AuthenticationPrincipal CustomUserDetails usuarioLogado, @PageableDefault Pageable pageable) {

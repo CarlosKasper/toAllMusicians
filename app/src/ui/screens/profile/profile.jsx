@@ -1,4 +1,4 @@
-import { FeedList, Header, UserDetails } from "../../components";
+import { FeedList, Header, UserDetails, FriendsProfile } from "../../components";
 import { useApi } from '../../../hooks/api'
 import { useEffect, useState } from "react";
 import { useGlobalFeed } from '../../../context/index'
@@ -33,7 +33,7 @@ export function ProfileScreen() {
         }
 
         async function listFriends() {
-            const response = await api.listFriends()
+            const response = await api.listFriends(email)
             if (response.status === 200) {
                 setUserFriends(response.data.content)
             } else if (response.status === 400) {
@@ -55,6 +55,15 @@ export function ProfileScreen() {
         setFeed(!feed)
     }
 
+    async function deletedFriend(userEmail) {        
+        const response = await api.deletedFriend(userEmail)
+        if (response.status === 400) {
+            alert('perdemo nos post')
+        } 
+
+        setFeed(!feed)
+    }
+
     return (
         <>
             <Header/>
@@ -64,14 +73,26 @@ export function ProfileScreen() {
                     postLength={postsUser.length} 
                     userFriends={userFriends} /> 
             : null}
-            {postsUser ? 
-            postsUser.map((postsUser) => 
-                <FeedList 
-                    feedContent={postsUser}
-                    curtirPost={curtirPost}
-                />
-            )
-            : null}
+            <div id="feed">
+                {postsUser ? 
+                    postsUser.map((postsUser) => 
+                    <FeedList 
+                        feedContent={postsUser}
+                        curtirPost={curtirPost}
+                    />
+                )
+                : null}
+            </div>
+            <div id="friends">
+                {userFriends ? 
+                    userFriends.map((userFriends) => 
+                        <FriendsProfile
+                            userFriends={userFriends}
+                            deletedFriend={deletedFriend}
+                            profileEmail={email}/> 
+                    )
+                : null}
+            </div>
         </>
     );
 }

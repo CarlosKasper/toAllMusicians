@@ -1,11 +1,17 @@
 import { useAxios } from './use-axios.hook'
 import { useCallback } from 'react'
 import { useGlobalUser } from '../../context/index'
+import {useDispatch, useSelector} from "react-redux";
 
 export function useApi() {
-
+  const dispatch = useDispatch();
   const [user, setUser] = useGlobalUser()
   const token = user
+
+  const amazonS3Image = useAxios(
+    'https://toallmusiciansbase.s3.sa-east-1.amazonaws.com/'
+  )
+
   const axios = useAxios(
     'http://localhost:8090/',
     { Authorization: 'Bearer ' + token }
@@ -196,14 +202,32 @@ export function useApi() {
     }
   }
 
-  async function listFriends() {
+  async function listFriends(email) {
     try {
-        const response = await axios.get(`/amizade`) 
+        const response = await axios.get(`/amizade/${email}`) 
         return response
     } catch (error) {
         return error.response
     }
   }
+
+  async function deletedFriend(userEmail) {
+    try {
+        const response = await axios.delete(`/amizade/remover/${userEmail}`) 
+        return response
+    } catch (error) {
+        return error.response
+    }
+  }
+
+  async function uploadImagePerfil(image) {
+    try {
+      const response = await axios.post(`/imagem/upload/profile`, image); 
+      return response
+    } catch (error) {
+        return error.response
+    }
+  };
 
   return useCallback({
     gerarToken,
@@ -222,6 +246,8 @@ export function useApi() {
     listarSolicitacoes,
     acceptAsFriend,
     denniedAsFriend,
-    listFriends
+    listFriends,
+    deletedFriend,
+    uploadImagePerfil
   }, [])
 }

@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import { useGlobalUserInfo } from '../../../context';
 
 export function SearchProfile({userProfile, addFriend}) {
-    const [userInfo, setUserInfo] = useGlobalUserInfo()
+    const [userInfo] = useGlobalUserInfo()
 
     function handleAdd() {
         addFriend(userProfile.email)
@@ -15,7 +15,7 @@ export function SearchProfile({userProfile, addFriend}) {
             <div className="searchProfile__info">
                 <Link to={`/profile/${userProfile.email}`}>
                     <div className="searchProfile__image">
-                        {userProfile.imagem ? <img src={userProfile.imagem.url} alt="Foto de perfil" /> 
+                        {userProfile.imagem ? <img className="profile-image" src={userProfile.imagem.url} alt="Foto de perfil" /> 
                         : 
                             <span className="hiddenFileInput">
                                 <input   name="theFile" disabled/>
@@ -34,9 +34,11 @@ export function SearchProfile({userProfile, addFriend}) {
                             {userProfile.instrumento}
                         </div>
                     </div> 
-                    <div className="searchProfile__add" onClick={handleAdd}>
-                        <img className="add-image" src={add} alt="Adicionar como amigo" />
-                    </div>
+                    {userInfo.email !== userProfile.email ?
+                        <div className="searchProfile__add" onClick={handleAdd}>
+                            <img className="add-image" src={add} alt="Adicionar como amigo" />
+                        </div>
+                    : null}
                 </div>
             </div>
         </div>
