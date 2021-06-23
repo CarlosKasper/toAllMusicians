@@ -2,17 +2,18 @@ import './feedList.scss';
 import { useApi } from '../../../hooks/api'
 import { useGlobalFeed } from '../../../context/index'
 import React, { useEffect, useState } from 'react'
+import { Link } from 'react-router-dom';
 import like from '../../../images/like.png'
 import comentary from '../../../images/comentary.png'
 
-export function FeedList({postId, postUser, postPrivacity, postDescription, postInstrument, curtirPost}) {
+export function FeedList({feedContent, curtirPost}) {
     const api = useApi();    
     const [comentaryPost, setComentaryPost] = useState()
     const [likePost, setLikePost] = useState()
     const [feed, setFeed] = useGlobalFeed(false)
 
     function handleCurtir() {
-        curtirPost(postId)
+        curtirPost(feedContent.id)
     }
 
     function handleComentar() {
@@ -21,14 +22,14 @@ export function FeedList({postId, postUser, postPrivacity, postDescription, post
 
     useEffect(() => {
         async function listarComentario() {
-            const response = await api.listarComentario(postId)
+            const response = await api.listarComentario(feedContent.id)
             if (response.status === 200) {
                 setComentaryPost(response.data)
             }
         }
     
         async function listarCurtida() {
-            const response = await api.listarCurtida(postId)
+            const response = await api.listarCurtida(feedContent.id)
             if (response.status === 200) {
                 setLikePost(response.data)
             }
@@ -38,31 +39,39 @@ export function FeedList({postId, postUser, postPrivacity, postDescription, post
         listarCurtida()
     }, [api, feed])
 
+    console.log(feedContent)
+
     return (
         <div className="feedList">
             <div className="container">
-                <div className="container__info">
-                    <div className="container__picture">
-                    </div>
-                    <div className="container__wrapper">
-                        <div className="container__user">
-                            <div>
-                                {postUser}
-                            </div>
-                            <div>
-                                {postPrivacity}
-                            </div>
+                <Link className="link" to={`/profile/${feedContent.musico.email}`}>
+                    <div className="container__info">
+                        <div className="container__image">
+                            {feedContent.musico.imagem ? <img className="profile-image" src={feedContent.musico.imagem.url} alt="Foto de perfil" /> 
+                            :
+                                <span className="hiddenFileInput">
+                                    <input   name="theFile" disabled/>
+                                </span>
+                            }
                         </div>
-                    <div className="container__instrument">
-                        {postInstrument}
+                        <div className="container__wrapper">
+                            <div className="container__user">
+                                <div>
+                                    {feedContent.musico.nome}
+                                </div>
+                                <div>
+                                    {feedContent.privacidade}
+                                </div>
+                            </div>
+                        <div className="container__instrument">
+                                {feedContent.instrumento}
+                        </div>
+                        </div>
                     </div>
-                    </div>
-                </div>
+                </Link>
                 <hr/>
                 <div className="container__content">
-                    <label className="container__description"> {postDescription} </label>
-                </div>
-                <div className="container__image">
+                    <label className="container__description"> {feedContent.titulo} </label>
                 </div>
                 <hr/>
                 <div className="container__content">

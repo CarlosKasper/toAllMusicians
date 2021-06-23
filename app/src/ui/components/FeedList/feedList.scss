@@ -27,16 +27,27 @@
             display: flex;
             flex-direction: row;
         }
-        
-        &__picture {
+
+        &__image {
             display: flex;
-            width: 60px;
-            height: 60px;
+            width: 100px;
+            height: 100px;
             background-color: gray;
             border-radius: 50%;
-            background: gray center no-repeat;
-            background-size: 50% 50%;
-            background-image: url(../../../images/profile.png);
+    
+            .hiddenFileInput > input {
+                opacity: 0;
+                cursor: pointer;
+                height: 100%;
+                width: 450px;
+            }
+    
+            .hiddenFileInput {
+                overflow: hidden;
+                background: center center no-repeat;
+                background-size: 50% 50%;
+                background-image: url(../../../images/profile.png);
+            }
         }
         
         &__user {

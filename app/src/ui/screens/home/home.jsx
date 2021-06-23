@@ -25,26 +25,21 @@ export function HomeScreen() {
     async function curtirPost(idPost) {
         const response = await api.curtirPost(idPost)
         console.log(response)
-        if (response.status === 200) {
+        if (response.status === 201) {
             setFeed(!feed)
         } else {
             // preciso descobrir como pegar o id da curtida
             //const response = await api.descurtirPost(idPost)
         } 
     }
-    
     return (
         <>
             <Header logged={true}/>
             <CreatePost />
             {feedContent ? 
-            feedContent.map((feedContent) => 
+            feedContent.map((feedC) => 
                 <FeedList 
-                    postId={feedContent.id}
-                    postUser={feedContent.musico.nome}
-                    postPrivacity={feedContent.privacidade}
-                    postDescription={feedContent.titulo}
-                    postInstrument={feedContent.instrumento}
+                    feedContent={feedC}
                     curtirPost={curtirPost}
                 />
             )

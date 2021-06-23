@@ -1,11 +1,10 @@
 import './header.scss';
 import React, { useEffect, useState } from 'react'
-import { useGlobalUser } from '../../../context/index'
+import { useGlobalUser, useGlobalUserInfo, useGlobalUserSearch } from '../../../context/index'
 import { useApi } from '../../../hooks/api'
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import profile from '../../../images/profileHeader.png'
-import envelope from '../../../images/envelope.png'
-import lupa from '../../../images/lupa.png'
+import envelope from '../../../images/envelope.png' 
 import { Nav, Navbar, Form, FormControl, Button } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
     
@@ -13,17 +12,17 @@ export function Header() {
     const api = useApi();
     const [userData, setUserData] = useState()
     const [user, setUser] = useGlobalUser()
+    const [userSearch, setUserSearch] = useGlobalUserSearch()
+    const [userInfo, setUserInfo] = useGlobalUserInfo()
+    const history = useHistory()
     const [username, setUsername] = useState("")
-
-    function handleSearch() {
-        console.log(username)
-    }
     
     useEffect(() => {
         async function listarDadosUsuario() {
             const response = await api.listarDadosUsuario()
             if (response.status === 200) {
                 setUserData(response.data)
+                setUserInfo(response.data)
             } else if (response.status === 400) {
                 alert('bugou pa caralho')
             } 
@@ -31,8 +30,14 @@ export function Header() {
         listarDadosUsuario()
     }, [])
 
-    function onChangeUserSearch(event){
-        setUsername(event.target.value);
+    function onChangeUserSearch(event){ 
+        setUserSearch(event.target.value);
+    }
+
+    function handleSearchUser() {
+        if(userSearch) {
+            history.push("/search")
+        }
     }
 
     function isLogged() {
@@ -40,8 +45,8 @@ export function Header() {
             return (
                 <>       
                     <Form inline className="form__search">
-                        <FormControl type="text" placeholder="Digite um nome" className="mr-sm-2" />
-                        <Button variant="outline-secondary" className="form__btn">Procurar</Button>
+                        <FormControl type="text" placeholder="Digite um nome" className="mr-sm-2" id="searchUser" onChange={onChangeUserSearch} />
+                        <Button variant="outline-secondary" className="form__btn" onClick={handleSearchUser}>Procurar</Button>
                     </Form>
                     {userData ?  <Nav.Link><Link to={`/profile/${userData.email}`}><img src={profile} width="25" /><label className="burger__mobile">Perfil</label></Link></Nav.Link> : null} 
                     {userData ?  <Nav.Link><Link to={`/friendship`}><img src={envelope} width="25" /><label className="burger__mobile">Solicitações</label></Link></Nav.Link> : null} 
