@@ -1,24 +1,18 @@
 import './feedList.scss';
 import { useApi } from '../../../hooks/api'
-import { useGlobalFeed } from '../../../context/index'
+import { useGlobalFeed, useGlobalUserInfo } from '../../../context/index'
 import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom';
 import like from '../../../images/like.png'
 import comentary from '../../../images/comentary.png'
+import { CommentaryPost } from "../index";
 
-export function FeedList({feedContent, curtirPost}) {
+export function FeedList({feedContent, likePost, unlikePost}) {
     const api = useApi();    
     const [comentaryPost, setComentaryPost] = useState()
-    const [likePost, setLikePost] = useState()
+    const [userInfo, setUserInfo] = useGlobalUserInfo()
+    const [likes, setLikes] = useState()
     const [feed, setFeed] = useGlobalFeed(false)
-
-    function handleCurtir() {
-        curtirPost(feedContent.id)
-    }
-
-    function handleComentar() {
-        //curtirPost(postId)
-    }
 
     useEffect(() => {
         async function listarComentario() {
@@ -31,7 +25,7 @@ export function FeedList({feedContent, curtirPost}) {
         async function listarCurtida() {
             const response = await api.listarCurtida(feedContent.id)
             if (response.status === 200) {
-                setLikePost(response.data)
+                setLikes(response.data)
             }
         }
 
@@ -39,7 +33,23 @@ export function FeedList({feedContent, curtirPost}) {
         listarCurtida()
     }, [api, feed])
 
-    console.log(feedContent)
+    function handleLike() {
+        likes.content.map((likes) => 
+            {if(userInfo.email === likes.musico.email && feedContent.id === likes.post.id) {
+                unlikePost(likes.id, likes.post.id)
+                return;
+            }}
+        ) 
+        
+        likePost(feedContent.id)
+    }
+
+    async function deleteCommentary(postId, commentaryId) {
+        const response = await api.deleteCommentary(postId, commentaryId)
+        if (response.status === 200) {
+            setFeed(!feed)
+        }
+    }
 
     return (
         <div className="feedList">
@@ -75,16 +85,24 @@ export function FeedList({feedContent, curtirPost}) {
                 </div>
                 <hr/>
                 <div className="container__content">
-                    <label className="container__likes"> {likePost ? likePost.content.length : '0'} {likePost && likePost.content.length > 1 ? 'Curtidas' : 'Curtida'} </label>
+                    <label className="container__likes"> {likes ? likes.content.length : '0'} {likes && likes.content.length > 1 ? 'Curtidas' : 'Curtida'} </label>
                 </div>
                 <div className="container__interation">
-                    <div onClick={handleCurtir}>
+                    <div onClick={handleLike}>
                         <img src={like} width="50px"/>
                     </div>
-                    <div onClick={handleComentar}>
+                    <div id="comentary">
                         <img src={comentary} width="45px"/>
                     </div>
                 </div>
+                <hr></hr>
+                {comentaryPost ? 
+                comentaryPost.content.map((comentary) => 
+                    <CommentaryPost 
+                        commentaryContent={comentary}
+                        deleteCommentary={deleteCommentary}/>
+                )
+                : null}
             </div>
         </div>
     );

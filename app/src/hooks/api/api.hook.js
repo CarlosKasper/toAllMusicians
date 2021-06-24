@@ -121,7 +121,7 @@ export function useApi() {
     }
   }
 
-  async function curtirPost(idPost) {
+  async function likePost(idPost) {
     try {
       const response = await axios.post(`/curtida/${idPost}`)
       return response
@@ -130,9 +130,9 @@ export function useApi() {
     }
   }
 
-  async function descurtirPost(idPost, idCurtida) {
+  async function unlikePost(idLike, idPost) {
     try {
-      const response = await axios.post(`/curtida/deletar/${idPost}/${idCurtida}`)
+      const response = await axios.delete(`/curtida/deletar/${idPost}/${idLike}`)
       return response
     } catch (error) {
       return error.response.data
@@ -142,6 +142,15 @@ export function useApi() {
   async function listarComentario(idPublicacao) {
     try {
         const response = await axios.get(`/comentario/listar/${idPublicacao}`) 
+        return response
+    } catch (error) {
+        return error.response
+    }
+  }
+
+    async function deleteCommentary(idPost, idCommentary) {
+    try {
+        const response = await axios.delete(`/comentario/deletar/${idPost}/${idCommentary}`) 
         return response
     } catch (error) {
         return error.response
@@ -236,10 +245,11 @@ export function useApi() {
     listarPostsAmigos,
     listarDadosUsuario,
     listarPostsUsuario,
-    curtirPost,
-    descurtirPost,
+    likePost,
+    unlikePost,
     listarCurtida,
     listarComentario,
+    deleteCommentary,
     searchUser,
     addFriend,
     exibirDadosDoPefilDoUsuario,

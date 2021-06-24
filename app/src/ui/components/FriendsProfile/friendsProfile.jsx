@@ -5,8 +5,7 @@ import { useGlobalUserInfo } from '../../../context';
 
 export function FriendsProfile({userFriends, deletedFriend, profileEmail}) {
     const [userInfo] = useGlobalUserInfo()
-    console.log(userInfo.email)
-    console.log(profileEmail)
+    
     function handleRemoveFriend() {
         deletedFriend(userFriends.email)
     }

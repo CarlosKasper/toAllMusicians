@@ -46,13 +46,18 @@ export function ProfileScreen() {
         exibirDadosDoPefilDoUsuario()
     }, [feed, email])
 
-    async function curtirPost(idPost) {
-        const response = await api.curtirPost(idPost)
-        if (response.status === 400) {
-            alert('perdemo nos post')
-        } 
+    async function likePost(idPost) {
+        const response = await api.likePost(idPost)
+        if (response.status === 201) {
+            setFeed(!feed)
+        }
+    }
 
-        setFeed(!feed)
+    async function unlikePost(idLike, idPost) {
+        const response = await api.unlikePost(idLike, idPost)
+        if (response.status === 200) {
+            setFeed(!feed)
+        }
     }
 
     async function deletedFriend(userEmail) {        
@@ -78,7 +83,8 @@ export function ProfileScreen() {
                     postsUser.map((postsUser) => 
                     <FeedList 
                         feedContent={postsUser}
-                        curtirPost={curtirPost}
+                        likePost={likePost}
+                        unlikePost={unlikePost}
                     />
                 )
                 : null}

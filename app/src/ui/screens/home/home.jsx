@@ -22,16 +22,21 @@ export function HomeScreen() {
         listarPostsAmigos()
     }, [api, feed])
 
-    async function curtirPost(idPost) {
-        const response = await api.curtirPost(idPost)
+    async function likePost(idPost) {
+        const response = await api.likePost(idPost)
         console.log(response)
         if (response.status === 201) {
             setFeed(!feed)
-        } else {
-            // preciso descobrir como pegar o id da curtida
-            //const response = await api.descurtirPost(idPost)
-        } 
+        }
     }
+
+    async function unlikePost(idLike, idPost) {
+        const response = await api.unlikePost(idLike, idPost)
+        if (response.status === 200) {
+            setFeed(!feed)
+        }
+    }
+    
     return (
         <>
             <Header logged={true}/>
@@ -40,7 +45,8 @@ export function HomeScreen() {
             feedContent.map((feedC) => 
                 <FeedList 
                     feedContent={feedC}
-                    curtirPost={curtirPost}
+                    likePost={likePost}
+                    unlikePost={unlikePost}
                 />
             )
             : null}
