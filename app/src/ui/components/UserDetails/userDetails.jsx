@@ -4,16 +4,14 @@ import { useApi } from '../../../hooks/api'
 
 export function UserDetails({ userData, postLength, userFriends }) {
     const api = useApi();
+    const [imagePreview, setImagePreview] = useState(null);
     const feed = document.getElementById("feed");
     const friends = document.getElementById("friends");
-
-    const [imagePreview, setImagePreview] = useState(null);
 
     async function addPhoto(event) {
         let file = event.target.files[0];
         let image = new FormData();
-        image.append('image', file);
-        console.log(image)
+        image.append('image', file);    
         setImagePreview(URL.createObjectURL(file));
 
         const response = await api.uploadImagePerfil(image);

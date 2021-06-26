@@ -4,12 +4,12 @@ import { useGlobalFeed, useGlobalUserInfo } from '../../../context/index'
 import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom';
 import like from '../../../images/like.png'
-import comentary from '../../../images/comentary.png'
 import { CommentaryPost } from "../index";
 
 export function FeedList({feedContent, likePost, unlikePost}) {
     const api = useApi();    
-    const [comentaryPost, setComentaryPost] = useState()
+    const [commentaryPost, setcommentaryPost] = useState()
+    const [newCommentary, setNewCommentary] = useState()
     const [userInfo, setUserInfo] = useGlobalUserInfo()
     const [likes, setLikes] = useState()
     const [feed, setFeed] = useGlobalFeed(false)
@@ -18,7 +18,7 @@ export function FeedList({feedContent, likePost, unlikePost}) {
         async function listarComentario() {
             const response = await api.listarComentario(feedContent.id)
             if (response.status === 200) {
-                setComentaryPost(response.data)
+                setcommentaryPost(response.data)
             }
         }
     
@@ -51,6 +51,19 @@ export function FeedList({feedContent, likePost, unlikePost}) {
         }
     }
 
+    function handleCommentary(e) {
+        setNewCommentary(e.target.value)
+    }
+
+    async function sendCommentary() {
+        const response = await api.newCommentary(feedContent.id, newCommentary)
+        if (response.status === 201) {
+            setNewCommentary("")
+            setFeed(!feed)
+
+        }
+    }
+    
     return (
         <div className="feedList">
             <div className="container">
@@ -83,6 +96,9 @@ export function FeedList({feedContent, likePost, unlikePost}) {
                 <div className="container__content">
                     <label className="container__description"> {feedContent.titulo} </label>
                 </div>
+                <div>
+                    <img className="container__post-image" src={feedContent.imagem ? feedContent.imagem.url :null} />
+                </div>
                 <hr/>
                 <div className="container__content">
                     <label className="container__likes"> {likes ? likes.content.length : '0'} {likes && likes.content.length > 1 ? 'Curtidas' : 'Curtida'} </label>
@@ -91,18 +107,19 @@ export function FeedList({feedContent, likePost, unlikePost}) {
                     <div onClick={handleLike}>
                         <img src={like} width="50px"/>
                     </div>
-                    <div id="comentary">
-                        <img src={comentary} width="45px"/>
-                    </div>
                 </div>
                 <hr></hr>
-                {comentaryPost ? 
-                comentaryPost.content.map((comentary) => 
+                {commentaryPost ? 
+                commentaryPost.content.map((comentary) => 
                     <CommentaryPost 
                         commentaryContent={comentary}
                         deleteCommentary={deleteCommentary}/>
                 )
                 : null}
+                <div className="container__input">
+                    <input className="container__input-commentary" type="text" onChange={handleCommentary} value={newCommentary}/>
+                    <input type="button" className="container__input-confirm" value="Comentar" onClick={sendCommentary}/>
+                </div>
             </div>
         </div>
     );

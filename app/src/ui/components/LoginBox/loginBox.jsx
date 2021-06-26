@@ -1,7 +1,7 @@
 import './login.scss';
 import React, { useState } from 'react'
 import { useApi } from '../../../hooks/api'
-import { useHistory } from 'react-router-dom'
+import { Link, useHistory } from 'react-router-dom';
 
 export function LoginBox() {
     const [username, setUsername] = useState("")
@@ -10,7 +10,7 @@ export function LoginBox() {
     const api = useApi();
 
     async function gerarToken() {
-			const response = await api.gerarToken('carlos1@gmail.com', '123')
+			const response = await api.gerarToken('carlos@gmail.com', '123')
 			if (response.status === 200) {
 				history.push("/home")
 			} else if (response.status === 400) {
@@ -34,21 +34,31 @@ export function LoginBox() {
     return (
 			<div className="body login">
 				<div className="container">
+					<div className="container__brand">
+						<label className="brandName">to All Musicians</label>
+					</div>
 					<div className="container__wrapper">
-						<div>
-							<label className="container__text">Login</label>
+						<div className="container__login">
+							<input className="container__login--input" type="email" placeholder="Email" onChange={onChangeUsername}></input>
 						</div>
 						<div className="container__login">
-							<input className="container__login--input" type="email" placeholder="Digite seu email" onChange={onChangeUsername}></input>
-						</div>
-						<div className="container__login">
-							<input className="container__login--input" type="password" placeholder="Digite sua senha" onChange={onChangePassword}></input>
+							<input className="container__login--input" type="password" placeholder="Senha" onChange={onChangePassword}></input>
 						</div>
 						<div className="container__login">
 							<input className="container__login--button" type="button" value="Entrar" onClick={handleSubmit}></input>
 						</div>
-						<div className="container__login">
-							<label className="container__register">Não tem login? <a className="container__login--link" href="/register" >Cadastro</a></label>
+						<div className="container__divisor"></div>
+						<Link to={`/register`} className="container__register">
+							<input className="container__login--button container__register--button" type="button" value="Criar nova conta"></input>
+						</Link>	
+					</div>
+				</div>
+				<div className="container__informations">
+					<div className="informations-center">
+						<div className="container__divisor"></div>
+						<div className="creator">
+							<label className="creator__info">toAllMusicians 2021</label>
+							<label className="creator__info">Made by Carlos Kasper</label>
 						</div>
 					</div>
 				</div>

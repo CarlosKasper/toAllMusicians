@@ -1,42 +1,61 @@
 .login {
+    
+    @font-face {
+        font-family: 'MateSC-Regular';
+        src: url('../../../fonts/MateSC-Regular.ttf'); /* IE9 Compat Modes */
+    }   
+
     .container {
         display: flex;
         height: 80vh;
-        justify-content: center;
+        justify-content: space-around;
         align-items: center;
-
-        &__text {
-            font-size: 30px;
-            font-weight: 700;
-            color: white;
-        }
+        flex-direction: row;
 
         &__register {
-            font-size: 18px;
-            color: white;
+            width: 40%;
+            display: flex;
+            justify-content: center;
+            text-decoration: none;
+
+            .container__register--button {
+                background-color: #31a919;
+            }
         }
     
         &__wrapper {
             display: flex;
             flex-direction: column;
             width: 400px;
-            height: 450px;
-            background-color: #486177;
-            border: 2px solid black;
-            justify-content: space-evenly;
+            border-radius: 6px;
+            padding: 20px 0;
             align-items: center;
+		    box-shadow: 5px 0px 19px rgba(50, 50, 50, 0.44);
+        }
+
+        &__brand {
+
+            .brandName {
+                font-size: 60px;
+                font-weight: 700;
+                font-family: 'MateSC-Regular';
+            }
         }
 
         &__login {
+            justify-content: center;
             display: flex;
+            width: 100%;
 
             &--input {
-                height: 35px;
+                height: 50px;
                 border: none;
-                border-radius: 3px;
-                border: 2px solid black;
-                width: 250px;
-                background-color: white;
+                margin: 5px 0;
+                border-radius: 6px;
+                border: 1px solid gray;
+                width: 95%;
+                background-color: transparent;
+                padding: 10px;
             }
 
             *:focus {
@@ -44,19 +63,52 @@
             }
 
             &--button {
-                height: 45px;
+                height: 50px;
                 border: none;
-                background-color: black;
+                background-color: #1878f3;
                 color: white;
-                width: 225px;
+                width: 95%;
+                margin: 15px 0;
+                border-radius: 6px;
                 font-weight: 700;
                 font-size: 16px;
             }
+        }
 
-            &--button:hover {
-                background: white;
-                color: black; 
-             }
+        &__divisor {
+            border: 1px solid gray;
+            width: 95%;
+            margin-bottom: 10px;
+        }
+
+        &__informations {
+            display: flex;
+            width: 100%;
+            flex-direction: column;
+
+            .informations-center {
+                display: flex;
+                justify-content: center;
+                flex-direction: column;
+                width: 74%;
+                margin: auto;
+            }
+
+            .creator {
+                display: flex;
+                flex-direction: column;
+
+                &__info {
+                    font-weight: 600;
+                    font-size: 14px;
+                }
+            }
         }
     }
+}
+
+.body {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
 }

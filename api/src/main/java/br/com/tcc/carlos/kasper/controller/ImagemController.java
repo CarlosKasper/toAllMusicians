@@ -31,8 +31,8 @@ public class ImagemController {
         }
     }
 
-    @PostMapping("/upload/post")
-    public ResponseEntity<String> uploadImagemPost(@RequestParam(value = "postId") Long postId, @RequestParam(value = "image") MultipartFile file) {
+    @PostMapping("/upload/post/{postId}")
+    public ResponseEntity<String> uploadImagemPost(@PathVariable("postId") Long postId, @RequestParam(value = "image") MultipartFile file) {
         try {
             storageService.uploadImagemPost(file, postId);
             return new ResponseEntity<>(null, HttpStatus.CREATED);

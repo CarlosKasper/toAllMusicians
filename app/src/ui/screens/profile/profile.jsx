@@ -1,7 +1,7 @@
 import { FeedList, Header, UserDetails, FriendsProfile } from "../../components";
 import { useApi } from '../../../hooks/api'
 import { useEffect, useState } from "react";
-import { useGlobalFeed } from '../../../context/index'
+import { useGlobalFeed, useGlobalUserInfo } from '../../../context/index'
 import { useParams } from "react-router";
 
     
@@ -11,6 +11,7 @@ export function ProfileScreen() {
     const [postsUser, setPostsUser] = useState()
     const [userFriends, setUserFriends] = useState()
     const [feed, setFeed] = useGlobalFeed(false)
+    const [userInfo] = useGlobalUserInfo(false)
     let { email } = useParams();
 
     useEffect(() => {
@@ -23,13 +24,24 @@ export function ProfileScreen() {
             } 
         }
 
-        async function listarPostsUsuario() {
-            const response = await api.listarPostsUsuario(email)
-            if (response.status === 200) {
-                setPostsUser(response.data.content)
-            } else if (response.status === 400) {
-                alert('bugou pa caralho')
-            } 
+        if(userInfo && email && userInfo.email == email) {
+            async function exibirDadosDoPefilDoUsuarioEspecifico() {
+                const response = await api.exibirDadosDoPefilDoUsuarioEspecifico()
+                if (response.status === 200) { 
+                    setUserData(response.data)
+                } else if (response.status === 400) {
+                    alert('bugou pa caralho')
+                } 
+            }
+        } else {
+            async function listarPostsUsuario() {
+                const response = await api.listarPostsUsuario(email)
+                if (response.status === 200) {
+                    setPostsUser(response.data.content)
+                } else if (response.status === 400) {
+                    alert('bugou pa caralho')
+                } 
+            }
         }
 
         async function listFriends() {
@@ -41,8 +53,17 @@ export function ProfileScreen() {
             } 
         }
 
-        listFriends()
+        async function listarPostsUsuario() {
+            const response = await api.listarPostsUsuario(email, userInfo.email)
+            if (response.status === 200) {
+                setPostsUser(response.data.content)
+            } else if (response.status === 400) {
+                alert('bugou pa caralho')
+            } 
+        }
+
         listarPostsUsuario()
+        listFriends()
         exibirDadosDoPefilDoUsuario()
     }, [feed, email])
 

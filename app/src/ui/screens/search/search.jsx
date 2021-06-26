@@ -25,7 +25,6 @@ export function SearchScreen() {
     async function handleAddFriend(email) {
         const response = await api.addFriend(email)
         if (response.status === 201) {
-            console.log(response)
         } else if (response.status === 400) {
             alert("ai erremo")
         }

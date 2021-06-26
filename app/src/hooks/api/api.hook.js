@@ -112,9 +112,19 @@ export function useApi() {
     }
   }
 
-  async function listarPostsUsuario(email) {
+  async function listarPostsUsuario(email, emailLogado) {
     try {
-      const response = await axios.get(`/post/${email}`)
+      let response = null
+      emailLogado == email ? response = await axios.get(`/post/`) : response = await axios.get(`/post/${email}`)
+      return response
+    } catch (error) {
+      return error.response.data
+    }
+  }
+
+  async function listAllPosts() {
+    try {
+      const response = await axios.get(`/post/listarTodos`)
       return response
     } catch (error) {
       return error.response.data
@@ -136,6 +146,19 @@ export function useApi() {
       return response
     } catch (error) {
       return error.response.data
+    }
+  }
+
+  async function newCommentary(idPost, newCommentary) {
+    try {
+        const response = await axios.post(`/comentario/${idPost}`,
+          {
+            comentario: newCommentary
+          }
+        )
+        return response
+    } catch (error) {
+        return error.response
     }
   }
 
@@ -238,16 +261,27 @@ export function useApi() {
     }
   };
 
+  async function uploadPostImage(postId, image) {
+    try {
+      const response = await axios.post(`/imagem/upload/post/${postId + 1}`, image); 
+      return response
+    } catch (error) {
+        return error.response
+    }
+  };
+
   return useCallback({
     gerarToken,
     registroUsuario,
     criarPost,
     listarPostsAmigos,
+    listAllPosts,
     listarDadosUsuario,
     listarPostsUsuario,
     likePost,
     unlikePost,
     listarCurtida,
+    newCommentary,
     listarComentario,
     deleteCommentary,
     searchUser,
@@ -258,6 +292,7 @@ export function useApi() {
     denniedAsFriend,
     listFriends,
     deletedFriend,
-    uploadImagePerfil
+    uploadImagePerfil,
+    uploadPostImage
   }, [])
 }

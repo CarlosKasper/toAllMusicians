@@ -24,7 +24,6 @@ export function HomeScreen() {
 
     async function likePost(idPost) {
         const response = await api.likePost(idPost)
-        console.log(response)
         if (response.status === 201) {
             setFeed(!feed)
         }
