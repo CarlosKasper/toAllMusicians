@@ -29,11 +29,11 @@ export function RegisterBox() {
         event.preventDefault()
             registroUsuario()
     }
-    
+
     function onChangeUsername(event){
         setUsername(event.target.value);
-    }    
-    
+    }
+
     function onChangeEmail(event){
         setEmail(event.target.value);
     }
@@ -103,7 +103,7 @@ export function RegisterBox() {
                     <div className="container__divisor"></div>
                     <Link to={`/`} className="container__register">
                         <input className="container__login--button container__register--button" type="button" value="Acessa conta"></input>
-                    </Link>	
+                    </Link>
                 </div>
             </div>
             <div className="container__informations">

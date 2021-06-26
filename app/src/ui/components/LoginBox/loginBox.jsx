@@ -22,7 +22,7 @@ export function LoginBox() {
 			event.preventDefault()
 			gerarToken()
     }
-    
+
     function onChangeUsername(event){
 			setUsername(event.target.value);
     }
@@ -50,7 +50,7 @@ export function LoginBox() {
 						<div className="container__divisor"></div>
 						<Link to={`/register`} className="container__register">
 							<input className="container__login--button container__register--button" type="button" value="Criar nova conta"></input>
-						</Link>	
+						</Link>
 					</div>
 				</div>
 				<div className="container__informations">

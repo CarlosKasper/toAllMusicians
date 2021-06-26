@@ -1,9 +1,9 @@
 .login {
-    
+
     @font-face {
         font-family: 'MateSC-Regular';
         src: url('../../../fonts/MateSC-Regular.ttf'); /* IE9 Compat Modes */
-    }   
+    }
 
     .container {
         display: flex;
@@ -22,7 +22,7 @@
                 background-color: #31a919;
             }
         }
-    
+
         &__wrapper {
             display: flex;
             flex-direction: column;
