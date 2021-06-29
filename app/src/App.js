@@ -1,12 +1,13 @@
 
-import { Switch, Route, Redirect } from 'react-router-dom'
+import { Switch, Route } from 'react-router-dom'
 import { useGlobalUser } from './context';
-import '././ui/components/index.scss'
-import { 
-  LoginScreen, 
-  RegisterScreen, 
-  HomeScreen, 
-  FriendScreen, 
+import '../src/ui/components/index.scss';
+import '../src/sccs/index.scss';
+import {
+  LoginScreen,
+  RegisterScreen,
+  HomeScreen,
+  FriendScreen,
   ProfileScreen,
   SearchScreen } from './ui/screens';
 import {Provider} from 'react-redux';
@@ -14,7 +15,7 @@ import store from "./store";
 
 function App() {
   const [user] = useGlobalUser()
-  
+
   return (
     <div>
       <Switch>

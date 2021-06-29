@@ -2,6 +2,7 @@ import './login.scss';
 import React, { useState } from 'react'
 import { useApi } from '../../../hooks/api'
 import { Link, useHistory } from 'react-router-dom';
+import toallmusicians from '../../../images/toallmusicians.png'
 
 export function LoginBox() {
     const [username, setUsername] = useState("")
@@ -35,7 +36,7 @@ export function LoginBox() {
 			<div className="body login">
 				<div className="container">
 					<div className="container__brand">
-						<label className="brandName">to All Musicians</label>
+						<img src={toallmusicians} className="container__brand--logo" alt="Logo"/>
 					</div>
 					<div className="container__wrapper">
 						<div className="container__login">

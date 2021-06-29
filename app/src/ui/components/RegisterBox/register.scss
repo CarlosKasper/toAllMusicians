@@ -2,6 +2,7 @@
     .container {
         display: flex;
         height: 80vh;
+        width: 100%;
         justify-content: space-around;
         align-items: center;
         flex-direction: row;
@@ -28,11 +29,10 @@
         }
 
         &__brand {
+          width: 50%;
 
-            .brandName {
-                font-size: 60px;
-                font-weight: 700;
-                font-family: 'MateSC-Regular';
+            &--logo {
+                width: 100%;
             }
         }
 
@@ -58,7 +58,7 @@
             &--button {
                 height: 50px;
                 border: none;
-                background-color: #1878f3;
+                background-color: #1A71D9;
                 color: white;
                 width: 95%;
                 margin: 15px 0;

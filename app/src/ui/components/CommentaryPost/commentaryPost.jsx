@@ -3,9 +3,10 @@ import { useApi } from '../../../hooks/api'
 import { useGlobalUserInfo } from '../../../context/index'
 import React, { useState } from 'react'
 import { Link } from 'react-router-dom';
+import DeleteForeverIcon from '@material-ui/icons/DeleteForever';
 
 export function CommentaryPost({commentaryContent, deleteCommentary}) {
-    const api = useApi();    
+    const api = useApi();
     const [userInfo] = useGlobalUserInfo()
 
     function handleComentary() {
@@ -13,11 +14,11 @@ export function CommentaryPost({commentaryContent, deleteCommentary}) {
     }
 
     return (
-        <div>
-            <div className="container__info">
+        <div className="commentaryPost">
+            <div className="commentaryPost__info">
                 <Link className="link" to={`/profile/${commentaryContent.musico.email}`}>
-                    <div className="container__image container__image--comentary">
-                        {commentaryContent.musico.imagem ? <img className="profile-image" src={commentaryContent.musico.imagem.url} alt="Foto de perfil" /> 
+                    <div className="commentaryPost__image commentaryPost__image--comentary">
+                        {commentaryContent.musico.imagem ? <img className="profile-image" src={commentaryContent.musico.imagem.url} alt="Foto de perfil" />
                         :
                             <span className="hiddenFileInput">
                                 <input   name="theFile" disabled/>
@@ -26,24 +27,20 @@ export function CommentaryPost({commentaryContent, deleteCommentary}) {
                     </div>
                 </Link>
                 <div className="comentary">
-                    <div className="container__wrapper">
-                        <div className="container__user">
-                            <div>
-                                {commentaryContent.musico.nome}
-                            </div>
-                        </div>
-                        <div className="container__instrument">
-                                {commentaryContent.musico.instrumento}
-                        </div>
+                    <div className="commentaryPost__wrapper">
+                      <div>
+                        <b>{commentaryContent.musico.nome[0].toUpperCase() + commentaryContent.musico.nome.slice(1).toLowerCase()}</b>
+                      </div>
+                      <div>
+                        <b>{commentaryContent.musico.instrumento[0].toUpperCase() + commentaryContent.musico.instrumento.slice(1).toLowerCase()}</b>
+                      </div>
                     </div>
-                    <div className=" container__content ">
-                        <label className="container__description container__description--comentary"> {commentaryContent.comentario} </label>
+                    <div className=" commentaryPost__content">
+                        <label className="commentaryPost__description commentaryPost__description--comentary"> {commentaryContent.comentario} </label>
                     </div>
                 </div>
-                {userInfo.email === commentaryContent.musico.email ? 
-                    <div onClick={handleComentary}>
-                        DEL
-                    </div> 
+                {userInfo.email === commentaryContent.musico.email ?
+                  <DeleteForeverIcon className="deleteCommentary" onClick={handleComentary}/>
                 : null}
             </div>
         </div>

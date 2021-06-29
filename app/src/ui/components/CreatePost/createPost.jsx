@@ -4,6 +4,9 @@ import React, { useState } from 'react'
 import Select from 'react-select';
 import { useGlobalFeed } from '../../../context/index'
 import { useEffect } from 'react';
+import PhotoCamera from '@material-ui/icons/PhotoCamera';
+import IconButton from '@material-ui/core/IconButton';
+import DeleteForeverIcon from '@material-ui/icons/DeleteForever';
 
 export function CreatePost() {
     const api = useApi();
@@ -13,15 +16,14 @@ export function CreatePost() {
     const [feed, setFeed] = useGlobalFeed(false)
     const [allPosts, setAllPosts] = useGlobalFeed(0)
     const [imagePreview, setImagePreview] = useState(null);
-    const [teste, setTeste] = useState(null);
-    const [imageResult, setImageResult] = useState();
+    const [imageResult, setImageResult] = useState(null);
     const [published, setPublished] = useState(false);
 
     useEffect(() => {
         async function listAllPosts() {
             const response = await api.listAllPosts()
             if (response.status === 200) {
-                    response.data.content.map((biggestId) => 
+                    response.data.content.map((biggestId) =>
                         {if(biggestId.id > allPosts) {
                             setAllPosts(biggestId.id)
                         }}
@@ -31,7 +33,7 @@ export function CreatePost() {
 
         listAllPosts()
     }, [published])
-    
+
     async function publicarPost() {
         const response = await api.criarPost(title, privacity, instrument)
         if (response.status === 201) {
@@ -42,7 +44,7 @@ export function CreatePost() {
             alert('tem algo de errado amigao')
         }
     }
-    
+
     function handlePost(event){
         setTitle(event.target.value);
     }
@@ -65,8 +67,8 @@ export function CreatePost() {
         { value: 'PRIVADO', label: 'Privado' }
     ];
 
-    async function addPhoto(event) {        
-        if(imagePreview !== null) {
+    async function addPhoto(event) {
+        if(imagePreview !== null && imageResult !== null) {
             const response = await api.uploadPostImage(allPosts, imageResult);
             setTitle('')
             setImageResult(null)
@@ -78,9 +80,14 @@ export function CreatePost() {
             setImageResult(image)
             setImagePreview(URL.createObjectURL(file));
             event.target.value = null;
+            console.log(image)
         }
     }
 
+    function removeImage() {
+      setImageResult(null)
+      setImagePreview(null)
+    }
 
     return (
         <div className="createPost">
@@ -88,9 +95,19 @@ export function CreatePost() {
                 <div className="container__input">
                     <textarea type="text" className="container__input--text" placeholder="Digite algo sobre música..." onChange={handlePost} value={title}></textarea>
                 </div>
-                    <span className="hiddenFileInput">
-                        <input type="file" name="theFile" onChange={addPhoto}/>
-                    </span>
+                <input accept="image/*" id="icon-button-file"
+                  type="file" style={{ display: 'none' }} onChange={addPhoto}/>
+                <label htmlFor="icon-button-file" className="image-select">
+                <IconButton color="primary" aria-label="upload picture" component="span">
+                    <PhotoCamera />
+                </IconButton>Adicionar Imagem
+                </label>
+                {imagePreview ?
+                  <div className="container__image">
+                    <img className="image-preview" src={imagePreview} alt="preview da imagem" />
+                    <DeleteForeverIcon className="delete-preview" onClick={removeImage} />
+                  </div>
+                : null}
                 <div className="container__selects">
                     <Select
                             className="post-select"

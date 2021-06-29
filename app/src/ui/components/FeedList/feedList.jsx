@@ -7,7 +7,7 @@ import like from '../../../images/like.png'
 import { CommentaryPost } from "../index";
 
 export function FeedList({feedContent, likePost, unlikePost}) {
-    const api = useApi();    
+    const api = useApi();
     const [commentaryPost, setcommentaryPost] = useState()
     const [newCommentary, setNewCommentary] = useState()
     const [userInfo, setUserInfo] = useGlobalUserInfo()
@@ -21,7 +21,7 @@ export function FeedList({feedContent, likePost, unlikePost}) {
                 setcommentaryPost(response.data)
             }
         }
-    
+
         async function listarCurtida() {
             const response = await api.listarCurtida(feedContent.id)
             if (response.status === 200) {
@@ -34,13 +34,13 @@ export function FeedList({feedContent, likePost, unlikePost}) {
     }, [api, feed])
 
     function handleLike() {
-        likes.content.map((likes) => 
+        likes.content.map((likes) =>
             {if(userInfo.email === likes.musico.email && feedContent.id === likes.post.id) {
                 unlikePost(likes.id, likes.post.id)
                 return;
             }}
-        ) 
-        
+        )
+
         likePost(feedContent.id)
     }
 
@@ -63,64 +63,59 @@ export function FeedList({feedContent, likePost, unlikePost}) {
 
         }
     }
-    
+
     return (
-        <div className="feedList">
-            <div className="container">
-                <Link className="link" to={`/profile/${feedContent.musico.email}`}>
-                    <div className="container__info">
-                        <div className="container__image">
-                            {feedContent.musico.imagem ? <img className="profile-image" src={feedContent.musico.imagem.url} alt="Foto de perfil" /> 
-                            :
-                                <span className="hiddenFileInput">
-                                    <input   name="theFile" disabled/>
-                                </span>
-                            }
+      <div className="feedList">
+        <Link className="link" to={`/profile/${feedContent.musico.email}`}>
+            <div className="feedList__info">
+                <div className="feedList__image">
+                    {feedContent.musico.imagem ? <img className="profile-image" src={feedContent.musico.imagem.url} alt="Foto de perfil" />
+                    :
+                        <span className="hiddenFileInput">
+                            <input   name="theFile" disabled/>
+                        </span>
+                    }
+                </div>
+                <div className="feedList__wrapper--feed">
+                    <div className="feedList__user">
+                        <div>
+                            <b>{feedContent.musico.nome}</b>
                         </div>
-                        <div className="container__wrapper">
-                            <div className="container__user">
-                                <div>
-                                    {feedContent.musico.nome}
-                                </div>
-                                <div>
-                                    {feedContent.privacidade}
-                                </div>
-                            </div>
-                        <div className="container__instrument">
-                                {feedContent.instrumento}
-                        </div>
+                        <div>
+                            <b>{feedContent.privacidade[0].toUpperCase() + feedContent.privacidade.slice(1).toLowerCase()}</b>
                         </div>
                     </div>
-                </Link>
-                <hr/>
-                <div className="container__content">
-                    <label className="container__description"> {feedContent.titulo} </label>
+                <div className="feedList__instrument">
+                        <b>{feedContent.instrumento[0].toUpperCase() + feedContent.instrumento.slice(1).toLowerCase()}</b>
                 </div>
-                <div>
-                    <img className="container__post-image" src={feedContent.imagem ? feedContent.imagem.url :null} />
-                </div>
-                <hr/>
-                <div className="container__content">
-                    <label className="container__likes"> {likes ? likes.content.length : '0'} {likes && likes.content.length > 1 ? 'Curtidas' : 'Curtida'} </label>
-                </div>
-                <div className="container__interation">
-                    <div onClick={handleLike}>
-                        <img src={like} width="50px"/>
-                    </div>
-                </div>
-                <hr></hr>
-                {commentaryPost ? 
-                commentaryPost.content.map((comentary) => 
-                    <CommentaryPost 
-                        commentaryContent={comentary}
-                        deleteCommentary={deleteCommentary}/>
-                )
-                : null}
-                <div className="container__input">
-                    <input className="container__input-commentary" type="text" onChange={handleCommentary} value={newCommentary}/>
-                    <input type="button" className="container__input-confirm" value="Comentar" onClick={sendCommentary}/>
                 </div>
             </div>
+        </Link>
+        <div className="feedList__content">
+            <label className="feedList__description"> {feedContent.titulo} </label>
         </div>
+        {feedContent.imagem ?
+          <div className="feedList__container-image">
+            <img className="feedList__post-image" src={feedContent.imagem ? feedContent.imagem.url :null} />
+          </div>
+        : null}
+        <div className="feedList__content">
+            <div className="feedList__interation">
+              <img src={like} width="50px" onClick={handleLike}/>
+            </div>
+            <label className="feedList__likes"> {likes ? likes.content.length : '0'} {likes && likes.content.length > 1 ? 'Curtidas' : 'Curtida'} </label>
+        </div>
+        {commentaryPost ?
+        commentaryPost.content.map((comentary) =>
+            <CommentaryPost
+                commentaryContent={comentary}
+                deleteCommentary={deleteCommentary}/>
+        )
+        : null}
+        <div className="feedList__input">
+            <input className="feedList__input-commentary" type="text" onChange={handleCommentary} value={newCommentary}/>
+            <input type="button" className="feedList__input-confirm" value="Comentar" onClick={sendCommentary}/>
+        </div>
+      </div>
     );
 }

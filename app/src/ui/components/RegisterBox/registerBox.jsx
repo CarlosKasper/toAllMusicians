@@ -3,6 +3,7 @@ import React, { useState } from 'react'
 import { useApi } from '../../../hooks/api'
 import { Link, useHistory } from 'react-router-dom';
 import Select from 'react-select';
+import toallmusicians from '../../../images/toallmusicians.png'
 
 export function RegisterBox() {
     const api = useApi();
@@ -70,7 +71,7 @@ export function RegisterBox() {
         <div className="body register">
             <div className="container">
                 <div className="container__brand">
-                    <label className="brandName">to All Musicians</label>
+                  <img src={toallmusicians} className="container__brand--logo" alt="Logo"/>
                 </div>
                 <div className="container__wrapper">
                     <div className="container__login">
