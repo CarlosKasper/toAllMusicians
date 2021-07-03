@@ -38,7 +38,6 @@ export function CreatePost() {
         const response = await api.criarPost(title, privacity, instrument)
         if (response.status === 201) {
             addPhoto()
-            setFeed(!feed)
             setPublished(!published)
         } else if (response.status === 400) {
             alert('tem algo de errado amigao')
@@ -68,11 +67,12 @@ export function CreatePost() {
     ];
 
     async function addPhoto(event) {
-        if(imagePreview !== null && imageResult !== null) {
+        if(imagePreview && imageResult) {
             const response = await api.uploadPostImage(allPosts, imageResult);
             setTitle('')
             setImageResult(null)
             setImagePreview(null)
+            setFeed(!feed)
         } else if(event) {
             let file = event.target.files[0];
             let image = new FormData();
@@ -80,7 +80,6 @@ export function CreatePost() {
             setImageResult(image)
             setImagePreview(URL.createObjectURL(file));
             event.target.value = null;
-            console.log(image)
         }
     }
 
@@ -91,41 +90,39 @@ export function CreatePost() {
 
     return (
         <div className="createPost">
-            <div className="container">
-                <div className="container__input">
-                    <textarea type="text" className="container__input--text" placeholder="Digite algo sobre música..." onChange={handlePost} value={title}></textarea>
-                </div>
-                <input accept="image/*" id="icon-button-file"
-                  type="file" style={{ display: 'none' }} onChange={addPhoto}/>
-                <label htmlFor="icon-button-file" className="image-select">
-                <IconButton color="primary" aria-label="upload picture" component="span">
-                    <PhotoCamera />
-                </IconButton>Adicionar Imagem
-                </label>
-                {imagePreview ?
-                  <div className="container__image">
-                    <img className="image-preview" src={imagePreview} alt="preview da imagem" />
-                    <DeleteForeverIcon className="delete-preview" onClick={removeImage} />
-                  </div>
-                : null}
-                <div className="container__selects">
-                    <Select
-                            className="post-select"
-                            onChange={onChangeInstrument}
-                            options={optionsInsrument}
-                            placeholder="Seu instrumento"
-                    />
-                    <Select
-                        className="post-select"
-                        onChange={onChangePrivacity}
-                        options={optionsPrivacity}
-                        placeholder="Privacidade"
-                    />
-                </div>
-                <div className="container__submit">
-                    <input type="button" className="container__submit--button" onClick={publicarPost} value="Compartilhar" />
-                </div>
+          <div className="createPost__input">
+              <textarea type="text" className="createPost__input--text" placeholder="Digite algo sobre música..." onChange={handlePost} value={title}></textarea>
+          </div>
+          <input accept="image/*" id="icon-button-file"
+            type="file" style={{ display: 'none' }} onChange={addPhoto}/>
+          <label htmlFor="icon-button-file" className="image-select">
+          <IconButton color="primary" aria-label="upload picture" component="span">
+              <PhotoCamera />
+          </IconButton>Adicionar Imagem
+          </label>
+          {imagePreview ?
+            <div className="createPost__image">
+              <img className="image-preview" src={imagePreview} alt="preview da imagem" />
+              <DeleteForeverIcon className="delete-preview" onClick={removeImage} />
             </div>
+          : null}
+          <div className="createPost__selects">
+              <Select
+                      className="post-select"
+                      onChange={onChangeInstrument}
+                      options={optionsInsrument}
+                      placeholder="Seu instrumento"
+              />
+              <Select
+                  className="post-select"
+                  onChange={onChangePrivacity}
+                  options={optionsPrivacity}
+                  placeholder="Privacidade"
+              />
+          </div>
+          <div className="createPost__submit">
+              <input type="button" className="createPost__submit--button" onClick={publicarPost} value="Compartilhar" />
+          </div>
         </div>
     );
 }

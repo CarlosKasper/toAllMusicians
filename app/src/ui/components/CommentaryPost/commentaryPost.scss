@@ -90,6 +90,10 @@
 
 @media (max-width: 768px) {
     .commentaryPost {
-        width: 90%;
+        width: 100%;
+
+        .deleteCommentary {
+          display: flex
+        }
     }
 }

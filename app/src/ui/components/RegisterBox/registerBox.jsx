@@ -103,7 +103,7 @@ export function RegisterBox() {
                     </div>
                     <div className="container__divisor"></div>
                     <Link to={`/`} className="container__register">
-                        <input className="container__login--button container__register--button" type="button" value="Acessa conta"></input>
+                        <input className="container__login--button container__register--button" type="button" value="Acessar conta"></input>
                     </Link>
                 </div>
             </div>

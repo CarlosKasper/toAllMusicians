@@ -11,7 +11,7 @@ export function FriendScreen() {
     useEffect(() => {
         async function listarSolicitacoes() {
             const response = await api.listarSolicitacoes()
-            if (response.status === 200) { 
+            if (response.status === 200) {
                 setSolicitations(response.data.content)
             }
         }
@@ -21,14 +21,14 @@ export function FriendScreen() {
 
     async function acceptAsFriend(relationshipId) {
         const response = await api.acceptAsFriend(relationshipId)
-        if (response.status === 201) { 
+        if (response.status === 201) {
             setRelationship(!relationship)
         }
     }
 
     async function denniedAsFriend(relationshipId) {
         const response = await api.denniedAsFriend(relationshipId)
-        if (response.status === 201) { 
+        if (response.status === 201) {
             setRelationship(!relationship)
         }
     }
@@ -36,15 +36,18 @@ export function FriendScreen() {
     return (
         <>
             <Header/>
-            {solicitations ? 
-                solicitations.map((solicitations) => 
-                <FriendSolicitation 
-                    userSolicitations={solicitations} 
-                    acceptAsFriend={acceptAsFriend} 
-                    denniedAsFriend={denniedAsFriend}/>
-                )
-            : null
-            }
+            <div className="friendSolicitation">
+              <label className="friendSolicitation__result"> Solicitações de amizades pendentes:</label>
+              {solicitations ?
+                  solicitations.map((solicitations) =>
+                  <FriendSolicitation
+                      userSolicitations={solicitations}
+                      acceptAsFriend={acceptAsFriend}
+                      denniedAsFriend={denniedAsFriend}/>
+                  )
+              : null
+              }
+            </div>
         </>
     );
 }

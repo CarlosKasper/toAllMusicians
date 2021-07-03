@@ -105,3 +105,30 @@
         }
     }
 }
+
+@media (max-width: 768px) {
+  .register {
+    .container {
+      height: 100vh;
+      flex-direction: column;
+
+      &__brand {
+        width: 100%;
+        margin: -50px 0;
+      }
+
+      &__wrapper {
+        width: 90%;
+      }
+
+      &__informations {
+        padding-top: 60px;
+
+        .informations-center {
+          width:85%;
+          padding-left: 15px;
+        }
+      }
+    }
+  }
+}

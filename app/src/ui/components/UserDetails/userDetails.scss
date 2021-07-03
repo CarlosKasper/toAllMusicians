@@ -1,7 +1,7 @@
 .profile {
     display: flex;
     justify-content: center;
-    width: 40%;
+    width: 50%;
     flex-direction: column;
     margin: auto;
     padding-top: 25px;
@@ -31,7 +31,7 @@
                 background-image: url(../../../images/profile.png);
             }
         }
-        
+
         &__info {
             padding-left: 10px;
             display: flex;
@@ -39,15 +39,13 @@
         }
 
         &__name {
-
-            .nome-perfil {
+            .profile-name {
                 font-size: 24px;
             }
         }
 
-        .instrumento {
-            font-size: 18px; 
-            text-transform: lowercase;
+        .profile-instrument {
+          font-size: 24px;
         }
     }
 
@@ -62,6 +60,19 @@
 
 @media (max-width: 768px) {
     .profile {
-        width: 90%;
+      width: 95%;
+
+      .container {
+
+        &__name {
+          .profile-name {
+              font-size: 20px;
+          }
+        }
+
+        .profile-instrument {
+          font-size: 20px;
+        }
+      }
     }
 }

@@ -1,10 +1,29 @@
 .searchProfile {
-    padding-top: 10px;
-    display: flex; 
-    width: 40%;
-    margin: 10px auto;
-    padding: 5px;
-    box-shadow: 5px 0px 19px rgba(50, 50, 50, 0.44);
+  box-shadow: 5px 0px 19px rgba(50, 50, 50, 0.44);
+  display: flex;
+  width: 50%;
+  margin: 40px auto;
+  padding: 10px;
+  flex-direction: column;
+
+    &__container{
+      display: flex;
+      padding: 20px 0;
+      width: 95%;
+      border-bottom: 1px solid black;
+      margin: auto auto;
+    }
+
+    &__container:last-child {
+      border-bottom: 0px;
+    }
+
+    &__result {
+      font-size: 20px;
+      font-weight: 700;
+      width: 95%;
+      margin: auto auto;
+    }
 
     &__info {
         display: flex;
@@ -19,14 +38,14 @@
     }
 
     &__add {
-        display: none;    
+        display: none;
     }
+
     :hover {
         .searchProfile__add {
             display: block;
         }
     }
-
 
     &__image {
         display: flex;
@@ -59,4 +78,19 @@
         width: 40px;
         padding: 5px 10px 0 0;
     }
+}
+
+@media (max-width: 768px) {
+  .searchProfile {
+    width: 95%;
+
+    &__image {
+      width: 100px;
+      height: 100px;
+    }
+
+    &__add {
+      display: block;
+    }
+  }
 }

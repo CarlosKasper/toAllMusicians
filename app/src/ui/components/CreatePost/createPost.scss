@@ -1,101 +1,97 @@
 .createPost {
+  display: flex;
+  justify-content: center;
+  width: 50%;
+  flex-direction: column;
+  margin: auto;
 
-    .container {
-        display: flex;
-        justify-content: center;
-        width: 40%;
-        flex-direction: column;
-        margin: auto;
+  &__input {
+      padding: 20px 0;
 
-        &__input {
-            padding: 20px 0;
-
-            &--text {
-                border-radius: 10px;
-                display: flex;
-                width: 100%;
-                height: 120px;
-                padding: 10px;
-                background: #f0f2f5;
-                resize: none;
-            }
-        }
-
-        .image-select {
-          margin-bottom: 10px;
-        }
-
-        &__selects {
-            display: flex;
-            flex-direction: row;
-            width: 100%;
-            justify-content: space-between;
-            margin-bottom: 10px;
-
-            .post-select {
-                width: 45%;
-            }
-        }
-
-        &__submit {
-            &--button {
-                border-radius: 10px;
-                margin-top: 10px;
-                height: 45px;
-                border: none;
-                background-color: #1A71D9;
-                color: white;
-                width: 100%;
-                font-weight: 700;
-                font-size: 16px;
-            }
-        }
-
-        &__image {
+      &--text {
+          border-radius: 10px;
           display: flex;
           width: 100%;
-          margin: 10px 0;
+          height: 120px;
+          padding: 10px;
           background: #f0f2f5;
-          height: 200px;
-          position: relative;
+          resize: none;
+      }
+  }
 
-          .image-preview {
-            max-width: 100%;
-            height: 200px;
-            margin: auto auto;
-          }
+  .image-select {
+    margin-bottom: 10px;
+  }
 
-          .delete-preview {
-            top: 3%;
-            position: absolute;
-            left: 87%;
-            fill: #1A71D9;
-          }
-        }
+  &__selects {
+      display: flex;
+      flex-direction: row;
+      width: 100%;
+      justify-content: space-between;
+      margin-bottom: 10px;
 
-        .MuiIconButton-colorPrimary {
-          color: #1A71D9;
-          background: #f0f2f5;
-          margin-right: 10px;
-        }
+      .post-select {
+          width: 45%;
+      }
+  }
+
+  &__submit {
+      &--button {
+          border-radius: 10px;
+          margin-top: 10px;
+          height: 45px;
+          border: none;
+          background-color: #1A71D9;
+          color: white;
+          width: 100%;
+          font-weight: 700;
+          font-size: 16px;
+      }
+  }
+
+  &__image {
+    display: flex;
+    width: 100%;
+    margin: 10px 0;
+    background: #f0f2f5;
+    height: 200px;
+    position: relative;
+
+    .image-preview {
+      max-width: 100%;
+      height: 200px;
+      margin: auto auto;
     }
+
+    .delete-preview {
+      top: 3%;
+      position: absolute;
+      left: 87%;
+      fill: #1A71D9;
+    }
+  }
+
+  .MuiIconButton-colorPrimary {
+    color: #1A71D9;
+    background: #f0f2f5;
+    margin-right: 10px;
+  }
+
 }
 
 
 @media (max-width: 768px) {
-    .createPost {
-        .container {
-            width: 95%;
+  .createPost {
+      width: 95%;
 
-            &__selects {
-                width: 100%;
-            }
+      &__selects {
+          width: 100%;
+      }
 
-            &__submit {
-                &--button {
-                    width: 100%
-                }
-            }
-        }
-    }
+      &__submit {
+          &--button {
+              width: 100%
+          }
+      }
+  }
 }

@@ -11,13 +11,13 @@ export function UserDetails({ userData, postLength, userFriends }) {
     async function addPhoto(event) {
         let file = event.target.files[0];
         let image = new FormData();
-        image.append('image', file);    
+        image.append('image', file);
         setImagePreview(URL.createObjectURL(file));
 
         const response = await api.uploadImagePerfil(image);
     }
 
-    function showFriends() { 
+    function showFriends() {
         feed.style.display ='none'
         friends.style.display ='block'
     }
@@ -29,10 +29,10 @@ export function UserDetails({ userData, postLength, userFriends }) {
 
     return (
         <div className="profile">
-            <div className="container">  
+            <div className="container">
                 <div className="container__image">
-                    {userData.imagem ? <img className="profile-image" src={userData.imagem.url} alt="foto do usuario"/> 
-                    : 
+                    {userData.imagem ? <img className="profile-image" src={userData.imagem.url} alt="foto do usuario"/>
+                    :
                     <span className="hiddenFileInput">
                         <input type="file" name="theFile" onChange={addPhoto}/>
                     </span>
@@ -40,10 +40,10 @@ export function UserDetails({ userData, postLength, userFriends }) {
                 </div>
                <div className="container__info">
                    <div className="container__name">
-                        <label className="nome-perfil">{userData.nome}({userData.apelido})</label>
+                        <label className="profile-name">{userData.nome}({userData.apelido})</label>
                    </div>
                    <div>
-                        <label className="instrumento">{userData.instrumento}</label>
+                        <label className="profile-instrument">{userData.instrumento[0].toUpperCase() + userData.instrumento.slice(1).toLowerCase()}</label>
                    </div>
                </div>
            </div>

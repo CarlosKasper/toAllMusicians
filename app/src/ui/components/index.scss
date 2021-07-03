@@ -19,9 +19,20 @@
 
 #friends {
     display: none;
+    padding-top: 10px;
+    width: 50%;
+    margin: 30px auto;
+    padding: 5px;
+    box-shadow: 5px 0px 19px rgba(50, 50, 50, 0.44);
 }
 
 .profile-image {
     border-radius: 50%;
     width: 100%;
+}
+
+@media (max-width: 768px) {
+  #friends {
+    width: 95%;
+  }
 }

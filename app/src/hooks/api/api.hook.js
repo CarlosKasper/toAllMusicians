@@ -94,6 +94,15 @@ export function useApi() {
     }
   }
 
+  async function hideUserPost(idPost) {
+    try {
+      const response = await axios.put(`/post/${idPost}`)
+      return response
+    } catch (error) {
+      return error.response.data
+    }
+  }
+
   async function listarDadosUsuario() {
     try {
       const response = await axios.get('/usuario')
@@ -164,7 +173,7 @@ export function useApi() {
 
   async function listarComentario(idPublicacao) {
     try {
-        const response = await axios.get(`/comentario/listar/${idPublicacao}`) 
+        const response = await axios.get(`/comentario/listar/${idPublicacao}`)
         return response
     } catch (error) {
         return error.response
@@ -173,7 +182,7 @@ export function useApi() {
 
     async function deleteCommentary(idPost, idCommentary) {
     try {
-        const response = await axios.delete(`/comentario/deletar/${idPost}/${idCommentary}`) 
+        const response = await axios.delete(`/comentario/deletar/${idPost}/${idCommentary}`)
         return response
     } catch (error) {
         return error.response
@@ -182,7 +191,7 @@ export function useApi() {
 
   async function listarCurtida(idPublicacao) {
     try {
-        const response = await axios.get(`/curtida/listar/${idPublicacao}`) 
+        const response = await axios.get(`/curtida/listar/${idPublicacao}`)
         return response
     } catch (error) {
         return error.response
@@ -191,7 +200,7 @@ export function useApi() {
 
   async function searchUser(userName) {
     try {
-        const response = await axios.get(`/usuario/buscar/musico/${userName}`) 
+        const response = await axios.get(`/usuario/buscar/musico/${userName}`)
         return response
     } catch (error) {
         return error.response
@@ -200,7 +209,7 @@ export function useApi() {
 
   async function addFriend(email) {
     try {
-        const response = await axios.post(`/amizade/${email}`) 
+        const response = await axios.post(`/amizade/${email}`)
         return response
     } catch (error) {
         return error.response
@@ -209,7 +218,7 @@ export function useApi() {
 
   async function listarSolicitacoes() {
     try {
-        const response = await axios.get(`/amizade/solicitacoes`) 
+        const response = await axios.get(`/amizade/solicitacoes`)
         return response
     } catch (error) {
         return error.response
@@ -218,7 +227,7 @@ export function useApi() {
 
   async function acceptAsFriend(relationshipId) {
     try {
-        const response = await axios.post(`/amizade/aceitar/${relationshipId}`) 
+        const response = await axios.post(`/amizade/aceitar/${relationshipId}`)
         return response
     } catch (error) {
         return error.response
@@ -227,7 +236,7 @@ export function useApi() {
 
   async function denniedAsFriend(relationshipId) {
     try {
-        const response = await axios.post(`/amizade/recusar/${relationshipId}`) 
+        const response = await axios.post(`/amizade/recusar/${relationshipId}`)
         return response
     } catch (error) {
         return error.response
@@ -236,7 +245,7 @@ export function useApi() {
 
   async function listFriends(email) {
     try {
-        const response = await axios.get(`/amizade/${email}`) 
+        const response = await axios.get(`/amizade/${email}`)
         return response
     } catch (error) {
         return error.response
@@ -245,7 +254,7 @@ export function useApi() {
 
   async function deletedFriend(userEmail) {
     try {
-        const response = await axios.delete(`/amizade/remover/${userEmail}`) 
+        const response = await axios.delete(`/amizade/remover/${userEmail}`)
         return response
     } catch (error) {
         return error.response
@@ -254,7 +263,7 @@ export function useApi() {
 
   async function uploadImagePerfil(image) {
     try {
-      const response = await axios.post(`/imagem/upload/profile`, image); 
+      const response = await axios.post(`/imagem/upload/profile`, image);
       return response
     } catch (error) {
         return error.response
@@ -263,7 +272,7 @@ export function useApi() {
 
   async function uploadPostImage(postId, image) {
     try {
-      const response = await axios.post(`/imagem/upload/post/${postId + 1}`, image); 
+      const response = await axios.post(`/imagem/upload/post/${postId + 1}`, image);
       return response
     } catch (error) {
         return error.response
@@ -293,6 +302,7 @@ export function useApi() {
     listFriends,
     deletedFriend,
     uploadImagePerfil,
-    uploadPostImage
+    uploadPostImage,
+    hideUserPost
   }, [])
 }

@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import { useGlobalFeed, useGlobalUserInfo } from '../../../context/index'
 import { useParams } from "react-router";
 
-    
+
 export function ProfileScreen() {
     const api = useApi();
     const [userData, setUserData] = useState()
@@ -17,21 +17,21 @@ export function ProfileScreen() {
     useEffect(() => {
         async function exibirDadosDoPefilDoUsuario() {
             const response = await api.exibirDadosDoPefilDoUsuario(email)
-            if (response.status === 200) { 
+            if (response.status === 200) {
                 setUserData(response.data)
             } else if (response.status === 400) {
                 alert('bugou pa caralho')
-            } 
+            }
         }
 
         if(userInfo && email && userInfo.email == email) {
             async function exibirDadosDoPefilDoUsuarioEspecifico() {
                 const response = await api.exibirDadosDoPefilDoUsuarioEspecifico()
-                if (response.status === 200) { 
+                if (response.status === 200) {
                     setUserData(response.data)
                 } else if (response.status === 400) {
                     alert('bugou pa caralho')
-                } 
+                }
             }
         } else {
             async function listarPostsUsuario() {
@@ -40,7 +40,7 @@ export function ProfileScreen() {
                     setPostsUser(response.data.content)
                 } else if (response.status === 400) {
                     alert('bugou pa caralho')
-                } 
+                }
             }
         }
 
@@ -50,16 +50,18 @@ export function ProfileScreen() {
                 setUserFriends(response.data.content)
             } else if (response.status === 400) {
                 alert('bugou pa caralho')
-            } 
+            }
         }
 
         async function listarPostsUsuario() {
+          if(email) {
             const response = await api.listarPostsUsuario(email, userInfo.email)
             if (response.status === 200) {
                 setPostsUser(response.data.content)
             } else if (response.status === 400) {
                 alert('bugou pa caralho')
-            } 
+            }
+          }
         }
 
         listarPostsUsuario()
@@ -81,11 +83,11 @@ export function ProfileScreen() {
         }
     }
 
-    async function deletedFriend(userEmail) {        
+    async function deletedFriend(userEmail) {
         const response = await api.deletedFriend(userEmail)
         if (response.status === 400) {
             alert('perdemo nos post')
-        } 
+        }
 
         setFeed(!feed)
     }
@@ -93,16 +95,16 @@ export function ProfileScreen() {
     return (
         <>
             <Header/>
-            {userData && userFriends && postsUser ? 
-                <UserDetails 
-                    userData={userData} 
-                    postLength={postsUser.length} 
-                    userFriends={userFriends} /> 
+            {userData && userFriends && postsUser ?
+                <UserDetails
+                    userData={userData}
+                    postLength={postsUser.length}
+                    userFriends={userFriends} />
             : null}
             <div id="feed">
-                {postsUser ? 
-                    postsUser.map((postsUser) => 
-                    <FeedList 
+                {postsUser ?
+                    postsUser.map((postsUser) =>
+                    <FeedList
                         feedContent={postsUser}
                         likePost={likePost}
                         unlikePost={unlikePost}
@@ -111,12 +113,12 @@ export function ProfileScreen() {
                 : null}
             </div>
             <div id="friends">
-                {userFriends ? 
-                    userFriends.map((userFriends) => 
+                {userFriends ?
+                    userFriends.map((userFriends) =>
                         <FriendsProfile
                             userFriends={userFriends}
                             deletedFriend={deletedFriend}
-                            profileEmail={email}/> 
+                            profileEmail={email}/>
                     )
                 : null}
             </div>

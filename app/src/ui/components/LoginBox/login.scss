@@ -112,3 +112,30 @@
     flex-direction: column;
     width: 100%;
 }
+
+@media (max-width: 768px) {
+  .login {
+    .container {
+      flex-direction: column;
+
+      &__brand {
+        width: 100%;
+        margin: -50px 0;
+      }
+
+      &__wrapper {
+        width: 90%;
+      }
+
+      &__informations {
+        padding-top: 30px;
+
+        .informations-center {
+          width:85%;
+          padding-left: 15px;
+        }
+      }
+    }
+  }
+}
+

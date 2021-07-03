@@ -60,37 +60,46 @@ export function FeedList({feedContent, likePost, unlikePost}) {
         if (response.status === 201) {
             setNewCommentary("")
             setFeed(!feed)
-
         }
+    }
+
+    async function hidePost() {
+      const response = await api.hideUserPost(feedContent.id)
+      if (response.status === 200) {
+          setFeed(!feed)
+      }
     }
 
     return (
       <div className="feedList">
-        <Link className="link" to={`/profile/${feedContent.musico.email}`}>
-            <div className="feedList__info">
-                <div className="feedList__image">
-                    {feedContent.musico.imagem ? <img className="profile-image" src={feedContent.musico.imagem.url} alt="Foto de perfil" />
-                    :
-                        <span className="hiddenFileInput">
-                            <input   name="theFile" disabled/>
-                        </span>
-                    }
-                </div>
-                <div className="feedList__wrapper--feed">
-                    <div className="feedList__user">
-                        <div>
-                            <b>{feedContent.musico.nome}</b>
-                        </div>
-                        <div>
-                            <b>{feedContent.privacidade[0].toUpperCase() + feedContent.privacidade.slice(1).toLowerCase()}</b>
-                        </div>
+        <div className="feedList__info">
+            <Link className="link" to={`/profile/${feedContent.musico.email}`}>
+              <div className="feedList__image">
+                  {feedContent.musico.imagem ? <img className="profile-image" src={feedContent.musico.imagem.url} alt="Foto de perfil" />
+                  :
+                      <span className="hiddenFileInput">
+                          <input   name="theFile" disabled/>
+                      </span>
+                  }
+              </div>
+            </Link>
+            <div className="feedList__wrapper--feed">
+                <div className="feedList__user">
+                    <div>
+                        <b>{feedContent.musico.nome}</b>
                     </div>
-                <div className="feedList__instrument">
-                        <b>{feedContent.instrumento[0].toUpperCase() + feedContent.instrumento.slice(1).toLowerCase()}</b>
+                    <div>
+                        <b>{feedContent.privacidade[0].toUpperCase() + feedContent.privacidade.slice(1).toLowerCase()}</b>
+                        {userInfo.email === feedContent.musico.email ?
+                          <div onClick={hidePost}> X </div>
+                        : null}
+                    </div>
                 </div>
-                </div>
+            <div className="feedList__instrument">
+                    <b>{feedContent.instrumento[0].toUpperCase() + feedContent.instrumento.slice(1).toLowerCase()}</b>
             </div>
-        </Link>
+            </div>
+        </div>
         <div className="feedList__content">
             <label className="feedList__description"> {feedContent.titulo} </label>
         </div>

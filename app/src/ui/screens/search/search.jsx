@@ -5,7 +5,7 @@ import { useApi } from "../../../hooks/api";
 import { Header, SearchProfile } from "../../components";
 
 export function SearchScreen() {
-    const [userSearch, setUserSearch] = useGlobalUserSearch()    
+    const [userSearch, setUserSearch] = useGlobalUserSearch()
     const api = useApi();
     const [users, setUsers] = useState()
 
@@ -28,17 +28,20 @@ export function SearchScreen() {
         } else if (response.status === 400) {
             alert("ai erremo")
         }
-    }   
+    }
 
     return (
-        <>
-            <Header />
-            {users ? 
-                users.map((users) => 
-                <SearchProfile userProfile={users} addFriend={handleAddFriend}/>
+      <>
+          <Header />
+          <div className="searchProfile">
+            <label className="searchProfile__result"> Resultado da pesquisa:</label>
+            {users ?
+                users.map((users) =>
+                  <SearchProfile userProfile={users} addFriend={handleAddFriend}/>
                 )
             : null
             }
-        </>
+          </div>
+      </>
     );
 }
