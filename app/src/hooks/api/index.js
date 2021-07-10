@@ -1,1 +1,1 @@
-export { useApi } from './api.hook'
+export { useApi } from './api.hook';

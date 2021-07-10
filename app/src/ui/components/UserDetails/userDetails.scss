@@ -1,90 +1,94 @@
 .profile {
-    display: flex;
-    justify-content: center;
-    width: 100%;
-    flex-direction: column;
-    margin: auto;
-    padding-top: 25px;
-    background: rgb(255,255,255);
-    background: radial-gradient(circle, rgba(255,255,255,1) 86%, rgba(222,218,218,1) 95%);
+	display: flex;
+	justify-content: center;
+	width: 100%;
+	flex-direction: column;
+	margin: auto;
+	padding-top: 25px;
+	background: rgb(255, 255, 255);
+	background: radial-gradient(
+		circle,
+		rgba(255, 255, 255, 1) 86%,
+		rgba(222, 218, 218, 1) 95%
+	);
 
-    .container-prof {
-        display: flex;
-        padding: 0 0 15px 0;
-        width: 50%;
-        margin: auto;
+	.container-prof {
+		display: flex;
+		padding: 0 0 15px 0;
+		width: 50%;
+		margin: auto;
 
-        &__image {
-            display: flex;
-            width: 150px;
-            height: 150px;
-            background-color: gray;
-            border-radius: 50%;
+		&__image {
+			display: flex;
+			width: 150px;
+			height: 150px;
+			background-color: gray;
+			border-radius: 50%;
 
-            .hiddenFileInput > input {
-                opacity: 0;
-                cursor: pointer;
-                height: 100%;
-                width: 100;
-            }
+			.hiddenFileInput > input {
+				opacity: 0;
+				cursor: pointer;
+				height: 100%;
+				width: 100;
+			}
 
-            .hiddenFileInput {
-                overflow: hidden;
-                background: center center no-repeat;
-                background-size: 50% 50%;
-                background-image: url(../../../images/profile.png);
-            }
-        }
+			.hiddenFileInput {
+				overflow: hidden;
+				background: center center no-repeat;
+				background-size: 50% 50%;
+				background-image: url(../../../images/profile.png);
+			}
+		}
 
-        &__info {
-            padding-left: 10px;
-            display: flex;
-            flex-direction: column;
-        }
+		&__info {
+			padding-left: 10px;
+			display: flex;
+			flex-direction: column;
+		}
 
-        &__name {
-            .profile-name {
-                font-size: 24px;
-            }
-        }
+		&__name {
+			.profile-name {
+				font-size: 24px;
+			}
+		}
 
-        .profile-instrument {
-          font-size: 24px;
-        }
-    }
+		.profile-instrument {
+			font-size: 24px;
+		}
+	}
 
-    .user-info {
-        display: flex;
-        width: 50%;
-        margin: auto;
-        padding-bottom: 20px;
+	.user-info {
+		display: flex;
+		width: 50%;
+		margin: auto;
+		padding-bottom: 20px;
 
-        .information {
-            padding-left: 15px;
-        }
-    }
+		.information {
+			padding-left: 15px;
+		}
+	}
 }
 
 @media (max-width: 768px) {
-    .profile {
-      width: 100%;
+	.profile {
+		width: 100%;
 
-      .container-prof {
-        width: 95%;
+		.container-prof {
+			width: 95%;
 
-        &__name {
-          .profile-name {
-              font-size: 20px;
-          }
-        }
+			&__name {
+				.profile-name {
+					font-size: 20px;
+				}
+			}
 
-        .profile-instrument {
-          font-size: 20px;
-        }
-      }
+			.profile-instrument {
+				font-size: 20px;
+			}
+		}
 
-      .user-info {
-        width: 95%;
-      }
-    }
+		.user-info {
+			width: 95%;
+		}
+	}
 }

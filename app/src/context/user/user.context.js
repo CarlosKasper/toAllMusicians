@@ -1,9 +1,9 @@
-import createGlobalState from 'react-create-global-state'
+import createGlobalState from 'react-create-global-state';
 
-const stringifyUser = localStorage.getItem('user')
+const stringifyUser = localStorage.getItem('user');
 
-const user = stringifyUser && JSON.parse(stringifyUser)
+const user = stringifyUser && JSON.parse(stringifyUser);
 
-const [useGlobalUser, UserProvider] = createGlobalState(user)
+const [useGlobalUser, UserProvider] = createGlobalState(user);
 
-export { useGlobalUser, UserProvider }
+export { useGlobalUser, UserProvider };

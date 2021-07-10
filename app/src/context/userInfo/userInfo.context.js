@@ -1,9 +1,9 @@
-import createGlobalState from 'react-create-global-state'
+import createGlobalState from 'react-create-global-state';
 
-const stringifyUserInfo = localStorage.getItem('userInfo')
+const stringifyUserInfo = localStorage.getItem('userInfo');
 
-const userInfo = stringifyUserInfo && JSON.parse(stringifyUserInfo)
+const userInfo = stringifyUserInfo && JSON.parse(stringifyUserInfo);
 
-const [useGlobalUserInfo, UserInfoProvider] = createGlobalState(userInfo)
+const [useGlobalUserInfo, UserInfoProvider] = createGlobalState(userInfo);
 
-export { useGlobalUserInfo, UserInfoProvider }
+export { useGlobalUserInfo, UserInfoProvider };

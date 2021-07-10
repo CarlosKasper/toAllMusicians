@@ -1,40 +1,42 @@
 body {
-  background: #f1f1f1 !important;
+	background: #f1f1f1 !important;
 }
 
 .container {
-    &__login {
-        &--link {
-            color: white;
-        }
-    }
+	&__login {
+		&--link {
+			color: white;
+		}
+	}
 }
 
-.link:hover, .link:visited, .link:link, .link:active
-{
-    text-decoration: none;
-    color: black !important;
-    padding: 5px;
+.link:hover,
+.link:visited,
+.link:link,
+.link:active {
+	text-decoration: none;
+	color: black !important;
+	padding: 5px;
 }
 
 #friends {
-    display: none;
-    padding-top: 10px;
-    width: 50%;
-    margin: 20px auto;
-    padding: 5px;
-    box-shadow: 5px 0px 19px rgba(50, 50, 50, 0.44);
-    background-color: white;
-    border-radius: 15px;
+	display: none;
+	padding-top: 10px;
+	width: 50%;
+	margin: 20px auto;
+	padding: 5px;
+	box-shadow: 5px 0px 19px rgba(50, 50, 50, 0.44);
+	background-color: white;
+	border-radius: 15px;
 }
 
 .profile-image {
-    border-radius: 50%;
-    width: 100%;
+	border-radius: 50%;
+	width: 100%;
 }
 
 @media (max-width: 768px) {
-  #friends {
-    width: 95%;
-  }
+	#friends {
+		width: 95%;
+	}
 }

@@ -1,9 +1,9 @@
-import createGlobalState from 'react-create-global-state'
+import createGlobalState from 'react-create-global-state';
 
-const stringifyUserSearch = localStorage.getItem('userSearch')
+const stringifyUserSearch = localStorage.getItem('userSearch');
 
-const userSearch = stringifyUserSearch && JSON.parse(stringifyUserSearch)
+const userSearch = stringifyUserSearch && JSON.parse(stringifyUserSearch);
 
-const [useGlobalUserSearch, UserSearchProvider] = createGlobalState(userSearch)
+const [useGlobalUserSearch, UserSearchProvider] = createGlobalState(userSearch);
 
-export { useGlobalUserSearch, UserSearchProvider }
+export { useGlobalUserSearch, UserSearchProvider };

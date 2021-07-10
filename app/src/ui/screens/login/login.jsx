@@ -1,11 +1,10 @@
-import { Header, LoginBox } from "../../components";
+import { Header, LoginBox } from '../../components';
 
 export function LoginScreen() {
-
-    return (
-        <>
-            <Header/>
-            <LoginBox />
-        </>
-    );
+	return (
+		<>
+			<Header />
+			<LoginBox />
+		</>
+	);
 }
