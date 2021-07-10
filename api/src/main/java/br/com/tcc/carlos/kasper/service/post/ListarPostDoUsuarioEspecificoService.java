@@ -22,6 +22,6 @@ public class ListarPostDoUsuarioEspecificoService {
 
         Musico musico = buscarUsuarioPorEmailService.buscar(email);
 
-        return postRepository.findByMusico(musico, pageable);
+        return postRepository.findByMusico(musico.getId(), pageable);
     }
 }

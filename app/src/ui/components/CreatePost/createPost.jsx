@@ -20,18 +20,18 @@ export function CreatePost() {
     const [published, setPublished] = useState(false);
 
     useEffect(() => {
-        async function listAllPosts() {
-            const response = await api.listAllPosts()
-            if (response.status === 200) {
-                    response.data.content.map((biggestId) =>
-                        {if(biggestId.id > allPosts) {
-                            setAllPosts(biggestId.id)
-                        }}
-                    )
-            }
+      async function listAllPosts() {
+        const response = await api.listAllPosts()
+        if (response.status === 200) {
+          response.data.content.map((biggestId) =>
+            {if(biggestId.id > allPosts) {
+              setAllPosts(biggestId.id)
+            }}
+          )
         }
+      }
 
-        listAllPosts()
+      listAllPosts()
     }, [published])
 
     async function publicarPost() {

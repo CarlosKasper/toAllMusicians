@@ -1,8 +1,9 @@
 .friendsProfile {
-  padding: 20px 0;
-  border-bottom: 1px solid black;
+  padding: 15px;
+  border: 1px solid black;
   width: 95%;
-  margin: auto auto;
+  margin: 10px auto;
+  border-radius: 10px;
 
     &__info {
         display: flex;
@@ -54,26 +55,14 @@
     }
 
     .deleteFriend-image {
-        display: none;
-        width: 40px;
-        padding: 5px 10px 0 0;
-    }
-
-    :hover {
-      .deleteFriend-image {
-        display: flex;
-      }
-    }
-}
-
-.friendsProfile:last-child {
-  border-bottom: 0;
-}
-
-@media (max-width: 768px) {
-  .friendsProfile {
-    .deleteFriend-image {
       display: flex;
+      width: 40px;
+      padding: 5px 10px 0 0;
     }
-  }
+
+    .friends-message {
+      font-size: 24px;
+      font-weight: 700;
+      padding: 10px 5px;
+    }
 }

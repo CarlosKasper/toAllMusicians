@@ -33,6 +33,9 @@ public class PostController {
     @Autowired
     private ListarTodosPostsService listarTodosPosts;
 
+    @Autowired
+    private AtualizarPostParaEscondidoService atualizarPostParaEscondidoService;
+
     @PostMapping("/publicar")
     @ResponseStatus(HttpStatus.CREATED)
     public PostResponse publicar(@AuthenticationPrincipal CustomUserDetails usuarioLogado, @RequestBody PostRequest postRequest) {
@@ -66,5 +69,12 @@ public class PostController {
     public Page<Post> listarPostsDoUsuarioLogado(@AuthenticationPrincipal CustomUserDetails usuarioLogado, @PageableDefault Pageable pageable){
 
         return listarPostDoUsuarioEspecificoService.listar(usuarioLogado.getUsername(), pageable);
+    }
+
+    @PutMapping("/{post-id}")
+    @ResponseStatus(HttpStatus.OK)
+    public PostResponse updatePost(@PathVariable("post-id") Long postId){
+
+        return atualizarPostParaEscondidoService.esconder(postId);
     }
 }

@@ -29,8 +29,8 @@ export function UserDetails({ userData, postLength, userFriends }) {
 
     return (
         <div className="profile">
-            <div className="container">
-                <div className="container__image">
+            <div className="container-prof">
+                <div className="container-prof__image">
                     {userData.imagem ? <img className="profile-image" src={userData.imagem.url} alt="foto do usuario"/>
                     :
                     <span className="hiddenFileInput">
@@ -38,8 +38,8 @@ export function UserDetails({ userData, postLength, userFriends }) {
                     </span>
                     }
                 </div>
-               <div className="container__info">
-                   <div className="container__name">
+               <div className="container-prof__info">
+                   <div className="container-prof__name">
                         <label className="profile-name">{userData.nome}({userData.apelido})</label>
                    </div>
                    <div>

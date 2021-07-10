@@ -7,5 +7,6 @@ import lombok.Getter;
 @AllArgsConstructor
 public enum Privacidade {
     PUBLICO,
-    PRIVADO
+    PRIVADO,
+    ESCONDIDO
 }

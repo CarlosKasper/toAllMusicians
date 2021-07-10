@@ -24,26 +24,6 @@ export function ProfileScreen() {
             }
         }
 
-        if(userInfo && email && userInfo.email == email) {
-            async function exibirDadosDoPefilDoUsuarioEspecifico() {
-                const response = await api.exibirDadosDoPefilDoUsuarioEspecifico()
-                if (response.status === 200) {
-                    setUserData(response.data)
-                } else if (response.status === 400) {
-                    alert('bugou pa caralho')
-                }
-            }
-        } else {
-            async function listarPostsUsuario() {
-                const response = await api.listarPostsUsuario(email)
-                if (response.status === 200) {
-                    setPostsUser(response.data.content)
-                } else if (response.status === 400) {
-                    alert('bugou pa caralho')
-                }
-            }
-        }
-
         async function listFriends() {
             const response = await api.listFriends(email)
             if (response.status === 200) {
@@ -54,7 +34,7 @@ export function ProfileScreen() {
         }
 
         async function listarPostsUsuario() {
-          if(email) {
+          if(userInfo) {
             const response = await api.listarPostsUsuario(email, userInfo.email)
             if (response.status === 200) {
                 setPostsUser(response.data.content)
@@ -120,7 +100,7 @@ export function ProfileScreen() {
                             deletedFriend={deletedFriend}
                             profileEmail={email}/>
                     )
-                : null}
+                : <label className="friends-message">Você ainda não possui amigos adicionados.</label>}
             </div>
         </>
     );

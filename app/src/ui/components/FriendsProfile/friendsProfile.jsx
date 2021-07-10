@@ -27,11 +27,11 @@ export function FriendsProfile({userFriends, deletedFriend, profileEmail}) {
                     <div className="friendsProfile__wrapper">
                         <div className="friendsProfile__user">
                             <div>
-                                {userFriends.nome} ({userFriends.apelido})
+                            <b>{userFriends.nome} ({userFriends.apelido})</b>
                             </div>
                         </div>
                         <div className="friendsProfile__instrument">
-                            {userFriends.instrumento}
+                            <b>{userFriends.instrumento[0].toUpperCase() + userFriends.instrumento.slice(1).toLowerCase()}</b>
                         </div>
                     </div>
                     {profileEmail === userInfo.email ?

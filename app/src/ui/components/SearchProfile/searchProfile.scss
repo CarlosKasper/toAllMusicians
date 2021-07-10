@@ -2,20 +2,19 @@
   box-shadow: 5px 0px 19px rgba(50, 50, 50, 0.44);
   display: flex;
   width: 50%;
-  margin: 40px auto;
+  margin: 20px auto;
   padding: 10px;
   flex-direction: column;
+  background-color: #fff;
+  border-radius: 15px;
 
     &__container{
       display: flex;
-      padding: 20px 0;
+      padding: 15px;
       width: 95%;
-      border-bottom: 1px solid black;
-      margin: auto auto;
-    }
-
-    &__container:last-child {
-      border-bottom: 0px;
+      border: 1px solid black;
+      margin: 10px auto;
+      border-radius: 10px;
     }
 
     &__result {
@@ -38,13 +37,7 @@
     }
 
     &__add {
-        display: none;
-    }
-
-    :hover {
-        .searchProfile__add {
-            display: block;
-        }
+      display: block;
     }
 
     &__image {

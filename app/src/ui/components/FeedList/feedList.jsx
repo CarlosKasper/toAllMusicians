@@ -3,8 +3,10 @@ import { useApi } from '../../../hooks/api'
 import { useGlobalFeed, useGlobalUserInfo } from '../../../context/index'
 import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom';
-import like from '../../../images/like.png'
+import ThumbUpAltIcon from '@material-ui/icons/ThumbUpAlt';
+import HighlightOffIcon from '@material-ui/icons/HighlightOff';
 import { CommentaryPost } from "../index";
+import Swal from 'sweetalert2'
 
 export function FeedList({feedContent, likePost, unlikePost}) {
     const api = useApi();
@@ -63,7 +65,32 @@ export function FeedList({feedContent, likePost, unlikePost}) {
         }
     }
 
-    async function hidePost() {
+    function hidePost() {
+      Swal.fire({
+        icon: 'warning',
+        title: 'Tem certeza?',
+        text: 'Não será possível recuperar a sua publicação.',
+        showDenyButton: true,
+        confirmButtonText: `Deletar Publicação`,
+        denyButtonText: `Cancelar`,
+        denyButtonColor: '#d33',
+        confirmButtonColor: '#1A71D9',
+      }).then((result) => {
+        if (result.isConfirmed) {
+          hidePostApi()
+        } else if (result.isDenied) {
+          Swal.fire({
+            title: 'Alteração cancelada!',
+            text: 'A sua publicação não foi deletada.',
+            confirmButtonText: `Ok`,
+            confirmButtonColor: '#1A71D9',
+            icon: 'error',
+          })
+        }
+      })
+    }
+
+    async function hidePostApi() {
       const response = await api.hideUserPost(feedContent.id)
       if (response.status === 200) {
           setFeed(!feed)
@@ -90,15 +117,15 @@ export function FeedList({feedContent, likePost, unlikePost}) {
                     </div>
                     <div>
                         <b>{feedContent.privacidade[0].toUpperCase() + feedContent.privacidade.slice(1).toLowerCase()}</b>
-                        {userInfo.email === feedContent.musico.email ?
-                          <div onClick={hidePost}> X </div>
-                        : null}
                     </div>
                 </div>
-            <div className="feedList__instrument">
+                <div className="feedList__instrument">
                     <b>{feedContent.instrumento[0].toUpperCase() + feedContent.instrumento.slice(1).toLowerCase()}</b>
-            </div>
-            </div>
+                    {userInfo.email === feedContent.musico.email ?
+                        <HighlightOffIcon className="highlightOffIcon" onClick={hidePost}/>
+                    : null}
+                </div>
+          </div>
         </div>
         <div className="feedList__content">
             <label className="feedList__description"> {feedContent.titulo} </label>
@@ -110,7 +137,7 @@ export function FeedList({feedContent, likePost, unlikePost}) {
         : null}
         <div className="feedList__content">
             <div className="feedList__interation">
-              <img src={like} width="50px" onClick={handleLike}/>
+              <ThumbUpAltIcon className="thumbUpAltIcon" onClick={handleLike}/>
             </div>
             <label className="feedList__likes"> {likes ? likes.content.length : '0'} {likes && likes.content.length > 1 ? 'Curtidas' : 'Curtida'} </label>
         </div>
