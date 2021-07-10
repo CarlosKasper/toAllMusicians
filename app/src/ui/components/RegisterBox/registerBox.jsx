@@ -9,6 +9,7 @@ export function RegisterBox() {
 	const api = useApi();
 	const history = useHistory();
 	const [username, setUsername] = useState('');
+	const [email, setEmail] = useState('');
 	const [password, setPassword] = useState('');
 	const [nickname, setNickname] = useState('');
 	const [birthday, setBirthday] = useState('');
@@ -17,6 +18,7 @@ export function RegisterBox() {
 	async function registroUsuario() {
 		const response = await api.registroUsuario(
 			username,
+      email,
 			password,
 			nickname,
 			birthday,
@@ -42,6 +44,10 @@ export function RegisterBox() {
 
 	function onChangePassword(event) {
 		setPassword(event.target.value);
+	}
+
+  function onChangeEmail(event) {
+		setEmail(event.target.value);
 	}
 
 	function onChangeNickname(event) {
@@ -83,7 +89,7 @@ export function RegisterBox() {
 						<input
 							className="container__login--input"
 							type="email"
-							placeholder="Email"
+							placeholder="Nome"
 							onChange={onChangeUsername}
 						></input>
 					</div>
@@ -91,8 +97,8 @@ export function RegisterBox() {
 						<input
 							className="container__login--input"
 							type="text"
-							placeholder="Nome"
-							onChange={onChangeUsername}
+							placeholder="Email"
+							onChange={onChangeEmail}
 						></input>
 					</div>
 					<div className="container__login">

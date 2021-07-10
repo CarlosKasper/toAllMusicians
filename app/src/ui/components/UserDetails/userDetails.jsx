@@ -1,20 +1,18 @@
 /* eslint-disable react/prop-types */
 import './userDetails.scss';
-import React, { useState } from 'react';
+import React from 'react';
 import { useApi } from '../../../hooks/api';
 
 
 export function UserDetails({ userData, postLength, userFriends }) {
 	const api = useApi();
-	const [setImagePreview] = useState(null);
 	const feed = document.getElementById('feed');
 	const friends = document.getElementById('friends');
 
 	async function addPhoto(event) {
-		let file = event.target.files[0];
-		let image = new FormData();
+		const file = event.target.files[0];
+		const image = new FormData();
 		image.append('image', file);
-		setImagePreview(URL.createObjectURL(file));
 		await api.uploadImagePerfil(image);
 	}
 

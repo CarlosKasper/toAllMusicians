@@ -161,9 +161,8 @@ export function FeedList({ feedContent, likePost, unlikePost }) {
 					<ThumbUpAltIcon className="thumbUpAltIcon" onClick={handleLike} />
 				</div>
 				<label className="feedList__likes">
-					{' '}
-					{likes ? likes.content.length : '0'}{' '}
-					{likes && likes.content.length > 1 ? 'Curtidas' : 'Curtida'}{' '}
+					{likes ? likes.content.length : '0'}
+					{likes && likes.content.length > 1 ? 'Curtidas' : 'Curtida'}
 				</label>
 			</div>
 			{commentaryPost

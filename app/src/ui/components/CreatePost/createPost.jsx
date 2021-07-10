@@ -37,6 +37,7 @@ export function CreatePost() {
 	async function publicarPost() {
 		const response = await api.criarPost(title, privacity, instrument);
 		if (response.status === 201) {
+			setPublished(!published);
 			addPhoto();
 			setPublished(!published);
 		} else if (response.status === 400) {

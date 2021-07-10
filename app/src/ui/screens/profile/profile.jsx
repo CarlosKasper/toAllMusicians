@@ -100,9 +100,9 @@ export function ProfileScreen() {
 			</div>
 			<div id="friends">
 				{userFriends ? (
-					userFriends.map((userFriends) => (
+					userFriends.map((userFriends, index) => (
 						<FriendsProfile
-              key="friendsProfile"
+              key={index}
 							userFriends={userFriends}
 							deletedFriend={deletedFriend}
 							profileEmail={email}
