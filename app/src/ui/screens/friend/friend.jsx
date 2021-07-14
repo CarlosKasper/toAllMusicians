@@ -2,9 +2,12 @@ import { Header, FriendSolicitation } from '../../components';
 import { useApi } from '../../../hooks/api';
 import { useEffect } from 'react';
 import { useState } from 'react';
+import { useHistory } from 'react-router-dom';
+import Swal from 'sweetalert2';
 
 export function FriendScreen() {
 	const api = useApi();
+	const history = useHistory();
 	const [solicitations, setSolicitations] = useState();
 	const [relationship, setRelationship] = useState();
 
@@ -33,15 +36,37 @@ export function FriendScreen() {
 		}
 	}
 
+  function swalNotFoundSolicitations() {
+    return (
+      Swal.fire({
+        icon: 'info',
+        title: 'Nenhuma solicitação foi encontrada!',
+        confirmButtonText: `Voltar para o feed`,
+        confirmButtonColor: '#1A71D9',
+      }).then((result) => {
+        if (result.isConfirmed) {
+          history.push('/home');
+        }
+    })
+    );
+  }
+
 	return (
 		<>
 			<Header />
 			<div className="friendSolicitation">
-				<label className="friendSolicitation__result">
-					Solicitações de amizades pendentes:
-				</label>
-				{solicitations
-					? solicitations.map((solicitations, index) => (
+				{solicitations && solicitations.length ? (
+					<label className="friendSolicitation__result">
+						Solicitações de amizades pendentes:
+					</label>
+				) : (swalNotFoundSolicitations(),
+					<label className="friendSolicitation__result">
+						Você não possui nenhuma solicitação pendente.
+					</label>
+				)}
+				{solicitations && solicitations.length
+					?
+            solicitations.map((solicitations, index) => (
 							<FriendSolicitation
 								key={index}
 								userSolicitations={solicitations}
@@ -49,7 +74,9 @@ export function FriendScreen() {
 								denniedAsFriend={denniedAsFriend}
 							/>
 					  ))
-					: null}
+        :
+          null
+        }
 			</div>
 		</>
 	);
