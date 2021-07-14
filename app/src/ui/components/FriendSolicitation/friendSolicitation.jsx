@@ -58,7 +58,7 @@ export function FriendSolicitation({
 						<div>
 							<b>
 								{userSolicitations.musico1.nome[0].toUpperCase() +
-                  userSolicitations.musico1.nome.slice(1).toLowerCase()}
+									userSolicitations.musico1.nome.slice(1).toLowerCase()}
 							</b>
 							(
 							<b>

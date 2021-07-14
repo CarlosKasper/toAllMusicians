@@ -8,7 +8,7 @@ export function SearchProfile({ userProfile, addFriend }) {
 	const [userInfo] = useGlobalUserInfo();
 
 	function handleAdd() {
-		addFriend(userProfile.email);
+		addFriend(userProfile.nome, userProfile.email);
 	}
 
 	return (

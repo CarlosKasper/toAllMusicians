@@ -33,10 +33,20 @@ export function SearchScreen() {
 		searchUser();
 	}, []);
 
-	async function handleAddFriend(email) {
+	async function handleAddFriend(nome, email) {
 		const response = await api.addFriend(email);
 		if (response.status === 400) {
-			alert('ai erremo');
+			Swal.fire({
+				icon: 'warning',
+				title: `Não foi possível adicionar ${nome}!`,
+				text: `Você já possui um relacionamento(Aceito ou Pendente).`,
+				confirmButtonText: `Voltar para o feed`,
+				confirmButtonColor: '#1A71D9',
+			}).then((result) => {
+				if (result.isConfirmed) {
+					history.push('/home');
+				}
+			});
 		}
 	}
 
@@ -46,7 +56,6 @@ export function SearchScreen() {
 			<div className="searchProfile">
 				{users ? (
 					<label className="searchProfile__result">
-						{' '}
 						Resultado da pesquisa:
 					</label>
 				) : (
