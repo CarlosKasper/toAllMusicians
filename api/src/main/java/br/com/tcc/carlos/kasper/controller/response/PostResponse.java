@@ -11,6 +11,8 @@ import java.time.LocalDateTime;
 @Data
 public class PostResponse {
 
+    private Long id;
+
     private String titulo;
 
     @JsonFormat(pattern = "dd/MM/yyyy")

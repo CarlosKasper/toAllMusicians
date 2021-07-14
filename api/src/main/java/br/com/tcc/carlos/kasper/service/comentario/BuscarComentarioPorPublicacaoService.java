@@ -4,9 +4,9 @@ import br.com.tcc.carlos.kasper.domain.Comentario;
 import br.com.tcc.carlos.kasper.domain.Post;
 import br.com.tcc.carlos.kasper.repository.ComentarioRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 @Service
 public class BuscarComentarioPorPublicacaoService {
@@ -15,9 +15,9 @@ public class BuscarComentarioPorPublicacaoService {
     private ComentarioRepository comentarioRepository;
 
 
-    public Page<Comentario> buscar(Post post, Pageable pageable) {
+    public List<Comentario> buscar(Post post) {
 
-        Page<Comentario> comentarios = comentarioRepository.findByPost(post, pageable);
+        List<Comentario> comentarios = comentarioRepository.findByPost(post);
 
         return comentarios;
     }

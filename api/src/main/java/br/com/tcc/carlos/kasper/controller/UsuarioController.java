@@ -13,7 +13,6 @@ import br.com.tcc.carlos.kasper.service.relacionamento.ListarRelacionamentosDoUs
 import br.com.tcc.carlos.kasper.repository.UsuarioRepository;
 import br.com.tcc.carlos.kasper.service.usuario.ListarUsuariosService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.http.HttpStatus;
@@ -21,6 +20,7 @@ import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.security.RolesAllowed;
+import java.util.List;
 
 @RestController
 @RequestMapping("/usuario")
@@ -73,35 +73,35 @@ public class UsuarioController {
     @RolesAllowed({"ROLE_USUARIO"})
     @GetMapping("/listar")
     @ResponseStatus(HttpStatus.OK)
-    public Page<Musico> listarUsuarios(@AuthenticationPrincipal CustomUserDetails usuarioLogado, @PageableDefault Pageable pageable) {
+    public List<Musico> listarUsuarios(@AuthenticationPrincipal CustomUserDetails usuarioLogado, @PageableDefault Pageable pageable) {
 
-        return listarUsuariosService.listar(usuarioLogado.getUsername(), pageable);
+        return listarUsuariosService.listar(usuarioLogado.getUsername());
     }
 
     @RolesAllowed({"ROLE_USUARIO"})
     @GetMapping("/solicitacao")
     @ResponseStatus(HttpStatus.OK)
-    public Page<Relacionamento> exibirConvites(@AuthenticationPrincipal CustomUserDetails usuarioLogado, @PageableDefault Pageable pageable) {
+    public List<Relacionamento> exibirConvites(@AuthenticationPrincipal CustomUserDetails usuarioLogado, @PageableDefault Pageable pageable) {
 
-        return listarConvitesDeRelacionamentoPendentesService.listar(usuarioLogado.getUsername(), pageable);
+        return listarConvitesDeRelacionamentoPendentesService.listar(usuarioLogado.getUsername());
 
     }
 
     @RolesAllowed({"ROLE_USUARIO"})
     @GetMapping("/relacionamentos")
     @ResponseStatus(HttpStatus.OK)
-    public Page<Relacionamento> exibirRelacionamentos(@AuthenticationPrincipal CustomUserDetails usuarioLogado, @PageableDefault Pageable pageable) {
+    public List<Relacionamento> exibirRelacionamentos(@AuthenticationPrincipal CustomUserDetails usuarioLogado, @PageableDefault Pageable pageable) {
 
-        return listarRelacionamentosDoUsuarioService.listar(usuarioLogado.getUsername(), pageable);
+        return listarRelacionamentosDoUsuarioService.listar(usuarioLogado.getUsername());
 
     }
 
     @RolesAllowed({"ROLE_USUARIO"})
     @GetMapping("/buscar/musico/{nome-usuario}")
     @ResponseStatus(HttpStatus.OK)
-    public Page<Musico> listarUsuarioPorNome(@PathVariable("nome-usuario") String nome, @PageableDefault Pageable pageable) {
+    public List<Musico> listarUsuarioPorNome(@PathVariable("nome-usuario") String nome, @PageableDefault Pageable pageable) {
 
-        return buscarUsuarioPorNomeService.buscar(nome, pageable);
+        return buscarUsuarioPorNomeService.buscar(nome);
 
     }
 }

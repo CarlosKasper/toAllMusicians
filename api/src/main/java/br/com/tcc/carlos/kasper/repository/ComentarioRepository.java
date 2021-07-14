@@ -3,10 +3,9 @@ package br.com.tcc.carlos.kasper.repository;
 import br.com.tcc.carlos.kasper.domain.Comentario;
 import br.com.tcc.carlos.kasper.domain.Musico;
 import br.com.tcc.carlos.kasper.domain.Post;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
 import org.springframework.data.repository.Repository;
 
+import java.util.List;
 import java.util.Optional;
 
 public interface ComentarioRepository extends Repository<Comentario, Long> {
@@ -15,7 +14,7 @@ public interface ComentarioRepository extends Repository<Comentario, Long> {
 
     Optional<Comentario> findByMusicoAndPostEquals(Musico musico, Post post);
 
-    Page<Comentario> findByPost(Post post, Pageable pageable);
+    List<Comentario> findByPost(Post post);
 
     Comentario save(Comentario comentario);
 

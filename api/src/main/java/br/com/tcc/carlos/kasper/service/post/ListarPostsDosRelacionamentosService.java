@@ -5,9 +5,10 @@ import br.com.tcc.carlos.kasper.domain.Post;
 import br.com.tcc.carlos.kasper.repository.PostRepository;
 import br.com.tcc.carlos.kasper.service.usuario.BuscarUsuarioPorEmailService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 @Service
 public class ListarPostsDosRelacionamentosService {
@@ -18,10 +19,10 @@ public class ListarPostsDosRelacionamentosService {
     @Autowired
     private BuscarUsuarioPorEmailService buscarUsuarioPorEmailService;
 
-    public Page<Post> listar(String email, Pageable pageable) {
+    public List<Post> listar(String email) {
 
         Musico musico = buscarUsuarioPorEmailService.buscar(email);
 
-        return postRepository.findByFriendsPost(musico.getId(), pageable);
+        return postRepository.findByFriendsPost(musico.getId());
     }
 }

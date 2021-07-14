@@ -4,7 +4,6 @@ import br.com.tcc.carlos.kasper.domain.Relacionamento;
 import br.com.tcc.carlos.kasper.security.CustomUserDetails;
 import br.com.tcc.carlos.kasper.service.relacionamento.*;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.http.HttpStatus;
@@ -12,6 +11,7 @@ import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.security.RolesAllowed;
+import java.util.List;
 
 @RolesAllowed({"ROLE_USUARIO"})
 @RestController
@@ -38,23 +38,23 @@ public class RelacionamentoController {
 
     @GetMapping
     @ResponseStatus(HttpStatus.OK)
-    public Page<Relacionamento> buscar(@AuthenticationPrincipal CustomUserDetails usuarioLogado, @PageableDefault Pageable pageable) {
+    public List<Relacionamento> buscar(@AuthenticationPrincipal CustomUserDetails usuarioLogado, @PageableDefault Pageable pageable) {
 
-        return listarRelacionamentosDoUsuarioService.listar(usuarioLogado.getUsername(), pageable);
+        return listarRelacionamentosDoUsuarioService.listar(usuarioLogado.getUsername());
     }
 
     @GetMapping("/{email}")
     @ResponseStatus(HttpStatus.OK)
-    public Page<Relacionamento> buscar(@PathVariable("email") String email, @PageableDefault Pageable pageable) {
+    public List<Relacionamento> buscar(@PathVariable("email") String email, @PageableDefault Pageable pageable) {
 
-        return listarRelacionamentosDoUsuarioService.listar(email, pageable);
+        return listarRelacionamentosDoUsuarioService.listar(email);
     }
 
     @GetMapping("/solicitacoes")
     @ResponseStatus(HttpStatus.OK)
-    public Page<Relacionamento> buscarSolicitacoes(@AuthenticationPrincipal CustomUserDetails usuarioLogado, @PageableDefault Pageable pageable) {
+    public List<Relacionamento> buscarSolicitacoes(@AuthenticationPrincipal CustomUserDetails usuarioLogado, @PageableDefault Pageable pageable) {
 
-        return listarConvitesDeRelacionamentoPendentesService.listar(usuarioLogado.getUsername(), pageable);
+        return listarConvitesDeRelacionamentoPendentesService.listar(usuarioLogado.getUsername());
     }
 
     @PostMapping("/{email-solicitado}")

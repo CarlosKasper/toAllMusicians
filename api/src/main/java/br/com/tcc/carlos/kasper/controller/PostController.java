@@ -1,19 +1,18 @@
 package br.com.tcc.carlos.kasper.controller;
 
 import br.com.tcc.carlos.kasper.controller.request.PostRequest;
-import br.com.tcc.carlos.kasper.domain.Post;
+import br.com.tcc.carlos.kasper.controller.response.PostFullResponse;
+import br.com.tcc.carlos.kasper.mapper.ListarPostsMapper;
 import br.com.tcc.carlos.kasper.security.CustomUserDetails;
 import br.com.tcc.carlos.kasper.service.post.*;
 import br.com.tcc.carlos.kasper.controller.response.PostResponse;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
-import org.springframework.data.web.PageableDefault;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.security.RolesAllowed;
+import java.util.List;
 
 @RolesAllowed({"ROLE_USUARIO"})
 @RestController
@@ -28,13 +27,18 @@ public class PostController {
 
     @Autowired
     private ListarPostDoUsuarioService listarPostDoUsuarioService;
+
     @Autowired
     private ListarPostDoUsuarioEspecificoService listarPostDoUsuarioEspecificoService;
+
     @Autowired
     private ListarTodosPostsService listarTodosPosts;
 
     @Autowired
     private AtualizarPostParaEscondidoService atualizarPostParaEscondidoService;
+
+    @Autowired
+    private ListarPostsMapper listarPostsMapper;
 
     @PostMapping("/publicar")
     @ResponseStatus(HttpStatus.CREATED)
@@ -45,30 +49,23 @@ public class PostController {
 
     @GetMapping("/listar")
     @ResponseStatus(HttpStatus.OK)
-    public Page<Post> listarPostsDosRelacionamentos(@AuthenticationPrincipal CustomUserDetails usuarioLogado, @PageableDefault/*(direction = Sort.Direction.DESC, sort = "dataHoraPostagem")*/ Pageable pageable) {
+    public List<PostFullResponse> listarPostsDosRelacionamentos(@AuthenticationPrincipal CustomUserDetails usuarioLogado) {
 
-        return listarPostsDosRelacionamentosService.listar(usuarioLogado.getUsername(), pageable);
-    }
-
-    @GetMapping("/listarTodos")
-    @ResponseStatus(HttpStatus.OK)
-    public Page<Post> listarTodos(@PageableDefault/*(direction = Sort.Direction.DESC, sort = "dataHoraPostagem")*/ Pageable pageable) {
-
-        return listarTodosPosts.listar(pageable);
+        return listarPostsMapper.apply(listarPostsDosRelacionamentosService.listar(usuarioLogado.getUsername()));
     }
 
     @GetMapping("/{email-usuario}")
     @ResponseStatus(HttpStatus.OK)
-    public Page<Post> listarPostsDoUsuario( @PathVariable("email-usuario") String email, @PageableDefault Pageable pageable){
+    public List<PostFullResponse> listarPostsDoUsuario( @PathVariable("email-usuario") String email){
 
-        return listarPostDoUsuarioService.listar(email, pageable);
+        return listarPostsMapper.apply(listarPostDoUsuarioService.listar(email));
     }
 
     @GetMapping("/")
     @ResponseStatus(HttpStatus.OK)
-    public Page<Post> listarPostsDoUsuarioLogado(@AuthenticationPrincipal CustomUserDetails usuarioLogado, @PageableDefault Pageable pageable){
+    public List<PostFullResponse> listarPostsDoUsuarioLogado(@AuthenticationPrincipal CustomUserDetails usuarioLogado){
 
-        return listarPostDoUsuarioEspecificoService.listar(usuarioLogado.getUsername(), pageable);
+        return listarPostsMapper.apply(listarPostDoUsuarioEspecificoService.listar(usuarioLogado.getUsername()));
     }
 
     @PutMapping("/{post-id}")

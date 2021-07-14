@@ -11,6 +11,7 @@ public class PublicarPostResponseMapper {
 
         PostResponse response = new PostResponse();
 
+        response.setId(post.getId());
         response.setTitulo(post.getTitulo());
         response.setDataHoraPostagem(post.getDataHoraPostagem());
 
