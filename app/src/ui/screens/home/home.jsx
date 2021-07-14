@@ -42,7 +42,7 @@ export function HomeScreen() {
 			{feedContent
 				? feedContent.map((feedC) => (
 						<FeedList
-              key="feedList"
+							key="feedList"
 							feedContent={feedC}
 							likePost={likePost}
 							unlikePost={unlikePost}

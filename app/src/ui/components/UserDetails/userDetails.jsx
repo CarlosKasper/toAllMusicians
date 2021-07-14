@@ -3,7 +3,6 @@ import './userDetails.scss';
 import React from 'react';
 import { useApi } from '../../../hooks/api';
 
-
 export function UserDetails({ userData, postLength, userFriends }) {
 	const api = useApi();
 	const feed = document.getElementById('feed');

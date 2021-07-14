@@ -9,9 +9,9 @@ export function LoginBox() {
 	const [password, setPassword] = useState('');
 	const history = useHistory();
 	const api = useApi();
-  console.log(username,password)
+	console.log(username, password);
 	async function gerarToken() {
-		const response = await api.gerarToken('carlos@gmail.com', '123');
+		const response = await api.gerarToken('carlos2@gmail.com', '123');
 		if (response.status === 200) {
 			history.push('/home');
 		} else if (response.status === 400) {

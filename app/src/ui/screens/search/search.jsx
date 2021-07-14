@@ -56,7 +56,11 @@ export function SearchScreen() {
 				)}
 				{users
 					? users.map((users) => (
-							<SearchProfile key="profile" userProfile={users} addFriend={handleAddFriend} />
+							<SearchProfile
+								key="profile"
+								userProfile={users}
+								addFriend={handleAddFriend}
+							/>
 					  ))
 					: null}
 			</div>

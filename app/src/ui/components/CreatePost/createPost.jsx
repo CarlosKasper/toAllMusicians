@@ -14,7 +14,7 @@ export function CreatePost() {
 	const [instrument, setInstrument] = useState('');
 	const [privacity, setPrivacity] = useState('');
 	const [feed, setFeed] = useGlobalFeed(false);
-	const [allPosts, setAllPosts] = useGlobalFeed(0);
+	const [allPosts, setAllPosts] = useState(0);
 	const [imagePreview, setImagePreview] = useState(null);
 	const [imageResult, setImageResult] = useState(null);
 	const [published, setPublished] = useState(false);
@@ -39,7 +39,6 @@ export function CreatePost() {
 		if (response.status === 201) {
 			setPublished(!published);
 			addPhoto();
-			setPublished(!published);
 		} else if (response.status === 400) {
 			alert('tem algo de errado amigao');
 		}

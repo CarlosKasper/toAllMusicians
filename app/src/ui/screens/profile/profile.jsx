@@ -90,7 +90,7 @@ export function ProfileScreen() {
 				{postsUser
 					? postsUser.map((postsUser) => (
 							<FeedList
-                key="feedList"
+								key="feedList"
 								feedContent={postsUser}
 								likePost={likePost}
 								unlikePost={unlikePost}
@@ -102,7 +102,7 @@ export function ProfileScreen() {
 				{userFriends ? (
 					userFriends.map((userFriends, index) => (
 						<FriendsProfile
-              key={index}
+							key={index}
 							userFriends={userFriends}
 							deletedFriend={deletedFriend}
 							profileEmail={email}

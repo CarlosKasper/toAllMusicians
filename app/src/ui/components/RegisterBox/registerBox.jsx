@@ -18,7 +18,7 @@ export function RegisterBox() {
 	async function registroUsuario() {
 		const response = await api.registroUsuario(
 			username,
-      email,
+			email,
 			password,
 			nickname,
 			birthday,
@@ -46,7 +46,7 @@ export function RegisterBox() {
 		setPassword(event.target.value);
 	}
 
-  function onChangeEmail(event) {
+	function onChangeEmail(event) {
 		setEmail(event.target.value);
 	}
 

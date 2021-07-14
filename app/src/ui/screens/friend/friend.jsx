@@ -38,12 +38,12 @@ export function FriendScreen() {
 			<Header />
 			<div className="friendSolicitation">
 				<label className="friendSolicitation__result">
-          Solicitações de amizades pendentes:
+					Solicitações de amizades pendentes:
 				</label>
 				{solicitations
 					? solicitations.map((solicitations, index) => (
 							<FriendSolicitation
-                key={index}
+								key={index}
 								userSolicitations={solicitations}
 								acceptAsFriend={acceptAsFriend}
 								denniedAsFriend={denniedAsFriend}
