@@ -1,5 +1,6 @@
 package br.com.tcc.carlos.kasper.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -21,7 +22,8 @@ public class Curtida {
     @ManyToOne
     @JoinColumn(name = "IDMUSICO")
     private Musico musico;
-
+    
+    @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "IDPOST")
     private Post post;
