@@ -1,21 +1,17 @@
 package br.com.tcc.carlos.kasper.controller;
 
-import br.com.tcc.carlos.kasper.domain.Comentario;
 import br.com.tcc.carlos.kasper.domain.Curtida;
 import br.com.tcc.carlos.kasper.security.CustomUserDetails;
-import br.com.tcc.carlos.kasper.service.comentario.ListarComentarioService;
 import br.com.tcc.carlos.kasper.service.curtida.CriarCurtidaService;
 import br.com.tcc.carlos.kasper.service.curtida.DeletarCurtidaService;
 import br.com.tcc.carlos.kasper.service.curtida.ListarCurtidaService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
-import org.springframework.data.web.PageableDefault;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.security.RolesAllowed;
+import java.util.List;
 
 @RolesAllowed({"ROLE_USUARIO"})
 @RestController
@@ -47,8 +43,8 @@ public class CurtidaController {
 
     @GetMapping("/listar/{id-post}")
     @ResponseStatus(HttpStatus.OK)
-    public Page<Curtida> listarCurtida(@PathVariable("id-post") Long idPublicacao, @PageableDefault Pageable pageable, @AuthenticationPrincipal CustomUserDetails usuarioLogado) {
+    public List<Curtida> listarCurtida(@PathVariable("id-post") Long idPublicacao, @AuthenticationPrincipal CustomUserDetails usuarioLogado) {
 
-        return listarCurtidaService.listar(idPublicacao, usuarioLogado.getUsername(), pageable);
+        return listarCurtidaService.listar(idPublicacao, usuarioLogado.getUsername());
     }
 }

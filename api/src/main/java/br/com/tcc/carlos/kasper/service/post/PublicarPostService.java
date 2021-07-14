@@ -41,8 +41,8 @@ public class PublicarPostService {
         post.setPrivacidade(postRequest.getPrivacidade());
         post.setInstrumento(postRequest.getInstrumento());
 
-        postRepository.save(post);
+        Post postSaved = postRepository.save(post);
 
-        return mapper.apply(post);
+        return mapper.apply(postSaved);
     }
 }

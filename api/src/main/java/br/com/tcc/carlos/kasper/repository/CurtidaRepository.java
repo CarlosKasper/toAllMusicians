@@ -7,6 +7,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.repository.Repository;
 
+import java.util.List;
 import java.util.Optional;
 
 public interface CurtidaRepository extends Repository<Curtida, Long> {
@@ -15,7 +16,7 @@ public interface CurtidaRepository extends Repository<Curtida, Long> {
 
     Optional<Curtida> findByMusicoAndPostEquals(Musico musico, Post post);
 
-    Page<Curtida> findByPost(Post post, Pageable pageable);
+    List<Curtida> findByPost(Post post);
 
     Curtida save(Curtida curtida);
 
