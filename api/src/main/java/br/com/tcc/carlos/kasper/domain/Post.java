@@ -40,7 +40,7 @@ public class Post implements Comparable<Post> {
     public Post(Long id, String titulo, LocalDateTime dataHoraPostagem) {
         this.id = id;
         this.titulo = titulo;
-        this.dataHoraPostagem= dataHoraPostagem;
+        this.dataHoraPostagem = dataHoraPostagem;
     }
 
     @Override

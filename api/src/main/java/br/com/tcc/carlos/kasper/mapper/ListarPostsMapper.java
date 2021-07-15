@@ -31,6 +31,7 @@ public class ListarPostsMapper {
         postList.forEach(post -> {
             List<Curtida> curtidasList = curtidaRepository.findByPost(post);
             List<Comentario> comentarioList = comentarioRepository.findByPost(post);
+            Collections.sort(comentarioList);
 
             PostFullResponse postFullResponse = PostFullResponse.builder()
                     .post(post)
