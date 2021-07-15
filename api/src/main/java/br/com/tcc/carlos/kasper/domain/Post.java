@@ -11,7 +11,7 @@ import java.time.LocalDateTime;
 @Entity
 @Table(name = "POST")
 @SequenceGenerator(name = "SEQ_POST", sequenceName = "SEQ_POST", allocationSize = 1)
-public class Post {
+public class Post implements Comparable<Post> {
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "SEQ_POST")
@@ -41,5 +41,16 @@ public class Post {
         this.id = id;
         this.titulo = titulo;
         this.dataHoraPostagem= dataHoraPostagem;
+    }
+
+    @Override
+    public int compareTo(Post post) {
+        if (this.dataHoraPostagem.isAfter(post.getDataHoraPostagem())) {
+            return -1;
+        }
+        if (this.dataHoraPostagem.isBefore(post.getDataHoraPostagem())) {
+            return 1;
+        }
+        return 0;
     }
 }

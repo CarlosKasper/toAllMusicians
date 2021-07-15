@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 @Component
@@ -22,6 +23,8 @@ public class ListarPostsMapper {
     private ComentarioRepository comentarioRepository;
 
     public List<PostFullResponse> apply(List<Post> postList) {
+
+        Collections.sort(postList);
 
         List<PostFullResponse> postFullResponseList = new ArrayList<>();
 
