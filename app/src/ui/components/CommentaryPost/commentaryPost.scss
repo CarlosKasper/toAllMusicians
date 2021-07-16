@@ -78,13 +78,7 @@
 	}
 
 	.deleteCommentary {
-		display: none;
-	}
-
-	:hover {
-		.deleteCommentary {
-			display: flex;
-		}
+		display: flex;
 	}
 }
 

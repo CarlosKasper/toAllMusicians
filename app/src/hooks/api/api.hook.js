@@ -124,15 +124,6 @@ export function useApi() {
 		}
 	}
 
-	async function listAllPosts() {
-		try {
-			const response = await axios.get(`/post/listarTodos`);
-			return response;
-		} catch (error) {
-			return error.response.data;
-		}
-	}
-
 	async function likePost(idPost) {
 		try {
 			const response = await axios.post(`/curtida/${idPost}`);
@@ -240,7 +231,7 @@ export function useApi() {
 
 	async function listFriends(email) {
 		try {
-			const response = await axios.get(`/amizade/${email}`);
+			const response = await axios.get(`/usuario/relacionamentos/${email}`);
 			return response;
 		} catch (error) {
 			return error.response;
@@ -268,7 +259,7 @@ export function useApi() {
 	async function uploadPostImage(postId, image) {
 		try {
 			const response = await axios.post(
-				`/imagem/upload/post/${postId + 1}`,
+				`/imagem/upload/post/${postId}`,
 				image
 			);
 			return response;
@@ -283,7 +274,6 @@ export function useApi() {
 			registroUsuario,
 			criarPost,
 			listarPostsAmigos,
-			listAllPosts,
 			listarDadosUsuario,
 			listarPostsUsuario,
 			likePost,

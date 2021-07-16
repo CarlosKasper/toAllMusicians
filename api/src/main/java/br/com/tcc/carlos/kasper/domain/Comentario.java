@@ -23,7 +23,6 @@ public class Comentario {
     @JoinColumn(name = "IDMUSICO")
     private Musico musico;
 
-    @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "IDPOST")
     private Post post;

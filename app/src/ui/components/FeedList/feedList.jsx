@@ -2,52 +2,28 @@
 import './feedList.scss';
 import { useApi } from '../../../hooks/api';
 import { useGlobalFeed, useGlobalUserInfo } from '../../../context/index';
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import ThumbUpAltIcon from '@material-ui/icons/ThumbUpAlt';
 import HighlightOffIcon from '@material-ui/icons/HighlightOff';
 import { CommentaryPost } from '../index';
 import Swal from 'sweetalert2';
 
-export function FeedList({ feedContent, likePost, unlikePost }) {
+export function FeedList({ post, like, commentary, likePost, unlikePost }) {
 	const api = useApi();
-	const [commentaryPost, setcommentaryPost] = useState();
 	const [newCommentary, setNewCommentary] = useState();
 	const [userInfo] = useGlobalUserInfo();
-	const [likes, setLikes] = useState();
 	const [feed, setFeed] = useGlobalFeed(false);
 
-	useEffect(() => {
-		async function listarComentario() {
-			const response = await api.listarComentario(feedContent.id);
-			if (response.status === 200) {
-				setcommentaryPost(response.data);
-			}
-		}
-
-		async function listarCurtida() {
-			const response = await api.listarCurtida(feedContent.id);
-			if (response.status === 200) {
-				setLikes(response.data);
-			}
-		}
-
-		listarComentario();
-		listarCurtida();
-	}, [api, feed]);
-
 	function handleLike() {
-		likes.content.map((likes) => {
-			if (
-				userInfo.email === likes.musico.email &&
-				feedContent.id === likes.post.id
-			) {
-				unlikePost(likes.id, likes.post.id);
+		like.map((likes) => {
+			if (userInfo.email === likes.musico.email) {
+				unlikePost(likes.id, post.id);
 				return;
 			}
 		});
 
-		likePost(feedContent.id);
+		likePost(post.id);
 	}
 
 	async function deleteCommentary(postId, commentaryId) {
@@ -62,7 +38,7 @@ export function FeedList({ feedContent, likePost, unlikePost }) {
 	}
 
 	async function sendCommentary() {
-		const response = await api.newCommentary(feedContent.id, newCommentary);
+		const response = await api.newCommentary(post.id, newCommentary);
 		if (response.status === 201) {
 			setNewCommentary('');
 			setFeed(!feed);
@@ -95,7 +71,7 @@ export function FeedList({ feedContent, likePost, unlikePost }) {
 	}
 
 	async function hidePostApi() {
-		const response = await api.hideUserPost(feedContent.id);
+		const response = await api.hideUserPost(post.id);
 		if (response.status === 200) {
 			setFeed(!feed);
 		}
@@ -104,12 +80,12 @@ export function FeedList({ feedContent, likePost, unlikePost }) {
 	return (
 		<div className="feedList">
 			<div className="feedList__info">
-				<Link className="link" to={`/profile/${feedContent.musico.email}`}>
+				<Link className="link" to={`/profile/${post.musico.email}`}>
 					<div className="feedList__image">
-						{feedContent.musico.imagem ? (
+						{post.musico.imagem ? (
 							<img
 								className="profile-image"
-								src={feedContent.musico.imagem.url}
+								src={post.musico.imagem.url}
 								alt="Foto de perfil"
 							/>
 						) : (
@@ -122,21 +98,21 @@ export function FeedList({ feedContent, likePost, unlikePost }) {
 				<div className="feedList__wrapper--feed">
 					<div className="feedList__user">
 						<div>
-							<b>{feedContent.musico.nome}</b>
+							<b>{post.musico.nome}</b>
 						</div>
 						<div>
 							<b>
-								{feedContent.privacidade[0].toUpperCase() +
-									feedContent.privacidade.slice(1).toLowerCase()}
+								{post.privacidade[0].toUpperCase() +
+									post.privacidade.slice(1).toLowerCase()}
 							</b>
 						</div>
 					</div>
 					<div className="feedList__instrument">
 						<b>
-							{feedContent.instrumento[0].toUpperCase() +
-								feedContent.instrumento.slice(1).toLowerCase()}
+							{post.instrumento[0].toUpperCase() +
+								post.instrumento.slice(1).toLowerCase()}
 						</b>
-						{userInfo.email === feedContent.musico.email ? (
+						{userInfo.email === post.musico.email ? (
 							<HighlightOffIcon
 								className="highlightOffIcon"
 								onClick={hidePost}
@@ -146,13 +122,13 @@ export function FeedList({ feedContent, likePost, unlikePost }) {
 				</div>
 			</div>
 			<div className="feedList__content">
-				<label className="feedList__description"> {feedContent.titulo} </label>
+				<label className="feedList__description"> {post.titulo} </label>
 			</div>
-			{feedContent.imagem ? (
+			{post.imagem ? (
 				<div className="feedList__container-image">
 					<img
 						className="feedList__post-image"
-						src={feedContent.imagem ? feedContent.imagem.url : null}
+						src={post.imagem ? post.imagem.url : null}
 					/>
 				</div>
 			) : null}
@@ -161,11 +137,11 @@ export function FeedList({ feedContent, likePost, unlikePost }) {
 					<ThumbUpAltIcon className="thumbUpAltIcon" onClick={handleLike} />
 				</div>
 				<label className="feedList__likes">
-					{likes ? likes.content.length : '0'} Curtidas
+					{like ? like.length : '0'} Curtidas
 				</label>
 			</div>
-			{commentaryPost
-				? commentaryPost.content.map((comentary) => (
+			{commentary
+				? commentary.map((comentary) => (
 						<CommentaryPost
 							key="commentaryPost"
 							commentaryContent={comentary}

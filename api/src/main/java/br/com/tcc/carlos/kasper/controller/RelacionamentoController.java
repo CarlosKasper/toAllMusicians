@@ -36,14 +36,7 @@ public class RelacionamentoController {
     @Autowired
     private RemoverAmizadeService removerAmizadeService;
 
-    @GetMapping
-    @ResponseStatus(HttpStatus.OK)
-    public List<Relacionamento> buscar(@AuthenticationPrincipal CustomUserDetails usuarioLogado, @PageableDefault Pageable pageable) {
-
-        return listarRelacionamentosDoUsuarioService.listar(usuarioLogado.getUsername());
-    }
-
-    @GetMapping("/{email}")
+    @GetMapping("/listar/{email}")
     @ResponseStatus(HttpStatus.OK)
     public List<Relacionamento> buscar(@PathVariable("email") String email, @PageableDefault Pageable pageable) {
 

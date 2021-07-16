@@ -31,7 +31,7 @@ export function ProfileScreen() {
 		async function listFriends() {
 			const response = await api.listFriends(email);
 			if (response.status === 200) {
-				setUserFriends(response.data.content);
+				setUserFriends(response.data);
 			} else if (response.status === 400) {
 				alert('bugou pa caralho');
 			}
@@ -41,7 +41,7 @@ export function ProfileScreen() {
 			if (userInfo) {
 				const response = await api.listarPostsUsuario(email, userInfo.email);
 				if (response.status === 200) {
-					setPostsUser(response.data.content);
+					setPostsUser(response.data);
 				} else if (response.status === 400) {
 					alert('bugou pa caralho');
 				}

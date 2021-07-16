@@ -12,7 +12,7 @@ export function HomeScreen() {
 		async function listarPostsAmigos() {
 			const response = await api.listarPostsAmigos();
 			if (response.status === 200) {
-				setFeedContent(response.data.content);
+				setFeedContent(response.data);
 			} else if (response.status === 400) {
 				alert('perdemo nos post');
 			}
@@ -40,10 +40,12 @@ export function HomeScreen() {
 			<Header logged={true} />
 			<CreatePost />
 			{feedContent
-				? feedContent.map((feedC) => (
+				? feedContent.map((feed) => (
 						<FeedList
 							key="feedList"
-							feedContent={feedC}
+							post={feed.post}
+							like={feed.curtidaList}
+							commentary={feed.comentarioList}
 							likePost={likePost}
 							unlikePost={unlikePost}
 						/>

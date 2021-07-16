@@ -14,9 +14,9 @@ export function SearchScreen() {
 	useEffect(() => {
 		async function searchUser() {
 			const response = await api.searchUser(userSearch);
-			if (response.status === 200 && response.data.content.length > 0) {
-				setUsers(response.data.content);
-			} else if (response.data.content.length == 0) {
+			if (response.status === 200 && response.data.length > 0) {
+				setUsers(response.data);
+			} else if (response.data.length == 0) {
 				Swal.fire({
 					icon: 'info',
 					title: 'Nenhuma resultado encontrado!',

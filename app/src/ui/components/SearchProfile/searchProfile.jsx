@@ -6,7 +6,6 @@ import { useGlobalUserInfo } from '../../../context';
 
 export function SearchProfile({ userProfile, addFriend }) {
 	const [userInfo] = useGlobalUserInfo();
-
 	function handleAdd() {
 		addFriend(userProfile.nome, userProfile.email);
 	}

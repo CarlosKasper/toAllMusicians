@@ -88,11 +88,11 @@ public class UsuarioController {
     }
 
     @RolesAllowed({"ROLE_USUARIO"})
-    @GetMapping("/relacionamentos")
+    @GetMapping("/relacionamentos/{email}")
     @ResponseStatus(HttpStatus.OK)
-    public List<Relacionamento> exibirRelacionamentos(@AuthenticationPrincipal CustomUserDetails usuarioLogado, @PageableDefault Pageable pageable) {
+    public List<Relacionamento> exibirRelacionamentos(@PathVariable("email") String email, @PageableDefault Pageable pageable) {
 
-        return listarRelacionamentosDoUsuarioService.listar(usuarioLogado.getUsername());
+        return listarRelacionamentosDoUsuarioService.listar(email);
 
     }
 
