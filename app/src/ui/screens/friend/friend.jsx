@@ -14,9 +14,11 @@ export function FriendScreen() {
 	useEffect(() => {
 		async function listarSolicitacoes() {
 			const response = await api.listarSolicitacoes();
-			if (response.status === 200) {
+			if (response.status === 200 && !!response.data.length) {
 				setSolicitations(response.data);
-			}
+			} else {
+        swalNotFoundSolicitations()
+      }
 		}
 
 		listarSolicitacoes();
@@ -64,7 +66,6 @@ export function FriendScreen() {
 						Você não possui nenhuma solicitação pendente.
 					</label>
 				)}
-        {solicitations && solicitations.length === 0 ? swalNotFoundSolicitations() : null}
 				{solicitations && solicitations.length
 					?
             solicitations.map((solicitations, index) => (

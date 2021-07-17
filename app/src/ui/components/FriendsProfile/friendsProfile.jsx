@@ -3,12 +3,34 @@ import './friendsProfile.scss';
 import deleteFriend from '../../../images/deleteFriend.png';
 import { Link } from 'react-router-dom';
 import { useGlobalUserInfo } from '../../../context';
+import Swal from 'sweetalert2';
 
 export function FriendsProfile({ userFriends, deletedFriend, profileEmail }) {
 	const [userInfo] = useGlobalUserInfo();
 
 	function handleRemoveFriend() {
-		deletedFriend(userFriends.email);
+    Swal.fire({
+			icon: 'warning',
+			title: 'Tem certeza?',
+			text: 'Você está excluindo esta amizade',
+			showDenyButton: true,
+			confirmButtonText: `Excluir amizade`,
+			denyButtonText: `Cancelar`,
+			denyButtonColor: '#d33',
+			confirmButtonColor: '#1A71D9',
+		}).then((result) => {
+			if (result.isConfirmed) {
+        deletedFriend(userFriends.email);
+			} else if (result.isDenied) {
+				Swal.fire({
+					title: 'Exclusão cancelada!',
+					text: 'A sua amizade não foi excluida.',
+					confirmButtonText: `Ok`,
+					confirmButtonColor: '#1A71D9',
+					icon: 'error',
+				});
+			}
+		});
 	}
 
 	return (

@@ -87,7 +87,7 @@ export function Header() {
 	return (
 		<Navbar collapseOnSelect expand="lg" className="bg-navbar" variant="dark">
 			<Navbar.Brand>
-				<Link to="/home" class="brand">
+				<Link to="/home" className="brand">
 					toAllMusicians
 				</Link>
 			</Navbar.Brand>

@@ -45,7 +45,7 @@ public class RelacionamentoController {
 
     @GetMapping("/solicitacoes")
     @ResponseStatus(HttpStatus.OK)
-    public List<Relacionamento> buscarSolicitacoes(@AuthenticationPrincipal CustomUserDetails usuarioLogado, @PageableDefault Pageable pageable) {
+    public List<Relacionamento> buscarSolicitacoes(@AuthenticationPrincipal CustomUserDetails usuarioLogado) {
 
         return listarConvitesDeRelacionamentoPendentesService.listar(usuarioLogado.getUsername());
     }
@@ -64,7 +64,7 @@ public class RelacionamentoController {
         aceitarSolicitacaoDeRelacionamentoService.aceitar(id, usuarioLogado.getUsername());
     }
 
-        @PostMapping("/recusar/{id-relacionamento}")
+    @PostMapping("/recusar/{id-relacionamento}")
     @ResponseStatus(HttpStatus.CREATED)
     public void recusar(@AuthenticationPrincipal CustomUserDetails usuarioLogado, @PathVariable("id-relacionamento") Long id) {
 

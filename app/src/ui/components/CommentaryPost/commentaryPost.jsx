@@ -4,11 +4,33 @@ import { useGlobalUserInfo } from '../../../context/index';
 import React from 'react';
 import { Link } from 'react-router-dom';
 import DeleteForeverIcon from '@material-ui/icons/DeleteForever';
+import Swal from 'sweetalert2';
 
 export function CommentaryPost({ commentaryContent, deleteCommentary }) {
 	const [userInfo] = useGlobalUserInfo();
 	function handleComentary() {
-		deleteCommentary(commentaryContent.post.id, commentaryContent.id);
+    Swal.fire({
+			icon: 'warning',
+			title: 'Tem certeza?',
+			text: 'Não será possível recuperar o comentário.',
+			showDenyButton: true,
+			confirmButtonText: `Deletar Comentário`,
+			denyButtonText: `Cancelar`,
+			denyButtonColor: '#d33',
+			confirmButtonColor: '#1A71D9',
+		}).then((result) => {
+			if (result.isConfirmed) {
+        deleteCommentary(commentaryContent.post.id, commentaryContent.id);
+			} else if (result.isDenied) {
+				Swal.fire({
+					title: 'Exclusão cancelada!',
+					text: 'O seu comentário não foi excluído.',
+					confirmButtonText: `Ok`,
+					confirmButtonColor: '#1A71D9',
+					icon: 'error',
+				});
+			}
+		});
 	}
 
 	return (

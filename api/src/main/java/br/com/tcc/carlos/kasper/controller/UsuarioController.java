@@ -1,17 +1,16 @@
 package br.com.tcc.carlos.kasper.controller;
 
+import br.com.tcc.carlos.kasper.controller.request.ComentarioRequest;
 import br.com.tcc.carlos.kasper.controller.request.UsuarioRequest;
 import br.com.tcc.carlos.kasper.controller.response.UsuarioResponse;
+import br.com.tcc.carlos.kasper.domain.Instrumento;
 import br.com.tcc.carlos.kasper.domain.Musico;
 import br.com.tcc.carlos.kasper.domain.Relacionamento;
 import br.com.tcc.carlos.kasper.security.CustomUserDetails;
-import br.com.tcc.carlos.kasper.service.usuario.BuscarUsuarioPorEmailService;
-import br.com.tcc.carlos.kasper.service.usuario.BuscarUsuarioPorNomeService;
-import br.com.tcc.carlos.kasper.service.usuario.CadastrarUsuarioService;
+import br.com.tcc.carlos.kasper.service.usuario.*;
 import br.com.tcc.carlos.kasper.service.relacionamento.ListarConvitesDeRelacionamentoPendentesService;
 import br.com.tcc.carlos.kasper.service.relacionamento.ListarRelacionamentosDoUsuarioService;
 import br.com.tcc.carlos.kasper.repository.UsuarioRepository;
-import br.com.tcc.carlos.kasper.service.usuario.ListarUsuariosService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
@@ -20,6 +19,7 @@ import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.security.RolesAllowed;
+import java.time.LocalDate;
 import java.util.List;
 
 @RestController
@@ -46,6 +46,9 @@ public class UsuarioController {
 
     @Autowired
     private BuscarUsuarioPorNomeService buscarUsuarioPorNomeService;
+
+    @Autowired
+    private UpdateUserInformationService updateUserInformationService;
 
     @PostMapping("/cadastro")
     @ResponseStatus(HttpStatus.CREATED)
@@ -104,4 +107,14 @@ public class UsuarioController {
         return buscarUsuarioPorNomeService.buscar(nome);
 
     }
+
+    @RolesAllowed({"ROLE_USUARIO"})
+    @PutMapping("/atualizar")
+    @ResponseStatus(HttpStatus.OK)
+    public UsuarioResponse exibirDadosDoPefilDoUsuario(@AuthenticationPrincipal CustomUserDetails usuarioLogado, @RequestBody UsuarioRequest usuarioRequest) {
+
+        return updateUserInformationService.update(usuarioLogado, usuarioRequest);
+    }
+
+
 }
