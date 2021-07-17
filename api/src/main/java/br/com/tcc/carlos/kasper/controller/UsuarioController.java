@@ -13,8 +13,6 @@ import br.com.tcc.carlos.kasper.service.relacionamento.ListarRelacionamentosDoUs
 import br.com.tcc.carlos.kasper.repository.UsuarioRepository;
 import br.com.tcc.carlos.kasper.service.usuario.ListarUsuariosService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Pageable;
-import org.springframework.data.web.PageableDefault;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
@@ -73,7 +71,7 @@ public class UsuarioController {
     @RolesAllowed({"ROLE_USUARIO"})
     @GetMapping("/listar")
     @ResponseStatus(HttpStatus.OK)
-    public List<Musico> listarUsuarios(@AuthenticationPrincipal CustomUserDetails usuarioLogado, @PageableDefault Pageable pageable) {
+    public List<Musico> listarUsuarios(@AuthenticationPrincipal CustomUserDetails usuarioLogado) {
 
         return listarUsuariosService.listar(usuarioLogado.getUsername());
     }
@@ -81,7 +79,7 @@ public class UsuarioController {
     @RolesAllowed({"ROLE_USUARIO"})
     @GetMapping("/solicitacao")
     @ResponseStatus(HttpStatus.OK)
-    public List<Relacionamento> exibirConvites(@AuthenticationPrincipal CustomUserDetails usuarioLogado, @PageableDefault Pageable pageable) {
+    public List<Relacionamento> exibirConvites(@AuthenticationPrincipal CustomUserDetails usuarioLogado) {
 
         return listarConvitesDeRelacionamentoPendentesService.listar(usuarioLogado.getUsername());
 
@@ -90,7 +88,7 @@ public class UsuarioController {
     @RolesAllowed({"ROLE_USUARIO"})
     @GetMapping("/relacionamentos/{email}")
     @ResponseStatus(HttpStatus.OK)
-    public List<Relacionamento> exibirRelacionamentos(@PathVariable("email") String email, @PageableDefault Pageable pageable) {
+    public List<Relacionamento> exibirRelacionamentos(@PathVariable("email") String email) {
 
         return listarRelacionamentosDoUsuarioService.listar(email);
 
@@ -99,7 +97,7 @@ public class UsuarioController {
     @RolesAllowed({"ROLE_USUARIO"})
     @GetMapping("/buscar/musico/{nome-usuario}")
     @ResponseStatus(HttpStatus.OK)
-    public List<Musico> listarUsuarioPorNome(@PathVariable("nome-usuario") String nome, @PageableDefault Pageable pageable) {
+    public List<Musico> listarUsuarioPorNome(@PathVariable("nome-usuario") String nome) {
 
         return buscarUsuarioPorNomeService.buscar(nome);
 

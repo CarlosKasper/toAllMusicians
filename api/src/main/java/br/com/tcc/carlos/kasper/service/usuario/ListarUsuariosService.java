@@ -23,4 +23,3 @@ public class ListarUsuariosService {
         return usuarioRepository.findAllUsers(musico.getId());
     }
 }
-

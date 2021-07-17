@@ -1,9 +1,6 @@
 package br.com.tcc.carlos.kasper.service.comentario;
 
 import br.com.tcc.carlos.kasper.domain.Comentario;
-import br.com.tcc.carlos.kasper.domain.Curtida;
-import br.com.tcc.carlos.kasper.domain.Musico;
-import br.com.tcc.carlos.kasper.domain.Post;
 import br.com.tcc.carlos.kasper.repository.ComentarioRepository;
 import br.com.tcc.carlos.kasper.repository.PostRepository;
 import br.com.tcc.carlos.kasper.service.post.BuscarPostPorIdService;

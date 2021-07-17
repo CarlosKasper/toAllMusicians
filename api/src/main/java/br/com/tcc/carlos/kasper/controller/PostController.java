@@ -56,21 +56,21 @@ public class PostController {
 
     @GetMapping("/{email-usuario}")
     @ResponseStatus(HttpStatus.OK)
-    public List<PostFullResponse> listarPostsDoUsuario( @PathVariable("email-usuario") String email){
+    public List<PostFullResponse> listarPostsDoUsuario(@PathVariable("email-usuario") String email) {
 
         return listarPostsMapper.apply(listarPostDoUsuarioService.listar(email));
     }
 
     @GetMapping("/")
     @ResponseStatus(HttpStatus.OK)
-    public List<PostFullResponse> listarPostsDoUsuarioLogado(@AuthenticationPrincipal CustomUserDetails usuarioLogado){
+    public List<PostFullResponse> listarPostsDoUsuarioLogado(@AuthenticationPrincipal CustomUserDetails usuarioLogado) {
 
         return listarPostsMapper.apply(listarPostDoUsuarioEspecificoService.listar(usuarioLogado.getUsername()));
     }
 
     @PutMapping("/{post-id}")
     @ResponseStatus(HttpStatus.OK)
-    public PostResponse updatePost(@PathVariable("post-id") Long postId){
+    public PostResponse updatePost(@PathVariable("post-id") Long postId) {
 
         return atualizarPostParaEscondidoService.esconder(postId);
     }
