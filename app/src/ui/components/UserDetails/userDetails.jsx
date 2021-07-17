@@ -3,7 +3,7 @@ import './userDetails.scss';
 import React from 'react';
 import { useApi } from '../../../hooks/api';
 
-export function UserDetails({ userData, postLength, userFriends }) {
+export function UserDetails({ userData, postLength }) {
 	const api = useApi();
 	const feed = document.getElementById('feed');
 	const friends = document.getElementById('friends');
@@ -57,7 +57,7 @@ export function UserDetails({ userData, postLength, userFriends }) {
 			</div>
 			<div className="user-info">
 				<div className="information" onClick={showFriends}>
-					Amigos {userFriends.length}
+					Amigos
 				</div>
 				<div className="information" onClick={showPosts}>
 					Post {postLength}

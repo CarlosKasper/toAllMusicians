@@ -1,6 +1,5 @@
 package br.com.tcc.carlos.kasper.domain;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -21,7 +20,6 @@ public class Comentario implements Comparable<Comentario> {
     @JoinColumn(name = "IDMUSICO")
     private Musico musico;
 
-    @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "IDPOST")
     private Post post;

@@ -4,8 +4,6 @@ import br.com.tcc.carlos.kasper.domain.Relacionamento;
 import br.com.tcc.carlos.kasper.security.CustomUserDetails;
 import br.com.tcc.carlos.kasper.service.relacionamento.*;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Pageable;
-import org.springframework.data.web.PageableDefault;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
@@ -36,23 +34,16 @@ public class RelacionamentoController {
     @Autowired
     private RemoverAmizadeService removerAmizadeService;
 
-    @GetMapping
+    @GetMapping("/listar/{email}")
     @ResponseStatus(HttpStatus.OK)
-    public List<Relacionamento> buscar(@AuthenticationPrincipal CustomUserDetails usuarioLogado, @PageableDefault Pageable pageable) {
-
-        return listarRelacionamentosDoUsuarioService.listar(usuarioLogado.getUsername());
-    }
-
-    @GetMapping("/{email}")
-    @ResponseStatus(HttpStatus.OK)
-    public List<Relacionamento> buscar(@PathVariable("email") String email, @PageableDefault Pageable pageable) {
+    public List<Relacionamento> buscar(@PathVariable("email") String email) {
 
         return listarRelacionamentosDoUsuarioService.listar(email);
     }
 
     @GetMapping("/solicitacoes")
     @ResponseStatus(HttpStatus.OK)
-    public List<Relacionamento> buscarSolicitacoes(@AuthenticationPrincipal CustomUserDetails usuarioLogado, @PageableDefault Pageable pageable) {
+    public List<Relacionamento> buscarSolicitacoes(@AuthenticationPrincipal CustomUserDetails usuarioLogado) {
 
         return listarConvitesDeRelacionamentoPendentesService.listar(usuarioLogado.getUsername());
     }
@@ -71,7 +62,7 @@ public class RelacionamentoController {
         aceitarSolicitacaoDeRelacionamentoService.aceitar(id, usuarioLogado.getUsername());
     }
 
-        @PostMapping("/recusar/{id-relacionamento}")
+    @PostMapping("/recusar/{id-relacionamento}")
     @ResponseStatus(HttpStatus.CREATED)
     public void recusar(@AuthenticationPrincipal CustomUserDetails usuarioLogado, @PathVariable("id-relacionamento") Long id) {
 

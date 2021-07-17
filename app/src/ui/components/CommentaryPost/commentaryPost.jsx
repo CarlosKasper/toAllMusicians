@@ -7,7 +7,6 @@ import DeleteForeverIcon from '@material-ui/icons/DeleteForever';
 
 export function CommentaryPost({ commentaryContent, deleteCommentary }) {
 	const [userInfo] = useGlobalUserInfo();
-
 	function handleComentary() {
 		deleteCommentary(commentaryContent.post.id, commentaryContent.id);
 	}

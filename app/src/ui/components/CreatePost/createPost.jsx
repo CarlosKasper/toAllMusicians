@@ -3,7 +3,6 @@ import { useApi } from '../../../hooks/api';
 import React, { useState } from 'react';
 import Select from 'react-select';
 import { useGlobalFeed } from '../../../context/index';
-import { useEffect } from 'react';
 import PhotoCamera from '@material-ui/icons/PhotoCamera';
 import IconButton from '@material-ui/core/IconButton';
 import DeleteForeverIcon from '@material-ui/icons/DeleteForever';
@@ -14,31 +13,15 @@ export function CreatePost() {
 	const [instrument, setInstrument] = useState('');
 	const [privacity, setPrivacity] = useState('');
 	const [feed, setFeed] = useGlobalFeed(false);
-	const [allPosts, setAllPosts] = useState(0);
 	const [imagePreview, setImagePreview] = useState(null);
 	const [imageResult, setImageResult] = useState(null);
 	const [published, setPublished] = useState(false);
-
-	useEffect(() => {
-		async function listAllPosts() {
-			const response = await api.listAllPosts();
-			if (response.status === 200) {
-				response.data.content.map((biggestId) => {
-					if (biggestId.id > allPosts) {
-						setAllPosts(biggestId.id);
-					}
-				});
-			}
-		}
-
-		listAllPosts();
-	}, [published]);
 
 	async function publicarPost() {
 		const response = await api.criarPost(title, privacity, instrument);
 		if (response.status === 201) {
 			setPublished(!published);
-			addPhoto();
+      addPhoto(event, response.data.id);
 		} else if (response.status === 400) {
 			alert('tem algo de errado amigao');
 		}
@@ -66,9 +49,9 @@ export function CreatePost() {
 		{ value: 'PRIVADO', label: 'Privado' },
 	];
 
-	async function addPhoto(event) {
+	async function addPhoto(event, postId) {
 		if (imagePreview && imageResult) {
-			await api.uploadPostImage(allPosts, imageResult);
+			await api.uploadPostImage(postId, imageResult);
 			setTitle('');
 			setImageResult(null);
 			setImagePreview(null);

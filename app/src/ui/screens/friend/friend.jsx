@@ -15,7 +15,7 @@ export function FriendScreen() {
 		async function listarSolicitacoes() {
 			const response = await api.listarSolicitacoes();
 			if (response.status === 200) {
-				setSolicitations(response.data.content);
+				setSolicitations(response.data);
 			}
 		}
 
@@ -59,11 +59,12 @@ export function FriendScreen() {
 					<label className="friendSolicitation__result">
 						Solicitações de amizades pendentes:
 					</label>
-				) : (swalNotFoundSolicitations(),
+				) : (
 					<label className="friendSolicitation__result">
 						Você não possui nenhuma solicitação pendente.
 					</label>
 				)}
+        {solicitations && solicitations.length === 0 ? swalNotFoundSolicitations() : null}
 				{solicitations && solicitations.length
 					?
             solicitations.map((solicitations, index) => (

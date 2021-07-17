@@ -1,8 +1,6 @@
 package br.com.tcc.carlos.kasper.service.post;
 
-import br.com.tcc.carlos.kasper.controller.request.PostRequest;
 import br.com.tcc.carlos.kasper.controller.response.PostResponse;
-import br.com.tcc.carlos.kasper.domain.Musico;
 import br.com.tcc.carlos.kasper.domain.Post;
 import br.com.tcc.carlos.kasper.domain.Privacidade;
 import br.com.tcc.carlos.kasper.mapper.PublicarPostResponseMapper;
@@ -12,9 +10,6 @@ import br.com.tcc.carlos.kasper.service.usuario.BuscarUsuarioPorEmailService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
-import java.time.LocalDateTime;
-import java.util.Optional;
 
 @Service
 public class AtualizarPostParaEscondidoService {
