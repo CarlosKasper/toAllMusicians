@@ -1,5 +1,0 @@
-
-S	java:S106"9Replace this use of System.out or System.err by a logger.(Æ†ì¸ûÿÿÿÿ
-X	java:S125"<This block of commented-out lines of code should be removed.(½ÉÁ8òËºË¥/
-P
-java:S1068	".Remove this unused "BRL_PREFIX" private field.(ýÑõùÿÿÿÿ8óËºË¥/
