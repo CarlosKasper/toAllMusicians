@@ -2,25 +2,28 @@ server:
     port: 8090
 
 spring:
+    profiles:
+        active: dev
     jpa:
-        database: sqlserver
+        database: postgresql
         properties:
             hibernate:
                 order_inserts: true
                 jdbc:
                     batch_size: 1000
     datasource:
-        username: SA
-        password: Senha123$
-        url: jdbc:sqlserver://localhost:1433;databaseName=master
-        driver-class-name: com.microsoft.sqlserver.jdbc.SQLServerDriver
-        driver-class-name=com: com.microsoft.sqlserver.jdbc.SQLServerDriver
-        testOnBorrow: false
-        validationQuery: SELECT 1
+        platform: postgres
+        driverClassName: org.postgresql.Driver
+        url: jdbc:postgresql://localhost:5432/toallmusicians
+        username: postgres
+        password: password
+        hikari:
+            schema: dev
 
     flyway:
         validade-on-migrate: true
         locations: filesystem:src/main/resources/db/migration
+        schema: dev
 
     servlet:
         multipart:

@@ -1,0 +1,17 @@
+version: '3.5'
+services:
+  postgres:
+    container_name: postgres
+    image: postgres
+    command: postgres -c listen_addresses='*'
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: toallmusicians
+      PGDATA: /data/postgres
+    ports:
+      - 5432:5432
+    volumes:
+      - data:/var/lib/postgresql/data
+volumes:
+  data:

@@ -1,0 +1,51 @@
+server:
+    port: 80
+
+spring:
+    profiles:
+        active: prod
+    jpa:
+        database: postgresql
+        properties:
+            hibernate:
+                order_inserts: true
+                jdbc:
+                    batch_size: 1000
+    datasource:
+        platform: postgres
+        driverClassName: org.postgresql.Driver
+        url: jdbc:postgresql://localhost:5432/toallmusicians
+        username: postgres
+        password: password
+        hikari:
+            schema: prod
+
+    flyway:
+        validade-on-migrate: true
+        locations: filesystem:src/main/resources/db/migration
+        schemas: prod
+
+    servlet:
+        multipart:
+            enabled: true
+            file-size-threshold: 2MB
+            max-file-size: 5MB
+            max-request-size: 10MB
+
+security:
+    oauth2:
+        client:
+            client-id: meu-client-id
+            client-secret: meu-secret-id
+
+cloud:
+    aws:
+        credentials:
+            access-key: AKIA54S2M3EMZNIY2HTL
+            secret-key: 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
+        region:
+            auto: false
+            static: sa-east-1
+        s3:
+            bucket-name: toallmusiciansbase
+            url: https://toallmusiciansbase.s3.sa-east-1.amazonaws.com/
