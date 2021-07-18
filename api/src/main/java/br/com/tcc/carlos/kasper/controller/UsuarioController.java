@@ -88,7 +88,7 @@ public class UsuarioController {
     @RolesAllowed({"ROLE_USUARIO"})
     @GetMapping("/relacionamentos/{email}")
     @ResponseStatus(HttpStatus.OK)
-    public List<Relacionamento> exibirRelacionamentos(@PathVariable("email") String email) {
+    public List<Musico> exibirRelacionamentos(@PathVariable("email") String email) {
 
         return listarRelacionamentosDoUsuarioService.listar(email);
 

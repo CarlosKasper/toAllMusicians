@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 @Component
@@ -23,11 +24,14 @@ public class ListarPostsMapper {
 
     public List<PostFullResponse> apply(List<Post> postList) {
 
+        Collections.sort(postList);
+
         List<PostFullResponse> postFullResponseList = new ArrayList<>();
 
         postList.forEach(post -> {
             List<Curtida> curtidasList = curtidaRepository.findByPost(post);
             List<Comentario> comentarioList = comentarioRepository.findByPost(post);
+            Collections.sort(comentarioList);
 
             PostFullResponse postFullResponse = PostFullResponse.builder()
                     .post(post)

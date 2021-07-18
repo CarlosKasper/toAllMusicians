@@ -1,5 +1,6 @@
 package br.com.tcc.carlos.kasper.controller;
 
+import br.com.tcc.carlos.kasper.domain.Musico;
 import br.com.tcc.carlos.kasper.domain.Relacionamento;
 import br.com.tcc.carlos.kasper.security.CustomUserDetails;
 import br.com.tcc.carlos.kasper.service.relacionamento.*;
@@ -36,7 +37,7 @@ public class RelacionamentoController {
 
     @GetMapping("/listar/{email}")
     @ResponseStatus(HttpStatus.OK)
-    public List<Relacionamento> buscar(@PathVariable("email") String email) {
+    public List<Musico> buscar(@PathVariable("email") String email) {
 
         return listarRelacionamentosDoUsuarioService.listar(email);
     }

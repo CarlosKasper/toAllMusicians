@@ -10,7 +10,7 @@ import javax.persistence.*;
 @Entity
 @Table(name = "COMENTARIO")
 @SequenceGenerator(name = "SEQ_COMENTARIO", sequenceName = "SEQ_COMENTARIO", allocationSize = 1)
-public class Comentario {
+public class Comentario implements Comparable<Comentario> {
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "SEQ_COMENTARIO")
@@ -26,4 +26,15 @@ public class Comentario {
 
     @Column(name = "TEXTO")
     private String comentario;
+
+    @Override
+    public int compareTo(Comentario comentario) {
+        if (this.id > (comentario.getId())) {
+            return -1;
+        }
+        if (this.id < (comentario.getId())) {
+            return 1;
+        }
+        return 0;
+    }
 }
