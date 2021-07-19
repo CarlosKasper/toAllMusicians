@@ -17,8 +17,8 @@ export function FriendScreen() {
 			if (response.status === 200 && !!response.data.length) {
 				setSolicitations(response.data);
 			} else {
-        swalNotFoundSolicitations()
-      }
+				swalNotFoundSolicitations();
+			}
 		}
 
 		listarSolicitacoes();
@@ -38,20 +38,18 @@ export function FriendScreen() {
 		}
 	}
 
-  function swalNotFoundSolicitations() {
-    return (
-      Swal.fire({
-        icon: 'info',
-        title: 'Nenhuma solicitação foi encontrada!',
-        confirmButtonText: `Voltar para o feed`,
-        confirmButtonColor: '#1A71D9',
-      }).then((result) => {
-        if (result.isConfirmed) {
-          history.push('/home');
-        }
-    })
-    );
-  }
+	function swalNotFoundSolicitations() {
+		return Swal.fire({
+			icon: 'info',
+			title: 'Nenhuma solicitação foi encontrada!',
+			confirmButtonText: `Voltar para o feed`,
+			confirmButtonColor: '#1A71D9',
+		}).then((result) => {
+			if (result.isConfirmed) {
+				history.push('/home');
+			}
+		});
+	}
 
 	return (
 		<>
@@ -67,8 +65,7 @@ export function FriendScreen() {
 					</label>
 				)}
 				{solicitations && solicitations.length
-					?
-            solicitations.map((solicitations, index) => (
+					? solicitations.map((solicitations, index) => (
 							<FriendSolicitation
 								key={index}
 								userSolicitations={solicitations}
@@ -76,9 +73,7 @@ export function FriendScreen() {
 								denniedAsFriend={denniedAsFriend}
 							/>
 					  ))
-        :
-          null
-        }
+					: null}
 			</div>
 		</>
 	);

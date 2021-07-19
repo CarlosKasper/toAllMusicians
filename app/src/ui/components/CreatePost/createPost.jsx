@@ -18,43 +18,43 @@ export function CreatePost() {
 	const [imageResult, setImageResult] = useState(null);
 
 	async function publicarPost() {
-    let response = null;
-    if((privacity && instrument) && (title || imageResult)) {
-      response = await api.criarPost(title, privacity, instrument);
-      if (response.status === 201) {
-        if(imageResult) {
-          addPhoto(event, response.data.id);
-        } else {
-          updateFeedAndRemoveInfos();
-        }
-      } else if (response.status === 400) {
-        Swal.fire({
-          icon: 'warning',
-          title: 'Erro',
-          text: 'Occoreu algo de errado na publicação',
-          showDenyButton: false,
-          confirmButtonText: `Voltar`,
-          confirmButtonColor: '#1A71D9',
-        })
-      }
-    } else {
-      Swal.fire({
-        icon: 'warning',
-        title: 'Erro',
-        text: 'Faltou informações para fazer a publicação!',
-        showDenyButton: false,
-        confirmButtonText: `Voltar`,
-        confirmButtonColor: '#1A71D9',
-      })
-    }
+		let response = null;
+		if (privacity && instrument && (title || imageResult)) {
+			response = await api.criarPost(title, privacity, instrument);
+			if (response.status === 201) {
+				if (imageResult) {
+					addPhoto(event, response.data.id);
+				} else {
+					updateFeedAndRemoveInfos();
+				}
+			} else if (response.status === 400) {
+				Swal.fire({
+					icon: 'warning',
+					title: 'Erro',
+					text: 'Occoreu algo de errado na publicação',
+					showDenyButton: false,
+					confirmButtonText: `Voltar`,
+					confirmButtonColor: '#1A71D9',
+				});
+			}
+		} else {
+			Swal.fire({
+				icon: 'warning',
+				title: 'Erro',
+				text: 'Faltou informações para fazer a publicação!',
+				showDenyButton: false,
+				confirmButtonText: `Voltar`,
+				confirmButtonColor: '#1A71D9',
+			});
+		}
 	}
 
-  function updateFeedAndRemoveInfos() {
-    setTitle('');
-    setImageResult(null);
-    setImagePreview(null);
-    setFeed(!feed);
-  }
+	function updateFeedAndRemoveInfos() {
+		setTitle('');
+		setImageResult(null);
+		setImagePreview(null);
+		setFeed(!feed);
+	}
 
 	function handlePost(event) {
 		setTitle(event.target.value);
@@ -86,7 +86,7 @@ export function CreatePost() {
 	async function addPhoto(event, postId) {
 		if (imagePreview && imageResult) {
 			await api.uploadPostImage(postId, imageResult);
-      updateFeedAndRemoveInfos();
+			updateFeedAndRemoveInfos();
 		} else if (event) {
 			let file = event.target.files[0];
 			let image = new FormData();

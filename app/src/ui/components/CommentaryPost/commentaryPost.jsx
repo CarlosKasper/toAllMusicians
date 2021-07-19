@@ -9,7 +9,7 @@ import Swal from 'sweetalert2';
 export function CommentaryPost({ commentaryContent, deleteCommentary }) {
 	const [userInfo] = useGlobalUserInfo();
 	function handleComentary() {
-    Swal.fire({
+		Swal.fire({
 			icon: 'warning',
 			title: 'Tem certeza?',
 			text: 'Não será possível recuperar o comentário.',
@@ -20,7 +20,7 @@ export function CommentaryPost({ commentaryContent, deleteCommentary }) {
 			confirmButtonColor: '#1A71D9',
 		}).then((result) => {
 			if (result.isConfirmed) {
-        deleteCommentary(commentaryContent.post.id, commentaryContent.id);
+				deleteCommentary(commentaryContent.post.id, commentaryContent.id);
 			} else if (result.isDenied) {
 				Swal.fire({
 					title: 'Exclusão cancelada!',

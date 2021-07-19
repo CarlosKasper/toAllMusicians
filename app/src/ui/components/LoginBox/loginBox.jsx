@@ -16,14 +16,14 @@ export function LoginBox() {
 		if (response.status === 200) {
 			history.push('/home');
 		} else {
-      Swal.fire({
-        icon: 'warning',
-        title: 'Falha no login',
-        text: 'Seu email ou senha são inválidos!',
-        showDenyButton: false,
-        confirmButtonText: `Tentar novamente`,
-        confirmButtonColor: '#1A71D9',
-      })
+			Swal.fire({
+				icon: 'warning',
+				title: 'Falha no login',
+				text: 'Seu email ou senha são inválidos!',
+				showDenyButton: false,
+				confirmButtonText: `Tentar novamente`,
+				confirmButtonColor: '#1A71D9',
+			});
 		}
 	}
 

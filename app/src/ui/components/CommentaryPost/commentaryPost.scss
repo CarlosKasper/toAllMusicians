@@ -44,13 +44,13 @@
 			height: 50px;
 		}
 
-    .profile-image {
-      width: 50px;
-      height: 50px;
-      border-radius: 50%;
-      object-fit: cover;
-      object-position: center right;
-    }
+		.profile-image {
+			width: 50px;
+			height: 50px;
+			border-radius: 50%;
+			object-fit: cover;
+			object-position: center right;
+		}
 
 		.hiddenFileInput > input {
 			opacity: 0;
@@ -74,8 +74,8 @@
 
 	&__description {
 		font-size: 20px;
-    word-break: break-all;
-    padding-right: 20px;
+		word-break: break-all;
+		padding-right: 20px;
 
 		&--comentary {
 			font-size: 15px;

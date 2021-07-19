@@ -28,14 +28,14 @@ export function RegisterBox() {
 		if (response.status === 201) {
 			history.push('/');
 		} else {
-      Swal.fire({
-        icon: 'warning',
-        title: 'Erro',
-        text: 'Occoreu um erro inesperado!',
-        showDenyButton: false,
-        confirmButtonText: `Tentar novamente`,
-        confirmButtonColor: '#1A71D9',
-      })
+			Swal.fire({
+				icon: 'warning',
+				title: 'Erro',
+				text: 'Occoreu um erro inesperado!',
+				showDenyButton: false,
+				confirmButtonText: `Tentar novamente`,
+				confirmButtonColor: '#1A71D9',
+			});
 		}
 	}
 
@@ -70,7 +70,7 @@ export function RegisterBox() {
 		setInstrument(event.value);
 	}
 
-  const options = [
+	const options = [
 		{ value: 'GUITARRA', label: 'Guitarra' },
 		{ value: 'VIOLAO', label: 'Violão' },
 		{ value: 'BATERIA', label: 'Bateria' },

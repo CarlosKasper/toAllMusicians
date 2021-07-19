@@ -9,7 +9,7 @@ export function FriendsProfile({ userFriends, deletedFriend, profileEmail }) {
 	const [userInfo] = useGlobalUserInfo();
 
 	function handleRemoveFriend() {
-    Swal.fire({
+		Swal.fire({
 			icon: 'warning',
 			title: 'Tem certeza?',
 			text: 'Você está excluindo esta amizade',
@@ -20,7 +20,7 @@ export function FriendsProfile({ userFriends, deletedFriend, profileEmail }) {
 			confirmButtonColor: '#1A71D9',
 		}).then((result) => {
 			if (result.isConfirmed) {
-        deletedFriend(userFriends.email);
+				deletedFriend(userFriends.email);
 			} else if (result.isDenied) {
 				Swal.fire({
 					title: 'Exclusão cancelada!',
