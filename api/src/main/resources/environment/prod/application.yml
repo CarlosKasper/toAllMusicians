@@ -1,7 +1,9 @@
 server:
-    port: 8090
+    port: 80
 
 spring:
+    profiles:
+        active: prod
     jpa:
         database: sqlserver
         properties:
@@ -10,9 +12,9 @@ spring:
                 jdbc:
                     batch_size: 1000
     datasource:
-        username: SA
-        password: Senha123$
-        url: jdbc:sqlserver://localhost:1433;databaseName=master
+        username: toallmusicians
+        password: senhaDoTcc*
+        url: jdbc:sqlserver://toallmusicians.database.windows.net:1433;databaseName=toallmusicians_db
         driver-class-name: com.microsoft.sqlserver.jdbc.SQLServerDriver
         driver-class-name=com: com.microsoft.sqlserver.jdbc.SQLServerDriver
         testOnBorrow: false
@@ -46,3 +48,8 @@ cloud:
         s3:
             bucket-name: toallmusiciansbase
             url: https://toallmusiciansbase.s3.sa-east-1.amazonaws.com/
+
+management:
+    endpoint:
+        health:
+            show-details: always

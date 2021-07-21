@@ -1,0 +1,50 @@
+server:
+    port: 8090
+
+spring:
+    profiles:
+        active: dev
+    jpa:
+        database: sqlserver
+        properties:
+            hibernate:
+                order_inserts: true
+                jdbc:
+                    batch_size: 1000
+    datasource:
+        username: SA
+        password: Senha123$
+        url: jdbc:sqlserver://localhost:1433;databaseName=master
+        driver-class-name: com.microsoft.sqlserver.jdbc.SQLServerDriver
+        driver-class-name=com: com.microsoft.sqlserver.jdbc.SQLServerDriver
+        testOnBorrow: false
+        validationQuery: SELECT 1
+
+    flyway:
+        validade-on-migrate: true
+        locations: filesystem:src/main/resources/db/migration
+
+    servlet:
+        multipart:
+            enabled: true
+            file-size-threshold: 2MB
+            max-file-size: 5MB
+            max-request-size: 10MB
+
+security:
+    oauth2:
+        client:
+            client-id: meu-client-id
+            client-secret: meu-secret-id
+
+cloud:
+    aws:
+        credentials:
+            access-key: AKIA54S2M3EMZNIY2HTL
+            secret-key: 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
+        region:
+            auto: false
+            static: sa-east-1
+        s3:
+            bucket-name: toallmusiciansbase
+            url: https://toallmusiciansbase.s3.sa-east-1.amazonaws.com/
