@@ -6,7 +6,6 @@ import br.com.tcc.carlos.kasper.domain.Status;
 import br.com.tcc.carlos.kasper.service.usuario.BuscarUsuarioPorEmailService;
 import br.com.tcc.carlos.kasper.repository.RelacionamentoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;

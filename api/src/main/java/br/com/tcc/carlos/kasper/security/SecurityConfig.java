@@ -38,7 +38,7 @@ public class SecurityConfig extends ResourceServerConfigurerAdapter {
 
                 // definir regras abertas
                 .authorizeRequests()
-                .antMatchers("/usuario/cadastro").permitAll()
+                .antMatchers("/usuario/cadastro", "/actuator/health").permitAll()
 
                 // Somente quem é admin pode acessar
                 .antMatchers("/admin").hasRole("ADMINISTRADOR")
