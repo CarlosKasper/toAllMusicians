@@ -89,6 +89,8 @@
 
 	&__description {
 		font-size: 20px;
+		word-break: break-all;
+		padding-right: 20px;
 
 		&--comentary {
 			font-size: 15px;
@@ -110,7 +112,7 @@
 			border-radius: 6px;
 			display: flex;
 			width: 65%;
-			height: 40px;
+			height: 30px;
 			border: 1px solid black;
 			background: #f0f2f5;
 		}
@@ -121,7 +123,7 @@
 			background-color: #1a71d9;
 			color: white;
 			width: 30%;
-			height: 40px;
+			height: 30px;
 			font-weight: 700;
 			font-size: 16px;
 		}

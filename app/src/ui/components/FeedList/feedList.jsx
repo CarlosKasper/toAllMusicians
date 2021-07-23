@@ -38,10 +38,21 @@ export function FeedList({ post, like, commentary, likePost, unlikePost }) {
 	}
 
 	async function sendCommentary() {
-		const response = await api.newCommentary(post.id, newCommentary);
-		if (response.status === 201) {
-			setNewCommentary('');
-			setFeed(!feed);
+		if (newCommentary) {
+			const response = await api.newCommentary(post.id, newCommentary);
+			if (response.status === 201) {
+				setNewCommentary('');
+				setFeed(!feed);
+			}
+		} else {
+			Swal.fire({
+				icon: 'warning',
+				title: 'Ocorreu um erro',
+				text: 'Você deve digitar um comentário para compartilhar.',
+				showDenyButton: false,
+				confirmButtonText: `Ok`,
+				confirmButtonColor: '#1A71D9',
+			});
 		}
 	}
 

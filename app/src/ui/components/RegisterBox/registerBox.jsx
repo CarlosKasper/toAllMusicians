@@ -4,6 +4,7 @@ import { useApi } from '../../../hooks/api';
 import { Link, useHistory } from 'react-router-dom';
 import Select from 'react-select';
 import toallmusicians from '../../../images/toallmusicians.png';
+import Swal from 'sweetalert2';
 
 export function RegisterBox() {
 	const api = useApi();
@@ -26,10 +27,15 @@ export function RegisterBox() {
 		);
 		if (response.status === 201) {
 			history.push('/');
-		} else if (response.status === 400) {
-			alert('paraparapara email ja existe');
 		} else {
-			alert('eta');
+			Swal.fire({
+				icon: 'warning',
+				title: 'Erro',
+				text: 'Occoreu um erro inesperado!',
+				showDenyButton: false,
+				confirmButtonText: `Tentar novamente`,
+				confirmButtonColor: '#1A71D9',
+			});
 		}
 	}
 
@@ -64,7 +70,15 @@ export function RegisterBox() {
 		setInstrument(event.value);
 	}
 
-	const options = [{ value: 'GUITARRA', label: 'Guitarra' }];
+	const options = [
+		{ value: 'GUITARRA', label: 'Guitarra' },
+		{ value: 'VIOLAO', label: 'Violão' },
+		{ value: 'BATERIA', label: 'Bateria' },
+		{ value: 'SAXOFONE', label: 'Saxofone' },
+		{ value: 'TROMBONE', label: 'Trombone' },
+		{ value: 'TECLADO', label: 'Teclado' },
+		{ value: 'GAITADEFOLE', label: 'Gaita de Fole' },
+	];
 
 	const customStyles = {
 		control: (base) => ({
