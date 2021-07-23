@@ -12,7 +12,7 @@ export function LoginBox() {
 	const api = useApi();
 	console.log(username, password);
 	async function gerarToken() {
-		const response = await api.gerarToken('carlos@gmail.com', '123');
+		const response = await api.gerarToken('carlos1@gmail.com', '123');
 		if (response.status === 200) {
 			history.push('/home');
 		} else {

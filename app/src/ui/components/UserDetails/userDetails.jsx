@@ -2,10 +2,13 @@
 import './userDetails.scss';
 import React from 'react';
 import { useApi } from '../../../hooks/api';
+import { useGlobalFeed } from '../../../context';
 
-export function UserDetails({ userData, postLength }) {
+export function UserDetails({ userData, postLength, userFriends }) {
 	const api = useApi();
-	const feed = document.getElementById('feed');
+	const [feed, setFeed] = useGlobalFeed(false);
+
+	const feedContent = document.getElementById('feed');
 	const friends = document.getElementById('friends');
 
 	async function addPhoto(event) {
@@ -13,15 +16,16 @@ export function UserDetails({ userData, postLength }) {
 		const image = new FormData();
 		image.append('image', file);
 		await api.uploadImagePerfil(image);
+    setFeed(!feed)
 	}
 
 	function showFriends() {
-		feed.style.display = 'none';
+		feedContent.style.display = 'none';
 		friends.style.display = 'block';
 	}
 
 	function showPosts() {
-		feed.style.display = 'block';
+		feedContent.style.display = 'block';
 		friends.style.display = 'none';
 	}
 
@@ -57,7 +61,7 @@ export function UserDetails({ userData, postLength }) {
 			</div>
 			<div className="user-info">
 				<div className="information" onClick={showFriends}>
-					Amigos
+					Amigos {userFriends.length}
 				</div>
 				<div className="information" onClick={showPosts}>
 					Post {postLength}
