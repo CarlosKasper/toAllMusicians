@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 import { useApi } from '../../../hooks/api';
 import { Link, useHistory } from 'react-router-dom';
 import toallmusicians from '../../../images/toallmusicians.png';
+import Swal from 'sweetalert2';
 
 export function LoginBox() {
 	const [username, setUsername] = useState('');
@@ -11,11 +12,18 @@ export function LoginBox() {
 	const api = useApi();
 	console.log(username, password);
 	async function gerarToken() {
-		const response = await api.gerarToken('james@gmail.com', '12345');
+		const response = await api.gerarToken('carlos1@gmail.com', '123');
 		if (response.status === 200) {
 			history.push('/home');
-		} else if (response.status === 400) {
-			alert('ai erremo');
+		} else {
+			Swal.fire({
+				icon: 'warning',
+				title: 'Falha no login',
+				text: 'Seu email ou senha são inválidos!',
+				showDenyButton: false,
+				confirmButtonText: `Tentar novamente`,
+				confirmButtonColor: '#1A71D9',
+			});
 		}
 	}
 

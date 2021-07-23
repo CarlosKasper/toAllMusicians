@@ -258,10 +258,7 @@ export function useApi() {
 
 	async function uploadPostImage(postId, image) {
 		try {
-			const response = await axios.post(
-				`/imagem/upload/post/${postId}`,
-				image
-			);
+			const response = await axios.post(`/imagem/upload/post/${postId}`, image);
 			return response;
 		} catch (error) {
 			return error.response;

@@ -6,6 +6,7 @@ import { useGlobalFeed } from '../../../context/index';
 import PhotoCamera from '@material-ui/icons/PhotoCamera';
 import IconButton from '@material-ui/core/IconButton';
 import DeleteForeverIcon from '@material-ui/icons/DeleteForever';
+import Swal from 'sweetalert2';
 
 export function CreatePost() {
 	const api = useApi();
@@ -15,16 +16,44 @@ export function CreatePost() {
 	const [feed, setFeed] = useGlobalFeed(false);
 	const [imagePreview, setImagePreview] = useState(null);
 	const [imageResult, setImageResult] = useState(null);
-	const [published, setPublished] = useState(false);
 
 	async function publicarPost() {
-		const response = await api.criarPost(title, privacity, instrument);
-		if (response.status === 201) {
-			setPublished(!published);
-      addPhoto(event, response.data.id);
-		} else if (response.status === 400) {
-			alert('tem algo de errado amigao');
+		let response = null;
+		if (privacity && instrument && (title || imageResult)) {
+			response = await api.criarPost(title, privacity, instrument);
+			if (response.status === 201) {
+				if (imageResult) {
+					addPhoto(event, response.data.id);
+				} else {
+					updateFeedAndRemoveInfos();
+				}
+			} else if (response.status === 400) {
+				Swal.fire({
+					icon: 'warning',
+					title: 'Erro',
+					text: 'Occoreu algo de errado na publicação',
+					showDenyButton: false,
+					confirmButtonText: `Voltar`,
+					confirmButtonColor: '#1A71D9',
+				});
+			}
+		} else {
+			Swal.fire({
+				icon: 'warning',
+				title: 'Erro',
+				text: 'Faltou informações para fazer a publicação!',
+				showDenyButton: false,
+				confirmButtonText: `Voltar`,
+				confirmButtonColor: '#1A71D9',
+			});
 		}
+	}
+
+	function updateFeedAndRemoveInfos() {
+		setTitle('');
+		setImageResult(null);
+		setImagePreview(null);
+		setFeed(!feed);
 	}
 
 	function handlePost(event) {
@@ -42,6 +71,11 @@ export function CreatePost() {
 	const optionsInsrument = [
 		{ value: 'GUITARRA', label: 'Guitarra' },
 		{ value: 'VIOLAO', label: 'Violão' },
+		{ value: 'BATERIA', label: 'Bateria' },
+		{ value: 'SAXOFONE', label: 'Saxofone' },
+		{ value: 'TROMBONE', label: 'Trombone' },
+		{ value: 'TECLADO', label: 'Teclado' },
+		{ value: 'GAITADEFOLE', label: 'Gaita de Fole' },
 	];
 
 	const optionsPrivacity = [
@@ -52,10 +86,7 @@ export function CreatePost() {
 	async function addPhoto(event, postId) {
 		if (imagePreview && imageResult) {
 			await api.uploadPostImage(postId, imageResult);
-			setTitle('');
-			setImageResult(null);
-			setImagePreview(null);
-			setFeed(!feed);
+			updateFeedAndRemoveInfos();
 		} else if (event) {
 			let file = event.target.files[0];
 			let image = new FormData();

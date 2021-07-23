@@ -91,7 +91,9 @@ export function ProfileScreen() {
 					? postsUser.map((postsUser) => (
 							<FeedList
 								key="feedList"
-								feedContent={postsUser}
+								post={postsUser.post}
+								like={postsUser.curtidaList}
+								commentary={postsUser.comentarioList}
 								likePost={likePost}
 								unlikePost={unlikePost}
 							/>
