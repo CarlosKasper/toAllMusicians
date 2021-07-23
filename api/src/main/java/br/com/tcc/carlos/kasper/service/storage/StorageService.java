@@ -30,6 +30,9 @@ public class StorageService {
     @Value("${cloud.aws.s3.bucket-name}")
     private String bucketName;
 
+    @Value("${spring.profiles.active}")
+    private String profile;
+
     @Autowired
     private AmazonS3 s3Client;
 
@@ -64,7 +67,7 @@ public class StorageService {
 
     private Imagem uploadImagem(MultipartFile multipartFile) {
         Imagem imagem = createNewImage();
-        String fileName = imagem.getId().toString();
+        String fileName = profile.concat("/").concat(imagem.getId().toString());
 
         File file = convertMultiPartFileToFile(multipartFile);
         s3Client.putObject(new PutObjectRequest(bucketName, fileName, file));
