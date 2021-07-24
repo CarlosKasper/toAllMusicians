@@ -5,15 +5,15 @@ import { useGlobalUser } from '../../context/index';
 export function useApi() {
 	const [user, setUser] = useGlobalUser();
 	const token = user;
-	const axios = useAxios('http://localhost:8090/', {
+	const axios = useAxios('https://toallmusiciansapi.azurewebsites.net', {
 		Authorization: 'Bearer ' + token,
 	});
 
-	const autenticarLogin = useAxios('http://localhost:8090/', {
+	const autenticarLogin = useAxios('https://toallmusiciansapi.azurewebsites.net', {
 		Authorization: 'Basic bWV1LWNsaWVudC1pZDptZXUtc2VjcmV0LWlk',
 	});
 
-	const cadastroUsuario = useAxios('http://localhost:8090/');
+	const cadastroUsuario = useAxios('https://toallmusiciansapi.azurewebsites.net');
 
 	async function gerarToken(login, senha) {
 		let bodyFormData = new FormData();
