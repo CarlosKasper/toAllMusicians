@@ -1,0 +1,41 @@
+.userData {
+
+  &-input {
+    height: 50px;
+    margin: 5px 0;
+    border-radius: 6px;
+    border: 1px solid gray;
+    width: 95%;
+    background-color: transparent;
+    padding: 10px;
+  }
+
+  *:focus {
+    outline: none;
+  }
+
+  &-button {
+    height: 50px;
+    border: none;
+    background-color: #1a71d9;
+    color: white;
+    width: 95%;
+    margin: 15px 0;
+    border-radius: 6px;
+    font-weight: 700;
+    font-size: 16px;
+  }
+
+  &-select {
+    border-radius: 6px;
+    border: 1px solid gray;
+    width: 95%;
+    background-color: transparent;
+    height:50px
+  }
+
+  &-updateable {
+    font-size: 18px;
+    font-weight: 600;
+  }
+}

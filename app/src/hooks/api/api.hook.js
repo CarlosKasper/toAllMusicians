@@ -265,6 +265,15 @@ export function useApi() {
 		}
 	}
 
+  async function updateUserData(nome, email, apelido, dataNascimento, senha, instrumento) {
+		try {
+			const response = await axios.post(`/usuario/atualizar`, nome, email, apelido, dataNascimento, senha, instrumento);
+			return response;
+		} catch (error) {
+			return error.response;
+		}
+	}
+
 	return useCallback(
 		{
 			gerarToken,
@@ -290,6 +299,7 @@ export function useApi() {
 			uploadImagePerfil,
 			uploadPostImage,
 			hideUserPost,
+      updateUserData
 		},
 		[]
 	);

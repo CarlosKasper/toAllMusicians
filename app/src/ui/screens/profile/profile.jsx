@@ -3,11 +3,13 @@ import {
 	Header,
 	UserDetails,
 	FriendsProfile,
+	UserData,
 } from '../../components';
 import { useApi } from '../../../hooks/api';
 import { useEffect, useState } from 'react';
 import { useGlobalFeed, useGlobalUserInfo } from '../../../context/index';
 import { useParams } from 'react-router';
+import Swal from 'sweetalert2';
 
 export function ProfileScreen() {
 	const api = useApi();
@@ -33,7 +35,13 @@ export function ProfileScreen() {
 			if (response.status === 200) {
 				setUserFriends(response.data);
 			} else if (response.status === 400) {
-				alert('bugou pa caralho');
+				Swal.fire({
+					icon: 'warning',
+					title: 'Falha ao listar as amizades',
+					showDenyButton: false,
+					confirmButtonText: `Tentar novamente`,
+					confirmButtonColor: '#1A71D9',
+				});
 			}
 		}
 
@@ -43,7 +51,13 @@ export function ProfileScreen() {
 				if (response.status === 200) {
 					setPostsUser(response.data);
 				} else if (response.status === 400) {
-					alert('bugou pa caralho');
+					Swal.fire({
+						icon: 'warning',
+						title: 'Falha ao listar publicações',
+						showDenyButton: false,
+						confirmButtonText: `Tentar novamente`,
+						confirmButtonColor: '#1A71D9',
+					});
 				}
 			}
 		}
@@ -70,10 +84,37 @@ export function ProfileScreen() {
 	async function deletedFriend(userEmail) {
 		const response = await api.deletedFriend(userEmail);
 		if (response.status === 400) {
-			alert('perdemo nos post');
+			Swal.fire({
+				icon: 'warning',
+				title: 'Falha ao tentar remover amizade',
+				showDenyButton: false,
+				confirmButtonText: `Tentar novamente`,
+				confirmButtonColor: '#1A71D9',
+			});
 		}
 
 		setFeed(!feed);
+	}
+
+	async function updateUserData() {
+		const response = await api.updateUserData();
+		if (response.status === 200) {
+			Swal.fire({
+				icon: 'icon',
+				title: 'As suas informações foram atualizadas com sucesso!',
+				showDenyButton: false,
+				confirmButtonText: `Concluir`,
+				confirmButtonColor: '#1A71D9',
+			});
+		} else {
+			Swal.fire({
+				icon: 'warning',
+				title: 'Falha ao tentar atualizar as suas informações.',
+				showDenyButton: false,
+				confirmButtonText: `Tentar novamente`,
+				confirmButtonColor: '#1A71D9',
+			});
+		}
 	}
 
 	return (
@@ -87,18 +128,22 @@ export function ProfileScreen() {
 				/>
 			) : null}
 			<div id="feed">
-				{postsUser
-					? postsUser.map((postsUser) => (
-							<FeedList
-								key="feedList"
-								post={postsUser.post}
-								like={postsUser.curtidaList}
-								commentary={postsUser.comentarioList}
-								likePost={likePost}
-								unlikePost={unlikePost}
-							/>
-					  ))
-					: null}
+				{postsUser ? (
+					postsUser.map((postsUser) => (
+						<FeedList
+							key="feedList"
+							post={postsUser.post}
+							like={postsUser.curtidaList}
+							commentary={postsUser.comentarioList}
+							likePost={likePost}
+							unlikePost={unlikePost}
+						/>
+					))
+				) : (
+					<label className="friends-message">
+						Você ainda não possui publicações adicionados.
+					</label>
+				)}
 			</div>
 			<div id="friends">
 				{userFriends ? (
@@ -115,6 +160,11 @@ export function ProfileScreen() {
 						Você ainda não possui amigos adicionados.
 					</label>
 				)}
+			</div>
+			<div id="profileData" className="profileData">
+				{userData ? (
+					<UserData userData={userData} updateUserData={updateUserData} />
+				) : null}
 			</div>
 		</>
 	);

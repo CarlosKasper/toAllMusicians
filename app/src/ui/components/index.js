@@ -8,3 +8,4 @@ export { SearchProfile } from './SearchProfile/searchProfile';
 export { FriendSolicitation } from './FriendSolicitation/friendSolicitation';
 export { FriendsProfile } from './FriendsProfile/friendsProfile';
 export { CommentaryPost } from './CommentaryPost/commentaryPost';
+export { UserData } from './UserData/userData';

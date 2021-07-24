@@ -13,7 +13,7 @@ export function LoginBox() {
 	console.log(username, password);
 	async function gerarToken() {
 		const response = await api.gerarToken('carlos1@gmail.com', '123');
-		if (response.status === 200) {
+		if (response && response.status === 200) {
 			history.push('/home');
 		} else {
 			Swal.fire({
