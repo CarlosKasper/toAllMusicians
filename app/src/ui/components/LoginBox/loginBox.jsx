@@ -12,7 +12,7 @@ export function LoginBox() {
 	const api = useApi();
 	console.log(username, password);
 	async function gerarToken() {
-		const response = await api.gerarToken('carlos1@gmail.com', '123');
+		const response = await api.gerarToken(username, password);
 		if (response.status === 200) {
 			history.push('/home');
 		} else {
@@ -34,10 +34,12 @@ export function LoginBox() {
 
 	function onChangeUsername(event) {
 		setUsername(event.target.value);
+		console.log(username)
 	}
 
 	function onChangePassword(event) {
 		setPassword(event.target.value);
+		console.log(password)
 	}
 
 	return (
