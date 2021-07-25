@@ -34,12 +34,10 @@ export function LoginBox() {
 
 	function onChangeUsername(event) {
 		setUsername(event.target.value);
-		console.log(username)
 	}
 
 	function onChangePassword(event) {
 		setPassword(event.target.value);
-		console.log(password)
 	}
 
 	return (
