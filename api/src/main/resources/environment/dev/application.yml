@@ -48,3 +48,6 @@ cloud:
         s3:
             bucket-name: toallmusiciansbase
             url: https://toallmusiciansbase.s3.sa-east-1.amazonaws.com/
+    azure:
+        storage-account:
+            access-key: DefaultEndpointsProtocol=https;AccountName=toallmusicians;AccountKey=MRa3DdHiVrMvB1tnjz+JnB+axsm59ET8wOLKavzQJJ0vjY+LcVpVjdlbvjQrocEIKknZSwpB0TOekMxWM8CYjg==;EndpointSuffix=core.windows.net

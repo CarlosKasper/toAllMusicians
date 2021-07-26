@@ -120,6 +120,13 @@
             <version>1.11.486</version>
         </dependency>
 
+        <!-- Azure -->
+        <dependency>
+            <groupId>com.azure</groupId>
+            <artifactId>azure-storage-blob</artifactId>
+            <version>12.6.0</version>
+        </dependency>
+
         <!-- Actuator-->
         <dependency>
             <groupId>org.springframework.boot</groupId>
