@@ -12,8 +12,8 @@ export function LoginBox() {
 	const api = useApi();
 	console.log(username, password);
 	async function gerarToken() {
-		const response = await api.gerarToken('carlos1@gmail.com', '123');
-		if (response && response.status === 200) {
+		const response = await api.gerarToken(username, password);
+		if (response.status === 200) {
 			history.push('/home');
 		} else {
 			Swal.fire({

@@ -8,9 +8,8 @@ import br.com.tcc.carlos.kasper.repository.UsuarioRepository;
 import br.com.tcc.carlos.kasper.repository.PostRepository;
 import br.com.tcc.carlos.kasper.service.post.BuscarPostPorIdService;
 import br.com.tcc.carlos.kasper.service.usuario.BuscarUsuarioPorIdService;
-import com.amazonaws.services.s3.AmazonS3;
-import com.amazonaws.services.s3.model.PutObjectRequest;
-import lombok.extern.slf4j.Slf4j;
+import com.azure.storage.blob.BlobClient;
+import com.azure.storage.blob.BlobServiceClient;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
@@ -20,21 +19,14 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 
-@Slf4j
 @Service
 public class StorageService {
-
-    @Value("${cloud.aws.s3.url}")
-    private String bucketUrl;
-
-    @Value("${cloud.aws.s3.bucket-name}")
-    private String bucketName;
 
     @Value("${spring.profiles.active}")
     private String profile;
 
     @Autowired
-    private AmazonS3 s3Client;
+    private BlobServiceClient blobServiceClient;
 
     @Autowired
     private BuscarUsuarioPorIdService buscarUsuarioPorIdService;
@@ -66,14 +58,15 @@ public class StorageService {
     }
 
     private Imagem uploadImagem(MultipartFile multipartFile) {
-        Imagem imagem = createNewImage();
-        String fileName = profile.concat("/").concat(imagem.getId().toString());
-
         File file = convertMultiPartFileToFile(multipartFile);
-        s3Client.putObject(new PutObjectRequest(bucketName, fileName, file));
-        file.delete();
+        Imagem imagem = createNewImage();
+        String fileName = getFileName(file, imagem);
+        BlobClient blobClient = blobServiceClient.getBlobContainerClient(profile).getBlobClient(fileName);
+        blobClient.uploadFromFile(file.getPath());
 
-        imagem.setUrl(bucketUrl.concat(fileName));
+        imagem.setUrl(blobClient.getBlobUrl());
+
+        file.delete();
         return imagemRepository.save(imagem);
     }
 
@@ -87,8 +80,20 @@ public class StorageService {
         try (FileOutputStream fos = new FileOutputStream(convertedFile)) {
             fos.write(file.getBytes());
         } catch (IOException e) {
-            log.error("Error converting multipartFile to file", e);
+            throw new RuntimeException("Error converting multipartFile to file", e);
         }
         return convertedFile;
+    }
+
+    private String getFileName(File file, Imagem imagem) {
+        String newFileName = imagem.getId().toString();
+        String fileName = file.getName();
+        int index = fileName.lastIndexOf('.');
+        if (index > 0) {
+            String extension = fileName.substring(index + 1);
+            return newFileName.concat(".").concat(extension);
+        } else {
+            return newFileName.concat(".jpg");
+        }
     }
 }
