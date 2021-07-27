@@ -3,6 +3,7 @@ import './userDetails.scss';
 import React from 'react';
 import { useApi } from '../../../hooks/api';
 import { useGlobalFeed } from '../../../context';
+import { toCapitalize } from '../../common';
 
 export function UserDetails({ userData, postLength, userFriends }) {
 	const api = useApi();
@@ -10,23 +11,32 @@ export function UserDetails({ userData, postLength, userFriends }) {
 
 	const feedContent = document.getElementById('feed');
 	const friends = document.getElementById('friends');
+	const profileData = document.getElementById('profileData');
 
 	async function addPhoto(event) {
 		const file = event.target.files[0];
 		const image = new FormData();
 		image.append('image', file);
 		await api.uploadImagePerfil(image);
-    setFeed(!feed)
+		setFeed(!feed);
 	}
 
 	function showFriends() {
 		feedContent.style.display = 'none';
+		profileData.style.display = 'none';
 		friends.style.display = 'block';
 	}
 
 	function showPosts() {
 		feedContent.style.display = 'block';
 		friends.style.display = 'none';
+		profileData.style.display = 'none';
+	}
+
+	function showProfileData() {
+		feedContent.style.display = 'none';
+		friends.style.display = 'none';
+		profileData.style.display = 'block';
 	}
 
 	return (
@@ -53,8 +63,7 @@ export function UserDetails({ userData, postLength, userFriends }) {
 					</div>
 					<div>
 						<label className="profile-instrument">
-							{userData.instrumento[0].toUpperCase() +
-								userData.instrumento.slice(1).toLowerCase()}
+							{toCapitalize(userData.instrumento)}
 						</label>
 					</div>
 				</div>
@@ -65,6 +74,9 @@ export function UserDetails({ userData, postLength, userFriends }) {
 				</div>
 				<div className="information" onClick={showPosts}>
 					Post {postLength}
+				</div>
+				<div className="information" onClick={showProfileData}>
+					Editar Perfil
 				</div>
 			</div>
 		</div>

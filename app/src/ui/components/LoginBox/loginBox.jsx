@@ -4,13 +4,14 @@ import { useApi } from '../../../hooks/api';
 import { Link, useHistory } from 'react-router-dom';
 import toallmusicians from '../../../images/toallmusicians.png';
 import Swal from 'sweetalert2';
+import { isEnterPress } from '../../common';
 
 export function LoginBox() {
 	const [username, setUsername] = useState('');
 	const [password, setPassword] = useState('');
 	const history = useHistory();
 	const api = useApi();
-	console.log(username, password);
+
 	async function gerarToken() {
 		const response = await api.gerarToken(username, password);
 		if (response.status === 200) {
@@ -40,6 +41,10 @@ export function LoginBox() {
 		setPassword(event.target.value);
 	}
 
+	function submitListening(event) {
+		isEnterPress(event.keyCode) ? gerarToken() : null;
+	}
+
 	return (
 		<div className="body login">
 			<div className="container">
@@ -57,6 +62,7 @@ export function LoginBox() {
 							type="email"
 							placeholder="Email"
 							onChange={onChangeUsername}
+							onKeyDown={(e) => submitListening(e)}
 						></input>
 					</div>
 					<div className="container__login">
@@ -65,6 +71,7 @@ export function LoginBox() {
 							type="password"
 							placeholder="Senha"
 							onChange={onChangePassword}
+							onKeyDown={(e) => submitListening(e)}
 						></input>
 					</div>
 					<div className="container__login">

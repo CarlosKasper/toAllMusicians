@@ -8,6 +8,7 @@ import ThumbUpAltIcon from '@material-ui/icons/ThumbUpAlt';
 import HighlightOffIcon from '@material-ui/icons/HighlightOff';
 import { CommentaryPost } from '../index';
 import Swal from 'sweetalert2';
+import { toCapitalize } from '../../common';
 
 export function FeedList({ post, like, commentary, likePost, unlikePost }) {
 	const api = useApi();
@@ -112,17 +113,11 @@ export function FeedList({ post, like, commentary, likePost, unlikePost }) {
 							<b>{post.musico.nome}</b>
 						</div>
 						<div>
-							<b>
-								{post.privacidade[0].toUpperCase() +
-									post.privacidade.slice(1).toLowerCase()}
-							</b>
+							<b>{toCapitalize(post.privacidade)}</b>
 						</div>
 					</div>
 					<div className="feedList__instrument">
-						<b>
-							{post.instrumento[0].toUpperCase() +
-								post.instrumento.slice(1).toLowerCase()}
-						</b>
+						<b>{toCapitalize(post.instrumento)}</b>
 						{userInfo.email === post.musico.email ? (
 							<HighlightOffIcon
 								className="highlightOffIcon"

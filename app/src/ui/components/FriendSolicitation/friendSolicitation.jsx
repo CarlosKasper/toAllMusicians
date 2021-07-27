@@ -3,6 +3,7 @@ import './friendSolicitation.scss';
 import profile from '../../../images/profile.png';
 import { Link } from 'react-router-dom';
 import Swal from 'sweetalert2';
+import { toCapitalize } from '../../common';
 
 export function FriendSolicitation({
 	userSolicitations,
@@ -56,23 +57,12 @@ export function FriendSolicitation({
 				<div className="friendSolicitation__wrapper">
 					<div className="friendSolicitation__user">
 						<div>
-							<b>
-								{userSolicitations.musico1.nome[0].toUpperCase() +
-									userSolicitations.musico1.nome.slice(1).toLowerCase()}
-							</b>
-							(
-							<b>
-								{userSolicitations.musico1.apelido[0].toUpperCase() +
-									userSolicitations.musico1.apelido.slice(1).toLowerCase()}
-							</b>
-							)
+							<b>{toCapitalize(userSolicitations.musico1.nome)}</b>(
+							<b>{toCapitalize(userSolicitations.musico1.apelido)}</b>)
 						</div>
 					</div>
 					<div className="friendSolicitation__instrument">
-						<b>
-							{userSolicitations.musico1.instrumento[0].toUpperCase() +
-								userSolicitations.musico1.instrumento.slice(1).toLowerCase()}
-						</b>
+						<b>{toCapitalize(userSolicitations.musico1.instrumento)}</b>
 					</div>
 				</div>
 				<div

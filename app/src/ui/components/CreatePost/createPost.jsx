@@ -7,6 +7,7 @@ import PhotoCamera from '@material-ui/icons/PhotoCamera';
 import IconButton from '@material-ui/core/IconButton';
 import DeleteForeverIcon from '@material-ui/icons/DeleteForever';
 import Swal from 'sweetalert2';
+import { isEnterPress } from '../../common';
 
 export function CreatePost() {
 	const api = useApi();
@@ -102,6 +103,10 @@ export function CreatePost() {
 		setImagePreview(null);
 	}
 
+	function submitListening(event) {
+		isEnterPress(event.keyCode) ? publicarPost() : null;
+	}
+
 	return (
 		<div className="createPost">
 			<div className="createPost__input">
@@ -111,6 +116,7 @@ export function CreatePost() {
 					placeholder="Digite algo sobre música..."
 					onChange={handlePost}
 					value={title}
+					onKeyDown={(e) => submitListening(e)}
 				></textarea>
 			</div>
 			<input

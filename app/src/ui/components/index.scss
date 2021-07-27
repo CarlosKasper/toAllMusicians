@@ -30,9 +30,28 @@ body {
 	border-radius: 15px;
 }
 
+.friends-message {
+	font-size: 20px;
+	font-weight: 700;
+	width: 95%;
+	margin: auto auto;
+	padding: 10px;
+}
+
+.profileData {
+	display: none;
+	padding-top: 10px;
+	width: 50%;
+	margin: 20px auto;
+	padding: 5px;
+	box-shadow: 5px 0px 19px rgba(50, 50, 50, 0.44);
+	background-color: white;
+	border-radius: 15px;
+}
+
 .profile-image {
-	width: 100px;
-	height: 100px;
+	width: 150px;
+	height: 150px;
 	border-radius: 50%;
 	object-fit: cover;
 	object-position: center right;
