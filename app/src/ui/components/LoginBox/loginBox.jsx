@@ -42,7 +42,7 @@ export function LoginBox() {
 	}
 
 	function submitListening(event) {
-    isEnterPress(event.keyCode) ? gerarToken() : null
+		isEnterPress(event.keyCode) ? gerarToken() : null;
 	}
 
 	return (

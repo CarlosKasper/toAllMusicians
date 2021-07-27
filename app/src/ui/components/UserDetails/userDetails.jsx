@@ -63,7 +63,7 @@ export function UserDetails({ userData, postLength, userFriends }) {
 					</div>
 					<div>
 						<label className="profile-instrument">
-							{toCapitalize(userData.instrumento[0], userData.instrumento)}
+							{toCapitalize(userData.instrumento)}
 						</label>
 					</div>
 				</div>

@@ -57,29 +57,12 @@ export function FriendSolicitation({
 				<div className="friendSolicitation__wrapper">
 					<div className="friendSolicitation__user">
 						<div>
-							<b>
-								{toCapitalize(
-									userSolicitations.musico1.nome[0],
-									userSolicitations.musico1.nome
-								)}
-							</b>
-							(
-							<b>
-								{toCapitalize(
-									userSolicitations.musico1.apelido[0],
-									userSolicitations.musico1.apelido
-								)}
-							</b>
-							)
+							<b>{toCapitalize(userSolicitations.musico1.nome)}</b>(
+							<b>{toCapitalize(userSolicitations.musico1.apelido)}</b>)
 						</div>
 					</div>
 					<div className="friendSolicitation__instrument">
-						<b>
-							{toCapitalize(
-								userSolicitations.musico1.instrumento[0],
-								userSolicitations.musico1.instrumento
-							)}
-						</b>
+						<b>{toCapitalize(userSolicitations.musico1.instrumento)}</b>
 					</div>
 				</div>
 				<div

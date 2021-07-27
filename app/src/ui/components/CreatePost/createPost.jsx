@@ -104,7 +104,7 @@ export function CreatePost() {
 	}
 
 	function submitListening(event) {
-    isEnterPress(event.keyCode) ? publicarPost() : null
+		isEnterPress(event.keyCode) ? publicarPost() : null;
 	}
 
 	return (

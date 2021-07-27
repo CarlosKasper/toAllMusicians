@@ -70,7 +70,7 @@ export function UserData({ userData, updateUserData }) {
 
 	function submitListening(event) {
 		setTimeout(() => {
-      isEnterPress(event.keyCode) ? handleUpdateData() : null
+			isEnterPress(event.keyCode) ? handleUpdateData() : null;
 		}, 100);
 	}
 
@@ -106,10 +106,7 @@ export function UserData({ userData, updateUserData }) {
 						className="userData-select"
 						onChange={handleNewInstrument}
 						options={optionsInsrument}
-						placeholder={toCapitalize(
-							userData.instrumento[0],
-							userData.instrumento
-						)}
+						placeholder={toCapitalize(userData.instrumento)}
 					/>
 				</div>
 				<input

@@ -113,11 +113,11 @@ export function FeedList({ post, like, commentary, likePost, unlikePost }) {
 							<b>{post.musico.nome}</b>
 						</div>
 						<div>
-							<b>{toCapitalize(post.privacidade[0], post.privacidade)}</b>
+							<b>{toCapitalize(post.privacidade)}</b>
 						</div>
 					</div>
 					<div className="feedList__instrument">
-						<b>{toCapitalize(post.instrumento[0], post.instrumento)}</b>
+						<b>{toCapitalize(post.instrumento)}</b>
 						{userInfo.email === post.musico.email ? (
 							<HighlightOffIcon
 								className="highlightOffIcon"

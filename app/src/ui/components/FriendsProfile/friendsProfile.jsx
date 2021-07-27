@@ -62,12 +62,7 @@ export function FriendsProfile({ userFriends, deletedFriend, profileEmail }) {
 							</div>
 						</div>
 						<div className="friendsProfile__instrument">
-							<b>
-								{toCapitalize(
-									userFriends.instrumento[0],
-									userFriends.instrumento
-								)}
-							</b>
+							<b>{toCapitalize(userFriends.instrumento)}</b>
 						</div>
 					</div>
 					{profileEmail === userInfo.email ? (

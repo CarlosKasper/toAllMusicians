@@ -58,20 +58,10 @@ export function CommentaryPost({ commentaryContent, deleteCommentary }) {
 				<div className="comentary">
 					<div className="commentaryPost__wrapper">
 						<div>
-							<b>
-								{toCapitalize(
-									commentaryContent.musico.nome[0],
-									commentaryContent.musico.nome
-								)}
-							</b>
+							<b>{toCapitalize(commentaryContent.musico.nome)}</b>
 						</div>
 						<div>
-							<b>
-								{toCapitalize(
-									commentaryContent.musico.instrumento[0],
-									commentaryContent.musico.instrumento
-								)}
-							</b>
+							<b>{toCapitalize(commentaryContent.musico.instrumento)}</b>
 						</div>
 					</div>
 					<div className=" commentaryPost__content">

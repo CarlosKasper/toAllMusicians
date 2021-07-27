@@ -45,7 +45,7 @@ export function Header() {
 	}
 
 	function submitListening(event) {
-    isEnterPress(event.keyCode) ? handleSearchUser() : null
+		isEnterPress(event.keyCode) ? handleSearchUser() : null;
 	}
 
 	function isLogged() {
