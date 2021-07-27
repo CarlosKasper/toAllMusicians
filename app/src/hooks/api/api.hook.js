@@ -5,15 +5,19 @@ import { useGlobalUser } from '../../context/index';
 export function useApi() {
 	const [user, setUser] = useGlobalUser();
 	const token = user;
-	const axios = useAxios('https://toallmusiciansapi.azurewebsites.net', {
+	console.log();
+	const apiUrl = window.location.href.includes('localhost')
+		? 'http://localhost:8090'
+		: 'https://toallmusiciansapi.azurewebsites.net';
+	const axios = useAxios(apiUrl, {
 		Authorization: 'Bearer ' + token,
 	});
 
-	const autenticarLogin = useAxios('https://toallmusiciansapi.azurewebsites.net', {
+	const autenticarLogin = useAxios(apiUrl, {
 		Authorization: 'Basic bWV1LWNsaWVudC1pZDptZXUtc2VjcmV0LWlk',
 	});
 
-	const cadastroUsuario = useAxios('https://toallmusiciansapi.azurewebsites.net');
+	const cadastroUsuario = useAxios(apiUrl);
 
 	async function gerarToken(login, senha) {
 		let bodyFormData = new FormData();
@@ -265,9 +269,14 @@ export function useApi() {
 		}
 	}
 
-  async function updateUserData(nome, email, apelido, dataNascimento, senha, instrumento) {
+	async function updateUserData(nome, email, apelido, instrumento) {
 		try {
-			const response = await axios.post(`/usuario/atualizar`, nome, email, apelido, dataNascimento, senha, instrumento);
+			const response = await axios.put('/usuario/atualizar', {
+				nome,
+				email,
+				apelido,
+				instrumento,
+			});
 			return response;
 		} catch (error) {
 			return error.response;
@@ -299,7 +308,7 @@ export function useApi() {
 			uploadImagePerfil,
 			uploadPostImage,
 			hideUserPost,
-      updateUserData
+			updateUserData,
 		},
 		[]
 	);

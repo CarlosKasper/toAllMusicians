@@ -102,6 +102,12 @@ export function CreatePost() {
 		setImagePreview(null);
 	}
 
+	function submitListening(event) {
+		if (event.keyCode === 13) {
+			publicarPost();
+		}
+	}
+
 	return (
 		<div className="createPost">
 			<div className="createPost__input">
@@ -111,6 +117,7 @@ export function CreatePost() {
 					placeholder="Digite algo sobre música..."
 					onChange={handlePost}
 					value={title}
+					onKeyDown={(e) => submitListening(e)}
 				></textarea>
 			</div>
 			<input

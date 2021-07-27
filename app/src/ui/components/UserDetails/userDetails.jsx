@@ -3,6 +3,7 @@ import './userDetails.scss';
 import React from 'react';
 import { useApi } from '../../../hooks/api';
 import { useGlobalFeed } from '../../../context';
+import { toCapitalize } from '../../functions';
 
 export function UserDetails({ userData, postLength, userFriends }) {
 	const api = useApi();
@@ -62,8 +63,7 @@ export function UserDetails({ userData, postLength, userFriends }) {
 					</div>
 					<div>
 						<label className="profile-instrument">
-							{userData.instrumento[0].toUpperCase() +
-								userData.instrumento.slice(1).toLowerCase()}
+							{toCapitalize(userData.instrumento[0], userData.instrumento)}
 						</label>
 					</div>
 				</div>

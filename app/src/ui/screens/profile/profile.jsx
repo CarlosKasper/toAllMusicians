@@ -96,9 +96,15 @@ export function ProfileScreen() {
 		setFeed(!feed);
 	}
 
-	async function updateUserData() {
-		const response = await api.updateUserData();
+	async function updateUserData(newName, newEmail, newNickname, newInstrument) {
+		const response = await api.updateUserData(
+			newName,
+			newEmail,
+			newNickname,
+			newInstrument.toUpperCase()
+		);
 		if (response.status === 200) {
+			setFeed(!feed);
 			Swal.fire({
 				icon: 'icon',
 				title: 'As suas informações foram atualizadas com sucesso!',
@@ -146,7 +152,7 @@ export function ProfileScreen() {
 				)}
 			</div>
 			<div id="friends">
-				{userFriends ? (
+				{userFriends && userFriends.length ? (
 					userFriends.map((userFriends, index) => (
 						<FriendsProfile
 							key={index}

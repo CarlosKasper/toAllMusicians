@@ -1,0 +1,1 @@
+export { toCapitalize } from './toCapitalize';

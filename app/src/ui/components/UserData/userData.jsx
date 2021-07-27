@@ -3,12 +3,13 @@ import './userData.scss';
 import Swal from 'sweetalert2';
 import { useState } from 'react';
 import Select from 'react-select';
+import { toCapitalize } from '../../functions';
 
 export function UserData({ userData, updateUserData }) {
-  const [newEmail, setNewEmail] = useState();
-  const [newName, setNewName] = useState();
-  const [newNickname, setNewNickname] = useState();
-  const [newInstrument, setNewInstrument] = useState();
+	const [newEmail, setNewEmail] = useState(userData.email);
+	const [newName, setNewName] = useState(userData.nome);
+	const [newNickname, setNewNickname] = useState(userData.apelido);
+	const [newInstrument, setNewInstrument] = useState(userData.instrumento);
 
 	function handleUpdateData() {
 		Swal.fire({
@@ -21,9 +22,15 @@ export function UserData({ userData, updateUserData }) {
 			denyButtonColor: '#d33',
 			confirmButtonColor: '#1A71D9',
 		}).then((result) => {
-			if (result.isConfirmed) {
-				updateUserData();
-			} else if (result.isDenied) {
+			if (
+				result.isConfirmed &&
+				(newName !== userData.nome ||
+					newEmail !== userData.email ||
+					newNickname !== userData.apelido ||
+					newInstrument !== userData.instrumento)
+			) {
+				updateUserData(newName, newEmail, newNickname, newInstrument);
+			} else {
 				Swal.fire({
 					title: 'Alteração cancelada!',
 					text: 'As suas informações não foram alteradas.',
@@ -35,27 +42,27 @@ export function UserData({ userData, updateUserData }) {
 		});
 	}
 
-  function handleNewEmail(e) {
-    setNewEmail(e.target.value)
-    console.log(newEmail)
-  }
+	function handleNewEmail(e) {
+		setNewEmail(e.target.value);
+		console.log(newEmail);
+	}
 
-  function handleNewName(e) {
-    setNewName(e.target.value)
-    console.log(newName)
-  }
+	function handleNewName(e) {
+		setNewName(e.target.value);
+		console.log(newName);
+	}
 
-  function handleNewNickname(e) {
-    setNewNickname(e.target.value)
-    console.log(newNickname)
-  }
+	function handleNewNickname(e) {
+		setNewNickname(e.target.value);
+		console.log(newNickname);
+	}
 
-  function handleNewInstrument(e) {
-    setNewInstrument(e.value)
-    console.log(newInstrument)
-  }
+	function handleNewInstrument(e) {
+		setNewInstrument(e.value);
+		console.log(newInstrument);
+	}
 
-  const optionsInsrument = [
+	const optionsInsrument = [
 		{ value: 'GUITARRA', label: 'Guitarra' },
 		{ value: 'VIOLAO', label: 'Violão' },
 		{ value: 'BATERIA', label: 'Bateria' },
@@ -65,20 +72,58 @@ export function UserData({ userData, updateUserData }) {
 		{ value: 'GAITADEFOLE', label: 'Gaita de Fole' },
 	];
 
+	function submitListening(event) {
+		setTimeout(() => {
+			if (event.keyCode === 13) {
+				handleUpdateData();
+			}
+		}, 100);
+	}
+
 	return (
 		<div className="friendsProfile">
-      <label className="userData-updateable">Seus dados podem ser alterados por aqui:</label>
+			<label className="userData-updateable">
+				Seus dados podem ser alterados por aqui:
+			</label>
 			<div>
-        <input className="userData-input" type="text" placeholder={userData.email} onChange={handleNewEmail} />
-        <input className="userData-input" type="text" placeholder={userData.nome} onChange={handleNewName} />
-        <input className="userData-input" type="text" placeholder={userData.apelido} onChange={handleNewNickname} />
-        <Select
-          className="userData-select"
-          onChange={handleNewInstrument}
-          options={optionsInsrument}
-          defaultInputValue={userData.instrument}
-        />
-				<input type="button" className="userData-button" onClick={handleUpdateData} value='Atualizar Perfil' />
+				<input
+					className="userData-input"
+					type="email"
+					value={newEmail}
+					onChange={handleNewEmail}
+					onKeyDown={(e) => submitListening(e)}
+				/>
+				<input
+					className="userData-input"
+					type="text"
+					value={newName}
+					onChange={handleNewName}
+					onKeyDown={(e) => submitListening(e)}
+				/>
+				<input
+					className="userData-input"
+					type="text"
+					value={newNickname}
+					onChange={handleNewNickname}
+					onKeyDown={(e) => submitListening(e)}
+				/>
+				<div>
+					<Select
+						className="userData-select"
+						onChange={handleNewInstrument}
+						options={optionsInsrument}
+						placeholder={toCapitalize(
+							userData.instrumento[0],
+							userData.instrumento
+						)}
+					/>
+				</div>
+				<input
+					type="button"
+					className="userData-button"
+					onClick={handleUpdateData}
+					value="Atualizar Perfil"
+				/>
 			</div>
 		</div>
 	);

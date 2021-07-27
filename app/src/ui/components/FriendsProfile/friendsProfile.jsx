@@ -4,6 +4,7 @@ import deleteFriend from '../../../images/deleteFriend.png';
 import { Link } from 'react-router-dom';
 import { useGlobalUserInfo } from '../../../context';
 import Swal from 'sweetalert2';
+import { toCapitalize } from '../../functions/toCapitalize';
 
 export function FriendsProfile({ userFriends, deletedFriend, profileEmail }) {
 	const [userInfo] = useGlobalUserInfo();
@@ -62,8 +63,10 @@ export function FriendsProfile({ userFriends, deletedFriend, profileEmail }) {
 						</div>
 						<div className="friendsProfile__instrument">
 							<b>
-								{userFriends.instrumento[0].toUpperCase() +
-									userFriends.instrumento.slice(1).toLowerCase()}
+								{toCapitalize(
+									userFriends.instrumento[0],
+									userFriends.instrumento
+								)}
 							</b>
 						</div>
 					</div>

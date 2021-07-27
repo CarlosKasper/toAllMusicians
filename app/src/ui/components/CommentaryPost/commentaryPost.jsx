@@ -5,6 +5,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import DeleteForeverIcon from '@material-ui/icons/DeleteForever';
 import Swal from 'sweetalert2';
+import { toCapitalize } from '../../functions';
 
 export function CommentaryPost({ commentaryContent, deleteCommentary }) {
 	const [userInfo] = useGlobalUserInfo();
@@ -58,21 +59,24 @@ export function CommentaryPost({ commentaryContent, deleteCommentary }) {
 					<div className="commentaryPost__wrapper">
 						<div>
 							<b>
-								{commentaryContent.musico.nome[0].toUpperCase() +
-									commentaryContent.musico.nome.slice(1).toLowerCase()}
+								{toCapitalize(
+									commentaryContent.musico.nome[0],
+									commentaryContent.musico.nome
+								)}
 							</b>
 						</div>
 						<div>
 							<b>
-								{commentaryContent.musico.instrumento[0].toUpperCase() +
-									commentaryContent.musico.instrumento.slice(1).toLowerCase()}
+								{toCapitalize(
+									commentaryContent.musico.instrumento[0],
+									commentaryContent.musico.instrumento
+								)}
 							</b>
 						</div>
 					</div>
 					<div className=" commentaryPost__content">
 						<label className="commentaryPost__description commentaryPost__description--comentary">
-							{' '}
-							{commentaryContent.comentario}{' '}
+							{commentaryContent.comentario}
 						</label>
 					</div>
 				</div>

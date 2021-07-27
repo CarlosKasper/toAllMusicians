@@ -43,6 +43,12 @@ export function Header() {
 		}
 	}
 
+	function submitListening(event) {
+		if (event.keyCode === 13) {
+			handleSearchUser();
+		}
+	}
+
 	function isLogged() {
 		if (user) {
 			return (
@@ -54,6 +60,7 @@ export function Header() {
 							className="mr-sm-2"
 							id="searchUser"
 							onChange={onChangeUserSearch}
+							onKeyDown={(e) => submitListening(e)}
 						/>
 						<Button
 							variant="outline-light"
