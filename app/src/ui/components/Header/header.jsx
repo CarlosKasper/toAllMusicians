@@ -11,6 +11,7 @@ import profile from '../../../images/profileHeader.png';
 import envelope from '../../../images/envelope.png';
 import { Nav, Navbar, Form, FormControl, Button } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import { isEnterPress } from '../../common';
 
 export function Header() {
 	const api = useApi();
@@ -44,9 +45,7 @@ export function Header() {
 	}
 
 	function submitListening(event) {
-		if (event.keyCode === 13) {
-			handleSearchUser();
-		}
+    isEnterPress(event.keyCode) ? handleSearchUser() : null
 	}
 
 	function isLogged() {

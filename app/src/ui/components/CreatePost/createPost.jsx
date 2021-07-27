@@ -7,6 +7,7 @@ import PhotoCamera from '@material-ui/icons/PhotoCamera';
 import IconButton from '@material-ui/core/IconButton';
 import DeleteForeverIcon from '@material-ui/icons/DeleteForever';
 import Swal from 'sweetalert2';
+import { isEnterPress } from '../../common';
 
 export function CreatePost() {
 	const api = useApi();
@@ -103,9 +104,7 @@ export function CreatePost() {
 	}
 
 	function submitListening(event) {
-		if (event.keyCode === 13) {
-			publicarPost();
-		}
+    isEnterPress(event.keyCode) ? publicarPost() : null
 	}
 
 	return (

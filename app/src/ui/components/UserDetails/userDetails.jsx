@@ -3,7 +3,7 @@ import './userDetails.scss';
 import React from 'react';
 import { useApi } from '../../../hooks/api';
 import { useGlobalFeed } from '../../../context';
-import { toCapitalize } from '../../functions';
+import { toCapitalize } from '../../common';
 
 export function UserDetails({ userData, postLength, userFriends }) {
 	const api = useApi();

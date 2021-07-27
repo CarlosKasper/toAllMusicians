@@ -4,6 +4,7 @@ import { useApi } from '../../../hooks/api';
 import { Link, useHistory } from 'react-router-dom';
 import toallmusicians from '../../../images/toallmusicians.png';
 import Swal from 'sweetalert2';
+import { isEnterPress } from '../../common';
 
 export function LoginBox() {
 	const [username, setUsername] = useState('');
@@ -41,9 +42,7 @@ export function LoginBox() {
 	}
 
 	function submitListening(event) {
-		if (event.keyCode === 13) {
-			gerarToken();
-		}
+    isEnterPress(event.keyCode) ? gerarToken() : null
 	}
 
 	return (

@@ -3,7 +3,7 @@ import './userData.scss';
 import Swal from 'sweetalert2';
 import { useState } from 'react';
 import Select from 'react-select';
-import { toCapitalize } from '../../functions';
+import { isEnterPress, toCapitalize } from '../../common';
 
 export function UserData({ userData, updateUserData }) {
 	const [newEmail, setNewEmail] = useState(userData.email);
@@ -70,9 +70,7 @@ export function UserData({ userData, updateUserData }) {
 
 	function submitListening(event) {
 		setTimeout(() => {
-			if (event.keyCode === 13) {
-				handleUpdateData();
-			}
+      isEnterPress(event.keyCode) ? handleUpdateData() : null
 		}, 100);
 	}
 

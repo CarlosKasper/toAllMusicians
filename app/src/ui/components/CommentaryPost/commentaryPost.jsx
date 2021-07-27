@@ -5,7 +5,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import DeleteForeverIcon from '@material-ui/icons/DeleteForever';
 import Swal from 'sweetalert2';
-import { toCapitalize } from '../../functions';
+import { toCapitalize } from '../../common';
 
 export function CommentaryPost({ commentaryContent, deleteCommentary }) {
 	const [userInfo] = useGlobalUserInfo();

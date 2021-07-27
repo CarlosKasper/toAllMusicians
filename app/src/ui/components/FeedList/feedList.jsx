@@ -8,7 +8,7 @@ import ThumbUpAltIcon from '@material-ui/icons/ThumbUpAlt';
 import HighlightOffIcon from '@material-ui/icons/HighlightOff';
 import { CommentaryPost } from '../index';
 import Swal from 'sweetalert2';
-import { toCapitalize } from '../../functions';
+import { toCapitalize } from '../../common';
 
 export function FeedList({ post, like, commentary, likePost, unlikePost }) {
 	const api = useApi();

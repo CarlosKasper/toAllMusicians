@@ -4,7 +4,7 @@ import deleteFriend from '../../../images/deleteFriend.png';
 import { Link } from 'react-router-dom';
 import { useGlobalUserInfo } from '../../../context';
 import Swal from 'sweetalert2';
-import { toCapitalize } from '../../functions/toCapitalize';
+import { toCapitalize } from '../../common/toCapitalize';
 
 export function FriendsProfile({ userFriends, deletedFriend, profileEmail }) {
 	const [userInfo] = useGlobalUserInfo();

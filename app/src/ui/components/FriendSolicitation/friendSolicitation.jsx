@@ -3,7 +3,7 @@ import './friendSolicitation.scss';
 import profile from '../../../images/profile.png';
 import { Link } from 'react-router-dom';
 import Swal from 'sweetalert2';
-import { toCapitalize } from '../../functions';
+import { toCapitalize } from '../../common';
 
 export function FriendSolicitation({
 	userSolicitations,
