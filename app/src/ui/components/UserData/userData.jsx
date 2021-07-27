@@ -44,22 +44,18 @@ export function UserData({ userData, updateUserData }) {
 
 	function handleNewEmail(e) {
 		setNewEmail(e.target.value);
-		console.log(newEmail);
 	}
 
 	function handleNewName(e) {
 		setNewName(e.target.value);
-		console.log(newName);
 	}
 
 	function handleNewNickname(e) {
 		setNewNickname(e.target.value);
-		console.log(newNickname);
 	}
 
 	function handleNewInstrument(e) {
 		setNewInstrument(e.value);
-		console.log(newInstrument);
 	}
 
 	const optionsInsrument = [
