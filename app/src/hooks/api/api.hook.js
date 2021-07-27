@@ -5,7 +5,6 @@ import { useGlobalUser } from '../../context/index';
 export function useApi() {
 	const [user, setUser] = useGlobalUser();
 	const token = user;
-	console.log();
 	const apiUrl = window.location.href.includes('localhost')
 		? 'http://localhost:8090'
 		: 'https://toallmusiciansapi.azurewebsites.net';
