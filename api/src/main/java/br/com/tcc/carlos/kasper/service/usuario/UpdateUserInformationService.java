@@ -42,9 +42,7 @@ public class UpdateUserInformationService {
         if(!musicoEmailNovoCheck.isPresent() || musico.getEmail().equals(usuarioRequest.getEmail())) {
             musico.setEmail(usuarioRequest.getEmail());
             musico.setNome(usuarioRequest.getNome());
-            musico.setSenha(passwordEncoder.encode(usuarioRequest.getSenha()));
             musico.setApelido(usuarioRequest.getApelido());
-            musico.setDataNascimento(usuarioRequest.getDataNascimento());
             musico.setInstrumento(usuarioRequest.getInstrumento());
 
             usuarioRepository.save(musico);
