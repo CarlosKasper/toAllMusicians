@@ -18,6 +18,7 @@ import org.springframework.web.multipart.MultipartFile;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.util.UUID;
 
 @Service
 public class StorageService {
@@ -59,11 +60,11 @@ public class StorageService {
 
     private Imagem uploadImagem(MultipartFile multipartFile) {
         File file = convertMultiPartFileToFile(multipartFile);
-        Imagem imagem = createNewImage();
-        String fileName = getFileName(file, imagem);
+        String fileName = getFileName(file);
         BlobClient blobClient = blobServiceClient.getBlobContainerClient(profile).getBlobClient(fileName);
         blobClient.uploadFromFile(file.getPath());
 
+        Imagem imagem = createNewImage();
         imagem.setUrl(blobClient.getBlobUrl());
 
         file.delete();
@@ -85,15 +86,15 @@ public class StorageService {
         return convertedFile;
     }
 
-    private String getFileName(File file, Imagem imagem) {
-        String newFileName = imagem.getId().toString();
+    private String getFileName(File file) {
+        String uuid = UUID.randomUUID().toString();
         String fileName = file.getName();
         int index = fileName.lastIndexOf('.');
         if (index > 0) {
             String extension = fileName.substring(index + 1);
-            return newFileName.concat(".").concat(extension);
+            return uuid.concat(".").concat(extension);
         } else {
-            return newFileName.concat(".jpg");
+            return uuid.concat(".jpg");
         }
     }
 }
