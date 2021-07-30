@@ -14,7 +14,7 @@ public interface UsuarioRepository extends Repository<Musico, Long> {
 
     Optional<Musico> findById(Long id);
 
-    @Query(value = "select * from MUSICO m where m.NOME_COMPLETO like %:NOME%", nativeQuery = true)
+    @Query(value = "select * from MUSICO m where m.NOME_COMPLETO like :NOME% or m.APELIDO like :NOME%", nativeQuery = true)
     List<Musico> findByNome(@Param("NOME") String nome);
 
     Musico save(Musico musico);

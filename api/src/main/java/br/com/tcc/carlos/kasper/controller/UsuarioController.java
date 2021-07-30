@@ -1,9 +1,7 @@
 package br.com.tcc.carlos.kasper.controller;
 
-import br.com.tcc.carlos.kasper.controller.request.ComentarioRequest;
 import br.com.tcc.carlos.kasper.controller.request.UsuarioRequest;
 import br.com.tcc.carlos.kasper.controller.response.UsuarioResponse;
-import br.com.tcc.carlos.kasper.domain.Instrumento;
 import br.com.tcc.carlos.kasper.domain.Musico;
 import br.com.tcc.carlos.kasper.domain.Relacionamento;
 import br.com.tcc.carlos.kasper.security.CustomUserDetails;
@@ -17,7 +15,6 @@ import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.security.RolesAllowed;
-import java.time.LocalDate;
 import java.util.List;
 
 @RestController
@@ -51,7 +48,6 @@ public class UsuarioController {
     @PostMapping("/cadastro")
     @ResponseStatus(HttpStatus.CREATED)
     public UsuarioResponse cadastrar(@RequestBody UsuarioRequest usuarioRequest) {
-
         return cadastrarUsuarioService.cadastrar(usuarioRequest);
     }
 
@@ -59,7 +55,6 @@ public class UsuarioController {
     @GetMapping
     @ResponseStatus(HttpStatus.OK)
     public Musico exibirDadosUsuario(@AuthenticationPrincipal CustomUserDetails usuarioLogado) {
-
         return buscarUsuarioPorEmailService.buscar(usuarioLogado.getUsername());
     }
 
@@ -67,7 +62,6 @@ public class UsuarioController {
     @GetMapping("/buscar/{email-usuario}")
     @ResponseStatus(HttpStatus.OK)
     public Musico exibirDadosDoPefilDoUsuario(@PathVariable("email-usuario") String email) {
-
         return buscarUsuarioPorEmailService.buscar(email);
     }
 
@@ -75,17 +69,7 @@ public class UsuarioController {
     @GetMapping("/listar")
     @ResponseStatus(HttpStatus.OK)
     public List<Musico> listarUsuarios(@AuthenticationPrincipal CustomUserDetails usuarioLogado) {
-
         return listarUsuariosService.listar(usuarioLogado.getUsername());
-    }
-
-    @RolesAllowed({"ROLE_USUARIO"})
-    @GetMapping("/solicitacao")
-    @ResponseStatus(HttpStatus.OK)
-    public List<Relacionamento> exibirConvites(@AuthenticationPrincipal CustomUserDetails usuarioLogado) {
-
-        return listarConvitesDeRelacionamentoPendentesService.listar(usuarioLogado.getUsername());
-
     }
 
     @RolesAllowed({"ROLE_USUARIO"})
@@ -100,9 +84,8 @@ public class UsuarioController {
     @RolesAllowed({"ROLE_USUARIO"})
     @GetMapping("/buscar/musico/{nome-usuario}")
     @ResponseStatus(HttpStatus.OK)
-    public List<Musico> listarUsuarioPorNome(@PathVariable("nome-usuario") String nome) {
-
-        return buscarUsuarioPorNomeService.buscar(nome);
+    public List<Musico> listarUsuarioPorNome(@AuthenticationPrincipal CustomUserDetails usuarioLogado, @PathVariable("nome-usuario") String nome) {
+        return buscarUsuarioPorNomeService.buscar(usuarioLogado, nome);
 
     }
 
@@ -110,9 +93,6 @@ public class UsuarioController {
     @PutMapping("/atualizar")
     @ResponseStatus(HttpStatus.OK)
     public UsuarioResponse exibirDadosDoPefilDoUsuario(@AuthenticationPrincipal CustomUserDetails usuarioLogado, @RequestBody UsuarioRequest usuarioRequest) {
-
         return updateUserInformationService.update(usuarioLogado, usuarioRequest);
     }
-
-
 }

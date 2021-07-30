@@ -30,11 +30,9 @@ public class Comentario implements Comparable<Comentario> {
     @Override
     public int compareTo(Comentario comentario) {
         if (this.id > (comentario.getId())) {
+            return 1;
+        } else {
             return -1;
         }
-        if (this.id < (comentario.getId())) {
-            return 1;
-        }
-        return 0;
     }
 }

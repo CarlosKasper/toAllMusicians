@@ -1,5 +1,6 @@
 package br.com.tcc.carlos.kasper.controller;
 
+import br.com.tcc.carlos.kasper.controller.response.InviteResponse;
 import br.com.tcc.carlos.kasper.domain.Musico;
 import br.com.tcc.carlos.kasper.domain.Relacionamento;
 import br.com.tcc.carlos.kasper.security.CustomUserDetails;
@@ -38,13 +39,12 @@ public class RelacionamentoController {
     @GetMapping("/listar/{email}")
     @ResponseStatus(HttpStatus.OK)
     public List<Musico> buscar(@PathVariable("email") String email) {
-
         return listarRelacionamentosDoUsuarioService.listar(email);
     }
 
     @GetMapping("/solicitacoes")
     @ResponseStatus(HttpStatus.OK)
-    public List<Relacionamento> buscarSolicitacoes(@AuthenticationPrincipal CustomUserDetails usuarioLogado) {
+    public List<InviteResponse> buscarSolicitacoes(@AuthenticationPrincipal CustomUserDetails usuarioLogado) {
 
         return listarConvitesDeRelacionamentoPendentesService.listar(usuarioLogado.getUsername());
     }
@@ -52,28 +52,24 @@ public class RelacionamentoController {
     @PostMapping("/{email-solicitado}")
     @ResponseStatus(HttpStatus.CREATED)
     public void solicitar(@AuthenticationPrincipal CustomUserDetails usuarioLogado, @PathVariable("email-solicitado") String solicitado) {
-
         enviarSolicitacaoDeRelacionamentoService.enviar(usuarioLogado.getUsername(), solicitado);
     }
 
     @PostMapping("/aceitar/{id-relacionamento}")
     @ResponseStatus(HttpStatus.CREATED)
     public void aceitar(@AuthenticationPrincipal CustomUserDetails usuarioLogado, @PathVariable("id-relacionamento") Long id) {
-
         aceitarSolicitacaoDeRelacionamentoService.aceitar(id, usuarioLogado.getUsername());
     }
 
     @PostMapping("/recusar/{id-relacionamento}")
     @ResponseStatus(HttpStatus.CREATED)
     public void recusar(@AuthenticationPrincipal CustomUserDetails usuarioLogado, @PathVariable("id-relacionamento") Long id) {
-
         recusarSolicitacaoRelacionamentoService.recusar(id, usuarioLogado.getUsername());
     }
 
     @DeleteMapping("/remover/{email}")
     @ResponseStatus(HttpStatus.OK)
     public void removerAmizade(@AuthenticationPrincipal CustomUserDetails usuarioLogado, @PathVariable("email") String email) {
-
         removerAmizadeService.remover(usuarioLogado.getUsername(), email);
     }
 }
