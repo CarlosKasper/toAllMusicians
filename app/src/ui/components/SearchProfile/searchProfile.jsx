@@ -3,7 +3,7 @@ import './searchProfile.scss';
 import add from '../../../images/add.png';
 import { Link } from 'react-router-dom';
 import { useGlobalUserInfo } from '../../../context';
-import profile from '../../../images/profile.png'
+import profile from '../../../images/profile.png';
 
 export function SearchProfile({ userProfile, addFriend }) {
 	const [userInfo] = useGlobalUserInfo();
@@ -23,7 +23,7 @@ export function SearchProfile({ userProfile, addFriend }) {
 								alt="Foto de perfil"
 							/>
 						) : (
-							<img className="profile--without-pic" src={profile}/>
+							<img className="profile--without-pic" src={profile} />
 						)}
 					</div>
 				</Link>
@@ -31,7 +31,8 @@ export function SearchProfile({ userProfile, addFriend }) {
 					<div className="searchProfile__wrapper">
 						<div className="searchProfile__user">
 							<div>
-							  {userProfile.nome} {userProfile.apelido ? '(' + userProfile.apelido + ')' : ''}
+								{userProfile.nome}{' '}
+								{userProfile.apelido ? '(' + userProfile.apelido + ')' : ''}
 							</div>
 						</div>
 						<div className="searchProfile__instrument">

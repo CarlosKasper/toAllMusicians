@@ -14,8 +14,8 @@ export function FriendScreen() {
 			if (response.data.length && response.status === 200) {
 				setSolicitations(response.data);
 			} else {
-        setSolicitations(null)
-      }
+				setSolicitations(null);
+			}
 		}
 
 		listarSolicitacoes();

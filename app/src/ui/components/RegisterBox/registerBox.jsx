@@ -89,7 +89,7 @@ export function RegisterBox() {
 		}),
 	};
 
-  function submitListening(event) {
+	function submitListening(event) {
 		isEnterPress(event.keyCode) ? registroUsuario() : null;
 	}
 

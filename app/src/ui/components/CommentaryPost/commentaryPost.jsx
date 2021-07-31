@@ -6,7 +6,7 @@ import { Link } from 'react-router-dom';
 import DeleteForeverIcon from '@material-ui/icons/DeleteForever';
 import Swal from 'sweetalert2';
 import { toCapitalize } from '../../common';
-import profile from '../../../images/profile.png'
+import profile from '../../../images/profile.png';
 
 export function CommentaryPost({ commentaryContent, deleteCommentary }) {
 	const [userInfo] = useGlobalUserInfo();
@@ -50,7 +50,7 @@ export function CommentaryPost({ commentaryContent, deleteCommentary }) {
 								alt="Foto de perfil"
 							/>
 						) : (
-							<img className="profile--without-pic" src={profile}/>
+							<img className="profile--without-pic" src={profile} />
 						)}
 					</div>
 				</Link>

@@ -47,7 +47,7 @@ export function FriendSolicitation({
 							alt="Foto de perfil"
 						/>
 					) : (
-						<img className="profile--without-pic" src={profile}/>
+						<img className="profile--without-pic" src={profile} />
 					)}
 				</div>
 			</Link>
@@ -56,7 +56,10 @@ export function FriendSolicitation({
 					<div className="friendSolicitation__user">
 						<div>
 							<b>{toCapitalize(userSolicitations.musico.nome)}</b>
-							<b>{userSolicitations.musico.apelido && '(' + toCapitalize(userSolicitations.musico.apelido) + ')'}</b>
+							<b>
+								{userSolicitations.musico.apelido &&
+									'(' + toCapitalize(userSolicitations.musico.apelido) + ')'}
+							</b>
 						</div>
 					</div>
 					<div className="friendSolicitation__instrument">

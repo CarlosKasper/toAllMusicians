@@ -20,7 +20,7 @@ export function SearchScreen() {
 					title: 'Nenhuma resultado encontrado!',
 					confirmButtonText: `Voltar para o feed`,
 					confirmButtonColor: '#1A71D9',
-				})
+				});
 			}
 		}
 
@@ -37,15 +37,15 @@ export function SearchScreen() {
 				confirmButtonText: `Voltar para o feed`,
 				confirmButtonColor: '#1A71D9',
 			});
-		} else if(response.status === 201) {
-      Swal.fire({
+		} else if (response.status === 201) {
+			Swal.fire({
 				icon: 'info',
 				title: `Pedido enviado!`,
-        text: `${nome} recebeu seu convite de amizade!`,
+				text: `${nome} recebeu seu convite de amizade!`,
 				confirmButtonText: `OK`,
 				confirmButtonColor: '#1A71D9',
-			})
-    }
+			});
+		}
 	}
 
 	return (

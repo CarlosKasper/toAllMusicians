@@ -9,7 +9,7 @@ import HighlightOffIcon from '@material-ui/icons/HighlightOff';
 import { CommentaryPost } from '../index';
 import Swal from 'sweetalert2';
 import { toCapitalize } from '../../common';
-import profile from '../../../images/profile.png'
+import profile from '../../../images/profile.png';
 
 export function FeedList({ post, like, commentary, likePost, unlikePost }) {
 	const api = useApi();
@@ -102,14 +102,17 @@ export function FeedList({ post, like, commentary, likePost, unlikePost }) {
 								alt="Foto de perfil"
 							/>
 						) : (
-							<img className="profile--without-pic" src={profile}/>
+							<img className="profile--without-pic" src={profile} />
 						)}
 					</div>
 				</Link>
 				<div className="feedList__wrapper--feed">
 					<div className="feedList__user">
 						<div>
-							<b>{post.musico.nome} {post.musico.apelido ? '(' + post.musico.apelido + ')' : ''}</b>
+							<b>
+								{post.musico.nome}{' '}
+								{post.musico.apelido ? '(' + post.musico.apelido + ')' : ''}
+							</b>
 						</div>
 						<div>
 							<b>{toCapitalize(post.privacidade)}</b>

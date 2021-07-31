@@ -4,7 +4,7 @@ import React from 'react';
 import { useApi } from '../../../hooks/api';
 import { useGlobalFeed, useGlobalUserInfo } from '../../../context';
 import { toCapitalize } from '../../common';
-import profile from '../../../images/profile.png'
+import profile from '../../../images/profile.png';
 import { useParams } from 'react-router-dom';
 
 export function UserDetails({ userData, postLength, userFriends }) {
@@ -52,19 +52,19 @@ export function UserDetails({ userData, postLength, userFriends }) {
 							src={userData.imagem.url}
 							alt="foto do usuario"
 						/>
-					) : (
-            userInfo.email === email ?
+					) : userInfo.email === email ? (
 						<span className="hiddenFileInput">
-              <input type="file" name="theFile" onChange={addPhoto} />
-            </span>
-            :
-            <img className="profile--without-pic" src={profile}/>
+							<input type="file" name="theFile" onChange={addPhoto} />
+						</span>
+					) : (
+						<img className="profile--without-pic" src={profile} />
 					)}
 				</div>
 				<div className="container-prof__info">
 					<div className="container-prof__name">
 						<label className="profile-name">
-							{userData.nome} {userData.apelido ? '(' + userData.apelido + ')' : ''}
+							{userData.nome}{' '}
+							{userData.apelido ? '(' + userData.apelido + ')' : ''}
 						</label>
 					</div>
 					<div>
