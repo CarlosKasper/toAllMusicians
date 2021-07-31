@@ -11,11 +11,11 @@ export function FriendSolicitation({
 	denniedAsFriend,
 }) {
 	function handleAccept() {
-		acceptAsFriend(userSolicitations.id);
+		acceptAsFriend(userSolicitations.idFriendship);
 	}
 
 	function handleDennied() {
-		denniedAsFriend(userSolicitations.id);
+		denniedAsFriend(userSolicitations.idFriendship);
 	}
 
 	function solicitationRequest() {
@@ -38,18 +38,16 @@ export function FriendSolicitation({
 
 	return (
 		<div className="friendSolicitation__info">
-			<Link to={`/profile/${userSolicitations.musico1.email}`}>
+			<Link to={`/profile/${userSolicitations.musico.email}`}>
 				<div className="friendSolicitation__image">
-					{userSolicitations.musico1.imagem ? (
+					{userSolicitations.musico.imagem ? (
 						<img
 							className="profile-image"
-							src={userSolicitations.musico1.imagem.url}
+							src={userSolicitations.musico.imagem.url}
 							alt="Foto de perfil"
 						/>
 					) : (
-						<span className="hiddenFileInput">
-							<input name="theFile" disabled />
-						</span>
+						<img className="profile--without-pic" src={profile}/>
 					)}
 				</div>
 			</Link>
@@ -57,12 +55,12 @@ export function FriendSolicitation({
 				<div className="friendSolicitation__wrapper">
 					<div className="friendSolicitation__user">
 						<div>
-							<b>{toCapitalize(userSolicitations.musico1.nome)}</b>(
-							<b>{toCapitalize(userSolicitations.musico1.apelido)}</b>)
+							<b>{toCapitalize(userSolicitations.musico.nome)}</b>
+							<b>{userSolicitations.musico.apelido && '(' + toCapitalize(userSolicitations.musico.apelido) + ')'}</b>
 						</div>
 					</div>
 					<div className="friendSolicitation__instrument">
-						<b>{toCapitalize(userSolicitations.musico1.instrumento)}</b>
+						<b>{toCapitalize(userSolicitations.musico.instrumento)}</b>
 					</div>
 				</div>
 				<div

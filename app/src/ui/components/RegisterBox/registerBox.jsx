@@ -5,6 +5,7 @@ import { Link, useHistory } from 'react-router-dom';
 import Select from 'react-select';
 import toallmusicians from '../../../images/toallmusicians.png';
 import Swal from 'sweetalert2';
+import { isEnterPress } from '../../common';
 
 export function RegisterBox() {
 	const api = useApi();
@@ -88,6 +89,10 @@ export function RegisterBox() {
 		}),
 	};
 
+  function submitListening(event) {
+		isEnterPress(event.keyCode) ? registroUsuario() : null;
+	}
+
 	return (
 		<div className="body register">
 			<div className="container">
@@ -105,6 +110,7 @@ export function RegisterBox() {
 							type="email"
 							placeholder="Nome"
 							onChange={onChangeUsername}
+							onKeyDown={(e) => submitListening(e)}
 						></input>
 					</div>
 					<div className="container__login">
@@ -113,6 +119,7 @@ export function RegisterBox() {
 							type="text"
 							placeholder="Email"
 							onChange={onChangeEmail}
+							onKeyDown={(e) => submitListening(e)}
 						></input>
 					</div>
 					<div className="container__login">
@@ -121,6 +128,7 @@ export function RegisterBox() {
 							type="password"
 							placeholder="Senha"
 							onChange={onChangePassword}
+							onKeyDown={(e) => submitListening(e)}
 						></input>
 					</div>
 					<div className="container__login">
@@ -129,6 +137,7 @@ export function RegisterBox() {
 							type="text"
 							placeholder="Apelido(opcional)"
 							onChange={onChangeNickname}
+							onKeyDown={(e) => submitListening(e)}
 						></input>
 					</div>
 					<div className="container__login">
@@ -136,6 +145,7 @@ export function RegisterBox() {
 							className="container__login--input"
 							type="date"
 							onChange={onChangeBirthDay}
+							onKeyDown={(e) => submitListening(e)}
 						></input>
 					</div>
 					<div className="container__login">
@@ -145,6 +155,7 @@ export function RegisterBox() {
 							options={options}
 							styles={customStyles}
 							placeholder="Instrumento"
+							onKeyDown={(e) => submitListening(e)}
 						/>
 					</div>
 					<div className="container__login">

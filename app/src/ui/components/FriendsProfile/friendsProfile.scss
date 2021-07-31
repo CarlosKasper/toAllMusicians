@@ -29,10 +29,17 @@
 
 	&__image {
 		display: flex;
-		width: 150px;
-		height: 150px;
+		width: 100px;
+		height: 100px;
 		background-color: gray;
 		border-radius: 50%;
+    align-items: center;
+    justify-content:center;
+
+    .profile-image {
+      width: 100px;
+      height: 100px;
+    }
 
 		.hiddenFileInput > input {
 			opacity: 0;

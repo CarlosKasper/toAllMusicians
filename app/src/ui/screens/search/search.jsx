@@ -1,5 +1,4 @@
 import { useState, useEffect } from 'react';
-import { useHistory } from 'react-router-dom';
 import { useGlobalUserSearch } from '../../../context';
 import { useApi } from '../../../hooks/api';
 import { Header, SearchProfile } from '../../components';
@@ -8,7 +7,6 @@ import Swal from 'sweetalert2';
 export function SearchScreen() {
 	const [userSearch] = useGlobalUserSearch();
 	const api = useApi();
-	const history = useHistory();
 	const [users, setUsers] = useState();
 
 	useEffect(() => {
@@ -22,16 +20,12 @@ export function SearchScreen() {
 					title: 'Nenhuma resultado encontrado!',
 					confirmButtonText: `Voltar para o feed`,
 					confirmButtonColor: '#1A71D9',
-				}).then((result) => {
-					if (result.isConfirmed) {
-						history.push('/home');
-					}
-				});
+				})
 			}
 		}
 
 		searchUser();
-	}, []);
+	}, [userSearch]);
 
 	async function handleAddFriend(nome, email) {
 		const response = await api.addFriend(email);
@@ -42,12 +36,16 @@ export function SearchScreen() {
 				text: `Você já possui um relacionamento(Aceito ou Pendente).`,
 				confirmButtonText: `Voltar para o feed`,
 				confirmButtonColor: '#1A71D9',
-			}).then((result) => {
-				if (result.isConfirmed) {
-					history.push('/home');
-				}
 			});
-		}
+		} else if(response.status === 201) {
+      Swal.fire({
+				icon: 'info',
+				title: `Pedido enviado!`,
+        text: `${nome} recebeu seu convite de amizade!`,
+				confirmButtonText: `OK`,
+				confirmButtonColor: '#1A71D9',
+			})
+    }
 	}
 
 	return (
