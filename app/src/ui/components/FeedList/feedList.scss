@@ -10,6 +10,8 @@
 
 	&__likes {
 		padding-left: 10px;
+    display: flex;
+    align-items: center;
 	}
 
 	&__container-image {
@@ -94,8 +96,22 @@
 		display: flex;
 		padding-top: 10px;
 		padding-left: 10px;
+    padding-bottom: 10px;
 		align-items: center;
 	}
+
+  &__likeable {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+  }
+
+  &__options {
+    border-top: 0.1px solid #93a6c3;
+    border-bottom: 0.1px solid #93a6c3;
+    display: flex;
+    justify-content: space-evenly;
+  }
 
 	&__description {
 		font-size: 20px;
@@ -116,27 +132,26 @@
 		width: 100%;
 		display: flex;
 		padding: 10px;
-		justify-content: space-between;
+    align-items: center;
 
 		&-commentary {
-			border-radius: 6px;
+			border-radius: 15px;
 			display: flex;
-			width: 65%;
-			height: 30px;
-			border: 1px solid black;
+      margin-left: 10px;
+			width: 90%;
+			height: 36px;
+			border: none;
 			background: #f0f2f5;
 		}
 
-		&-confirm {
-			border-radius: 6px;
-			border: none;
-			background-color: #1a71d9;
-			color: white;
-			width: 30%;
-			height: 30px;
-			font-weight: 700;
-			font-size: 16px;
-		}
+    &-commentary::placeholder {
+      padding-left: 10px;
+    }
+
+    .profile-image--comentary {
+      width: 32px;
+      height: 32px;
+    }
 	}
 
 	&__interation {

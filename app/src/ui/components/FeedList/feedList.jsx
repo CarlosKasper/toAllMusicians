@@ -5,10 +5,11 @@ import { useGlobalFeed, useGlobalUserInfo } from '../../../context/index';
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import ThumbUpAltIcon from '@material-ui/icons/ThumbUpAlt';
+import ChatBubbleOutlineIcon from '@material-ui/icons/ChatBubbleOutline';
 import HighlightOffIcon from '@material-ui/icons/HighlightOff';
 import { CommentaryPost } from '../index';
 import Swal from 'sweetalert2';
-import { toCapitalize } from '../../common';
+import { isEnterPress, toCapitalize } from '../../common';
 import profile from '../../../images/profile.png';
 
 export function FeedList({ post, like, commentary, likePost, unlikePost }) {
@@ -90,6 +91,10 @@ export function FeedList({ post, like, commentary, likePost, unlikePost }) {
 		}
 	}
 
+  function submitListening(event) {
+		isEnterPress(event.keyCode) ? sendCommentary() : null;
+	}
+
 	return (
 		<div className="feedList">
 			<div className="feedList__info">
@@ -140,13 +145,21 @@ export function FeedList({ post, like, commentary, likePost, unlikePost }) {
 					/>
 				</div>
 			) : null}
-			<div className="feedList__content">
-				<div className="feedList__interation">
-					<ThumbUpAltIcon className="thumbUpAltIcon" onClick={handleLike} />
+			<div className="feedList__content feedList__options">
+				<div className="feedList__likeable">
+          <div className="feedList__interation">
+            <ThumbUpAltIcon className="thumbUpAltIcon" onClick={handleLike} />
+          </div>
+          <label className="feedList__likes">
+            {like ? like.length : '0'} Curtidas
+          </label>
+        </div>
+				<div className="feedList__interation" onClick={sendCommentary}>
+					<ChatBubbleOutlineIcon className="thumbUpAltIcon" />
+          <label className="feedList__likes">
+            Comentar
+          </label>
 				</div>
-				<label className="feedList__likes">
-					{like ? like.length : '0'} Curtidas
-				</label>
 			</div>
 			{commentary
 				? commentary.map((comentary) => (
@@ -158,17 +171,16 @@ export function FeedList({ post, like, commentary, likePost, unlikePost }) {
 				  ))
 				: null}
 			<div className="feedList__input">
+        <div>
+          <img className="profile-image profile-image--comentary" src={userInfo.imagem.url} />
+        </div>
 				<input
 					className="feedList__input-commentary"
 					type="text"
 					onChange={handleCommentary}
 					value={newCommentary}
-				/>
-				<input
-					type="button"
-					className="feedList__input-confirm"
-					value="Comentar"
-					onClick={sendCommentary}
+          placeholder="Escreva um comentário..."
+          onKeyDown={(e) => submitListening(e)}
 				/>
 			</div>
 		</div>
