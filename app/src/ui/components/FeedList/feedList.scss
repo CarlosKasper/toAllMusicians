@@ -8,8 +8,11 @@
 	border-radius: 15px;
 	background-color: white;
 
-	&__likes {
+	&__like-comment {
+		margin-top: 6px;
 		padding-left: 10px;
+		display: flex;
+		align-items: center;
 	}
 
 	&__container-image {
@@ -54,6 +57,8 @@
 		height: 100px;
 		background-color: gray;
 		border-radius: 50%;
+		align-items: center;
+		justify-content: center;
 
 		.profile-image {
 			width: 100px;
@@ -90,9 +95,24 @@
 
 	&__content {
 		display: flex;
-		padding-top: 10px;
+		padding-top: 5px;
 		padding-left: 10px;
+		padding-bottom: 5px;
 		align-items: center;
+	}
+
+	&__likeable {
+		display: flex;
+		flex-direction: row;
+		align-items: center;
+	}
+
+	&__options {
+		border-top: 0.1px solid #93a6c3;
+		border-bottom: 0.1px solid #93a6c3;
+		display: flex;
+		margin-bottom: 10px;
+		justify-content: space-evenly;
 	}
 
 	&__description {
@@ -102,6 +122,10 @@
 
 		&--comentary {
 			font-size: 15px;
+		}
+
+		&--likes {
+			font-size: 16px;
 		}
 	}
 
@@ -114,35 +138,35 @@
 		width: 100%;
 		display: flex;
 		padding: 10px;
-		justify-content: space-between;
+		align-items: center;
 
 		&-commentary {
-			border-radius: 6px;
+			border-radius: 15px;
 			display: flex;
-			width: 65%;
-			height: 30px;
-			border: 1px solid black;
+			margin-left: 10px;
+			width: 90%;
+			height: 36px;
+			border: none;
 			background: #f0f2f5;
 		}
 
-		&-confirm {
-			border-radius: 6px;
-			border: none;
-			background-color: #1a71d9;
-			color: white;
-			width: 30%;
-			height: 30px;
-			font-weight: 700;
-			font-size: 16px;
+		&-commentary::placeholder {
+			padding-left: 10px;
+		}
+
+		.profile-image--comentary {
+			width: 32px;
+			height: 32px;
 		}
 	}
 
 	&__interation {
 		display: flex;
 		flex-direction: row;
+		align-items: center;
 	}
 
-	.thumbUpAltIcon {
+	.like-comment-icon {
 		width: 40px;
 		height: 40px;
 	}
@@ -162,6 +186,11 @@
 	.feedList {
 		&__instrument {
 			padding-right: 10px;
+		}
+
+		.like-comment-icon {
+			width: 30px;
+			height: 30px;
 		}
 	}
 }

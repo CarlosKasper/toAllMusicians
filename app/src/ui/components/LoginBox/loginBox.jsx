@@ -47,54 +47,54 @@ export function LoginBox() {
 
 	return (
 		<div className="body login">
-			<div className="container">
-				<div className="container__brand">
+			<div className="container-login">
+				<div className="container-login__brand">
 					<img
 						src={toallmusicians}
-						className="container__brand--logo"
+						className="container-login__brand--logo"
 						alt="Logo"
 					/>
 				</div>
-				<div className="container__wrapper">
-					<div className="container__login">
+				<div className="container-login__wrapper">
+					<div className="container-login__login">
 						<input
-							className="container__login--input"
+							className="container-login__login--input"
 							type="email"
 							placeholder="Email"
 							onChange={onChangeUsername}
 							onKeyDown={(e) => submitListening(e)}
 						></input>
 					</div>
-					<div className="container__login">
+					<div className="container-login__login">
 						<input
-							className="container__login--input"
+							className="container-login__login--input"
 							type="password"
 							placeholder="Senha"
 							onChange={onChangePassword}
 							onKeyDown={(e) => submitListening(e)}
 						></input>
 					</div>
-					<div className="container__login">
+					<div className="container-login__login">
 						<input
-							className="container__login--button"
+							className="container-login__login--button"
 							type="button"
 							value="Entrar"
 							onClick={handleSubmit}
 						></input>
 					</div>
-					<div className="container__divisor"></div>
-					<Link to={`/register`} className="container__register">
+					<div className="container-login__divisor"></div>
+					<Link to={`/register`} className="container-login__register">
 						<input
-							className="container__login--button container__register--button"
+							className="container-login__login--button container-login__register--button"
 							type="button"
 							value="Criar nova conta"
 						></input>
 					</Link>
 				</div>
 			</div>
-			<div className="container__informations">
+			<div className="container-login__informations">
 				<div className="informations-center">
-					<div className="container__divisor"></div>
+					<div className="container-login__divisor"></div>
 					<div className="creator">
 						<label className="creator__info">toAllMusicians 2021</label>
 						<label className="creator__info">Made by Carlos Kasper</label>

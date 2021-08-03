@@ -5,10 +5,12 @@ import { useGlobalFeed, useGlobalUserInfo } from '../../../context/index';
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import ThumbUpAltIcon from '@material-ui/icons/ThumbUpAlt';
+import ChatBubbleOutlineIcon from '@material-ui/icons/ChatBubbleOutline';
 import HighlightOffIcon from '@material-ui/icons/HighlightOff';
 import { CommentaryPost } from '../index';
 import Swal from 'sweetalert2';
-import { toCapitalize } from '../../common';
+import { isEnterPress, toCapitalize } from '../../common';
+import profile from '../../../images/profile.png';
 
 export function FeedList({ post, like, commentary, likePost, unlikePost }) {
 	const api = useApi();
@@ -89,6 +91,10 @@ export function FeedList({ post, like, commentary, likePost, unlikePost }) {
 		}
 	}
 
+	function submitListening(event) {
+		isEnterPress(event.keyCode) ? sendCommentary() : null;
+	}
+
 	return (
 		<div className="feedList">
 			<div className="feedList__info">
@@ -101,16 +107,17 @@ export function FeedList({ post, like, commentary, likePost, unlikePost }) {
 								alt="Foto de perfil"
 							/>
 						) : (
-							<span className="hiddenFileInput">
-								<input name="theFile" disabled />
-							</span>
+							<img className="profile--without-pic" src={profile} />
 						)}
 					</div>
 				</Link>
 				<div className="feedList__wrapper--feed">
 					<div className="feedList__user">
 						<div>
-							<b>{post.musico.nome}</b>
+							<b>
+								{post.musico.nome}{' '}
+								{post.musico.apelido ? '(' + post.musico.apelido + ')' : ''}
+							</b>
 						</div>
 						<div>
 							<b>{toCapitalize(post.privacidade)}</b>
@@ -118,7 +125,7 @@ export function FeedList({ post, like, commentary, likePost, unlikePost }) {
 					</div>
 					<div className="feedList__instrument">
 						<b>{toCapitalize(post.instrumento)}</b>
-						{userInfo.email === post.musico.email ? (
+						{userInfo && userInfo.email === post.musico.email ? (
 							<HighlightOffIcon
 								className="highlightOffIcon"
 								onClick={hidePost}
@@ -139,12 +146,24 @@ export function FeedList({ post, like, commentary, likePost, unlikePost }) {
 				</div>
 			) : null}
 			<div className="feedList__content">
-				<div className="feedList__interation">
-					<ThumbUpAltIcon className="thumbUpAltIcon" onClick={handleLike} />
-				</div>
-				<label className="feedList__likes">
+				<label className="feedList__description feedList__description--likes">
 					{like ? like.length : '0'} Curtidas
 				</label>
+			</div>
+			<div className="feedList__content feedList__options">
+				<div className="feedList__likeable">
+					<div className="feedList__interation">
+						<ThumbUpAltIcon
+							className="like-comment-icon"
+							onClick={handleLike}
+						/>
+					</div>
+					<label className="feedList__like-comment">Curtir</label>
+				</div>
+				<div className="feedList__interation" onClick={sendCommentary}>
+					<ChatBubbleOutlineIcon className="like-comment-icon" />
+					<label className="feedList__like-comment">Comentar</label>
+				</div>
 			</div>
 			{commentary
 				? commentary.map((comentary) => (
@@ -156,17 +175,19 @@ export function FeedList({ post, like, commentary, likePost, unlikePost }) {
 				  ))
 				: null}
 			<div className="feedList__input">
+				<div>
+					<img
+						className="profile-image profile-image--comentary"
+						src={userInfo.imagem.url}
+					/>
+				</div>
 				<input
 					className="feedList__input-commentary"
 					type="text"
 					onChange={handleCommentary}
 					value={newCommentary}
-				/>
-				<input
-					type="button"
-					className="feedList__input-confirm"
-					value="Comentar"
-					onClick={sendCommentary}
+					placeholder="Escreva um comentário..."
+					onKeyDown={(e) => submitListening(e)}
 				/>
 			</div>
 		</div>

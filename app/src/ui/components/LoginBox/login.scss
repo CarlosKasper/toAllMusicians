@@ -4,21 +4,20 @@
 		src: url('../../../fonts/MateSC-Regular.ttf'); /* IE9 Compat Modes */
 	}
 
-	.container {
+	.container-login {
 		display: flex;
-		height: 80vh;
 		width: 100%;
 		justify-content: space-around;
 		align-items: center;
 		flex-direction: row;
 
 		&__register {
-			width: 40%;
+			width: 60%;
 			display: flex;
 			justify-content: center;
 			text-decoration: none;
 
-			.container__register--button {
+			.container-login__register--button {
 				background-color: #31a919;
 			}
 		}
@@ -26,7 +25,7 @@
 		&__wrapper {
 			display: flex;
 			flex-direction: column;
-			width: 40%;
+			width: 400px;
 			border-radius: 6px;
 			padding: 20px 0;
 			align-items: center;
@@ -114,7 +113,7 @@
 
 @media (max-width: 768px) {
 	.login {
-		.container {
+		.container-login {
 			flex-direction: column;
 
 			&__brand {
@@ -127,7 +126,7 @@
 			}
 
 			&__informations {
-				padding-top: 30px;
+				padding-top: 10px;
 
 				.informations-center {
 					width: 85%;

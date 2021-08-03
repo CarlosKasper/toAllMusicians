@@ -6,6 +6,7 @@ import { Link } from 'react-router-dom';
 import DeleteForeverIcon from '@material-ui/icons/DeleteForever';
 import Swal from 'sweetalert2';
 import { toCapitalize } from '../../common';
+import profile from '../../../images/profile.png';
 
 export function CommentaryPost({ commentaryContent, deleteCommentary }) {
 	const [userInfo] = useGlobalUserInfo();
@@ -49,9 +50,7 @@ export function CommentaryPost({ commentaryContent, deleteCommentary }) {
 								alt="Foto de perfil"
 							/>
 						) : (
-							<span className="hiddenFileInput">
-								<input name="theFile" disabled />
-							</span>
+							<img className="profile--without-pic" src={profile} />
 						)}
 					</div>
 				</Link>

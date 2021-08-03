@@ -4,6 +4,7 @@ import deleteFriend from '../../../images/deleteFriend.png';
 import { Link } from 'react-router-dom';
 import { useGlobalUserInfo } from '../../../context';
 import Swal from 'sweetalert2';
+import profile from '../../../images/profile.png';
 import { toCapitalize } from '../../common/toCapitalize';
 
 export function FriendsProfile({ userFriends, deletedFriend, profileEmail }) {
@@ -46,9 +47,7 @@ export function FriendsProfile({ userFriends, deletedFriend, profileEmail }) {
 								alt="Foto de perfil"
 							/>
 						) : (
-							<span className="hiddenFileInput">
-								<input name="theFile" disabled />
-							</span>
+							<img className="profile--without-pic" src={profile} />
 						)}
 					</div>
 				</Link>
@@ -57,7 +56,8 @@ export function FriendsProfile({ userFriends, deletedFriend, profileEmail }) {
 						<div className="friendsProfile__user">
 							<div>
 								<b>
-									{userFriends.nome} ({userFriends.apelido})
+									{userFriends.nome}{' '}
+									{userFriends.apelido ? '(' + userFriends.apelido + ')' : ''}
 								</b>
 							</div>
 						</div>

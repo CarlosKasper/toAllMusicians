@@ -57,8 +57,16 @@ body {
 	object-position: center right;
 }
 
+.profile--without-pic {
+	height: 45px;
+}
+
 @media (max-width: 768px) {
 	#friends {
+		width: 95%;
+	}
+
+	.profileData {
 		width: 95%;
 	}
 }
