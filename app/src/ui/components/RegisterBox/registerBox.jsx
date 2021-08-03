@@ -144,7 +144,7 @@ export function RegisterBox() {
 						<input
 							className="container-register__login--input"
 							type="date"
-              placeholder="dd/mm/yyyy"
+							placeholder="dd/mm/yyyy"
 							onChange={onChangeBirthDay}
 							onKeyDown={(e) => submitListening(e)}
 						></input>
@@ -157,7 +157,7 @@ export function RegisterBox() {
 							styles={customStyles}
 							placeholder="Instrumento"
 							onKeyDown={(e) => submitListening(e)}
-              isSearchable={false}
+							isSearchable={false}
 						/>
 					</div>
 					<div className="container-register__login">

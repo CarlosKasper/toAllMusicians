@@ -9,10 +9,10 @@
 	background-color: white;
 
 	&__like-comment {
-    margin-top: 6px;
+		margin-top: 6px;
 		padding-left: 10px;
-    display: flex;
-    align-items: center;
+		display: flex;
+		align-items: center;
 	}
 
 	&__container-image {
@@ -97,23 +97,23 @@
 		display: flex;
 		padding-top: 5px;
 		padding-left: 10px;
-    padding-bottom: 5px;
+		padding-bottom: 5px;
 		align-items: center;
 	}
 
-  &__likeable {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-  }
+	&__likeable {
+		display: flex;
+		flex-direction: row;
+		align-items: center;
+	}
 
-  &__options {
-    border-top: 0.1px solid #93a6c3;
-    border-bottom: 0.1px solid #93a6c3;
-    display: flex;
-    margin-bottom: 10px;
-    justify-content: space-evenly;
-  }
+	&__options {
+		border-top: 0.1px solid #93a6c3;
+		border-bottom: 0.1px solid #93a6c3;
+		display: flex;
+		margin-bottom: 10px;
+		justify-content: space-evenly;
+	}
 
 	&__description {
 		font-size: 20px;
@@ -124,9 +124,9 @@
 			font-size: 15px;
 		}
 
-    &--likes {
-      font-size: 16px;
-    }
+		&--likes {
+			font-size: 16px;
+		}
 	}
 
 	&__post-image {
@@ -138,32 +138,32 @@
 		width: 100%;
 		display: flex;
 		padding: 10px;
-    align-items: center;
+		align-items: center;
 
 		&-commentary {
 			border-radius: 15px;
 			display: flex;
-      margin-left: 10px;
+			margin-left: 10px;
 			width: 90%;
 			height: 36px;
 			border: none;
 			background: #f0f2f5;
 		}
 
-    &-commentary::placeholder {
-      padding-left: 10px;
-    }
+		&-commentary::placeholder {
+			padding-left: 10px;
+		}
 
-    .profile-image--comentary {
-      width: 32px;
-      height: 32px;
-    }
+		.profile-image--comentary {
+			width: 32px;
+			height: 32px;
+		}
 	}
 
 	&__interation {
 		display: flex;
 		flex-direction: row;
-    align-items: center;
+		align-items: center;
 	}
 
 	.like-comment-icon {
@@ -188,9 +188,9 @@
 			padding-right: 10px;
 		}
 
-    .like-comment-icon {
-      width: 30px;
-      height: 30px;
-    }
+		.like-comment-icon {
+			width: 30px;
+			height: 30px;
+		}
 	}
 }

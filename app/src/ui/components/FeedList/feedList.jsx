@@ -91,7 +91,7 @@ export function FeedList({ post, like, commentary, likePost, unlikePost }) {
 		}
 	}
 
-  function submitListening(event) {
+	function submitListening(event) {
 		isEnterPress(event.keyCode) ? sendCommentary() : null;
 	}
 
@@ -146,24 +146,23 @@ export function FeedList({ post, like, commentary, likePost, unlikePost }) {
 				</div>
 			) : null}
 			<div className="feedList__content">
-        <label className="feedList__description feedList__description--likes">
-          {like ? like.length : '0'} Curtidas
-        </label>
+				<label className="feedList__description feedList__description--likes">
+					{like ? like.length : '0'} Curtidas
+				</label>
 			</div>
 			<div className="feedList__content feedList__options">
 				<div className="feedList__likeable">
-          <div className="feedList__interation">
-            <ThumbUpAltIcon className="like-comment-icon" onClick={handleLike} />
-          </div>
-          <label className="feedList__like-comment">
-            Curtir
-          </label>
-        </div>
+					<div className="feedList__interation">
+						<ThumbUpAltIcon
+							className="like-comment-icon"
+							onClick={handleLike}
+						/>
+					</div>
+					<label className="feedList__like-comment">Curtir</label>
+				</div>
 				<div className="feedList__interation" onClick={sendCommentary}>
 					<ChatBubbleOutlineIcon className="like-comment-icon" />
-          <label className="feedList__like-comment">
-            Comentar
-          </label>
+					<label className="feedList__like-comment">Comentar</label>
 				</div>
 			</div>
 			{commentary
@@ -176,16 +175,19 @@ export function FeedList({ post, like, commentary, likePost, unlikePost }) {
 				  ))
 				: null}
 			<div className="feedList__input">
-        <div>
-          <img className="profile-image profile-image--comentary" src={userInfo.imagem.url} />
-        </div>
+				<div>
+					<img
+						className="profile-image profile-image--comentary"
+						src={userInfo.imagem.url}
+					/>
+				</div>
 				<input
 					className="feedList__input-commentary"
 					type="text"
 					onChange={handleCommentary}
 					value={newCommentary}
-          placeholder="Escreva um comentário..."
-          onKeyDown={(e) => submitListening(e)}
+					placeholder="Escreva um comentário..."
+					onKeyDown={(e) => submitListening(e)}
 				/>
 			</div>
 		</div>
