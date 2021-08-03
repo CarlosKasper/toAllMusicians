@@ -1,19 +1,18 @@
 .register {
-	.container {
+	.container-register {
 		display: flex;
-		height: 80vh;
 		width: 100%;
 		justify-content: space-around;
 		align-items: center;
 		flex-direction: row;
 
 		&__register {
-			width: 40%;
+			width: 60%;
 			display: flex;
 			justify-content: center;
 			text-decoration: none;
 
-			.container__register--button {
+			.container-register__register--button {
 				background-color: #31a919;
 			}
 		}
@@ -105,10 +104,15 @@
 	}
 }
 
+.body {
+	display: flex;
+	flex-direction: column;
+	width: 100%;
+}
+
 @media (max-width: 768px) {
 	.register {
-		.container {
-			height: 100vh;
+		.container-register {
 			flex-direction: column;
 
 			&__brand {
@@ -121,7 +125,7 @@
 			}
 
 			&__informations {
-				padding-top: 60px;
+				margin-top: 10px;
 
 				.informations-center {
 					width: 85%;

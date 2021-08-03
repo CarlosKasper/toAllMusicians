@@ -95,60 +95,61 @@ export function RegisterBox() {
 
 	return (
 		<div className="body register">
-			<div className="container">
-				<div className="container__brand">
+			<div className="container-register">
+				<div className="container-register__brand">
 					<img
 						src={toallmusicians}
-						className="container__brand--logo"
+						className="container-register__brand--logo"
 						alt="Logo"
 					/>
 				</div>
-				<div className="container__wrapper">
-					<div className="container__login">
+				<div className="container-register__wrapper">
+					<div className="container-register__login">
 						<input
-							className="container__login--input"
+							className="container-register__login--input"
 							type="email"
 							placeholder="Nome"
 							onChange={onChangeUsername}
 							onKeyDown={(e) => submitListening(e)}
 						></input>
 					</div>
-					<div className="container__login">
+					<div className="container-register__login">
 						<input
-							className="container__login--input"
+							className="container-register__login--input"
 							type="text"
 							placeholder="Email"
 							onChange={onChangeEmail}
 							onKeyDown={(e) => submitListening(e)}
 						></input>
 					</div>
-					<div className="container__login">
+					<div className="container-register__login">
 						<input
-							className="container__login--input"
+							className="container-register__login--input"
 							type="password"
 							placeholder="Senha"
 							onChange={onChangePassword}
 							onKeyDown={(e) => submitListening(e)}
 						></input>
 					</div>
-					<div className="container__login">
+					<div className="container-register__login">
 						<input
-							className="container__login--input"
+							className="container-register__login--input"
 							type="text"
 							placeholder="Apelido(opcional)"
 							onChange={onChangeNickname}
 							onKeyDown={(e) => submitListening(e)}
 						></input>
 					</div>
-					<div className="container__login">
+					<div className="container-register__login">
 						<input
-							className="container__login--input"
+							className="container-register__login--input"
 							type="date"
+              placeholder="dd/mm/yyyy"
 							onChange={onChangeBirthDay}
 							onKeyDown={(e) => submitListening(e)}
 						></input>
 					</div>
-					<div className="container__login">
+					<div className="container-register__login">
 						<Select
 							className="post-select"
 							onChange={onChangeInstrument}
@@ -156,29 +157,30 @@ export function RegisterBox() {
 							styles={customStyles}
 							placeholder="Instrumento"
 							onKeyDown={(e) => submitListening(e)}
+              isSearchable={false}
 						/>
 					</div>
-					<div className="container__login">
+					<div className="container-register__login">
 						<input
-							className="container__login--button"
+							className="container-register__login--button"
 							type="button"
 							value="Cadastrar"
 							onClick={handleSubmit}
 						></input>
 					</div>
-					<div className="container__divisor"></div>
-					<Link to={`/`} className="container__register">
+					<div className="container-register__divisor"></div>
+					<Link to={`/`} className="container-register__register">
 						<input
-							className="container__login--button container__register--button"
+							className="container-register__login--button container-register__register--button"
 							type="button"
 							value="Acessar conta"
 						></input>
 					</Link>
 				</div>
 			</div>
-			<div className="container__informations">
+			<div className="container-register__informations">
 				<div className="informations-center">
-					<div className="container__divisor"></div>
+					<div className="container-register__divisor"></div>
 					<div className="creator">
 						<label className="creator__info">toAllMusicians 2021</label>
 						<label className="creator__info">Made by Carlos Kasper</label>

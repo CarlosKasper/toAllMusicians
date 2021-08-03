@@ -125,7 +125,7 @@ export function FeedList({ post, like, commentary, likePost, unlikePost }) {
 					</div>
 					<div className="feedList__instrument">
 						<b>{toCapitalize(post.instrumento)}</b>
-						{userInfo.email === post.musico.email ? (
+						{userInfo && userInfo.email === post.musico.email ? (
 							<HighlightOffIcon
 								className="highlightOffIcon"
 								onClick={hidePost}
@@ -145,18 +145,23 @@ export function FeedList({ post, like, commentary, likePost, unlikePost }) {
 					/>
 				</div>
 			) : null}
+			<div className="feedList__content">
+        <label className="feedList__description feedList__description--likes">
+          {like ? like.length : '0'} Curtidas
+        </label>
+			</div>
 			<div className="feedList__content feedList__options">
 				<div className="feedList__likeable">
           <div className="feedList__interation">
-            <ThumbUpAltIcon className="thumbUpAltIcon" onClick={handleLike} />
+            <ThumbUpAltIcon className="like-comment-icon" onClick={handleLike} />
           </div>
-          <label className="feedList__likes">
-            {like ? like.length : '0'} Curtidas
+          <label className="feedList__like-comment">
+            Curtir
           </label>
         </div>
 				<div className="feedList__interation" onClick={sendCommentary}>
-					<ChatBubbleOutlineIcon className="thumbUpAltIcon" />
-          <label className="feedList__likes">
+					<ChatBubbleOutlineIcon className="like-comment-icon" />
+          <label className="feedList__like-comment">
             Comentar
           </label>
 				</div>

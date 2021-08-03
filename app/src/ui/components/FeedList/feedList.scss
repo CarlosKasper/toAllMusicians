@@ -8,7 +8,8 @@
 	border-radius: 15px;
 	background-color: white;
 
-	&__likes {
+	&__like-comment {
+    margin-top: 6px;
 		padding-left: 10px;
     display: flex;
     align-items: center;
@@ -94,9 +95,9 @@
 
 	&__content {
 		display: flex;
-		padding-top: 10px;
+		padding-top: 5px;
 		padding-left: 10px;
-    padding-bottom: 10px;
+    padding-bottom: 5px;
 		align-items: center;
 	}
 
@@ -110,6 +111,7 @@
     border-top: 0.1px solid #93a6c3;
     border-bottom: 0.1px solid #93a6c3;
     display: flex;
+    margin-bottom: 10px;
     justify-content: space-evenly;
   }
 
@@ -121,6 +123,10 @@
 		&--comentary {
 			font-size: 15px;
 		}
+
+    &--likes {
+      font-size: 16px;
+    }
 	}
 
 	&__post-image {
@@ -157,9 +163,10 @@
 	&__interation {
 		display: flex;
 		flex-direction: row;
+    align-items: center;
 	}
 
-	.thumbUpAltIcon {
+	.like-comment-icon {
 		width: 40px;
 		height: 40px;
 	}
@@ -180,5 +187,10 @@
 		&__instrument {
 			padding-right: 10px;
 		}
+
+    .like-comment-icon {
+      width: 30px;
+      height: 30px;
+    }
 	}
 }
