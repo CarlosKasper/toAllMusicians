@@ -11,6 +11,7 @@ import { CommentaryPost } from '../index';
 import Swal from 'sweetalert2';
 import { isEnterPress, toCapitalize } from '../../common';
 import profile from '../../../images/profile.png';
+import toallmusicians from '../../../images/toallmusicians.png';
 
 export function FeedList({ post, like, commentary, likePost, unlikePost }) {
 	const api = useApi();
@@ -141,7 +142,7 @@ export function FeedList({ post, like, commentary, likePost, unlikePost }) {
 				<div className="feedList__container-image">
 					<img
 						className="feedList__post-image"
-						src={post.imagem ? post.imagem.url : null}
+						src={post.imagem  ? post.imagem.url : toallmusicians}
 					/>
 				</div>
 			) : null}
@@ -174,13 +175,17 @@ export function FeedList({ post, like, commentary, likePost, unlikePost }) {
 						/>
 				  ))
 				: null}
+
 			<div className="feedList__input">
-				<div>
-					<img
-						className="profile-image profile-image--comentary"
-						src={userInfo.imagem.url}
-					/>
-				</div>
+        {userInfo && userInfo.imagem.url  ? (
+            <img
+              className="profile-image"
+              src={userInfo.imagem.url}
+              alt="Foto de perfil"
+            />
+          ) : (
+            <img className="profile--without-pic-commentary" src={profile} />
+          )}
 				<input
 					className="feedList__input-commentary"
 					type="text"

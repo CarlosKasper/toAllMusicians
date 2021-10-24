@@ -50,7 +50,7 @@ export function CommentaryPost({ commentaryContent, deleteCommentary }) {
 								alt="Foto de perfil"
 							/>
 						) : (
-							<img className="profile--without-pic" src={profile} />
+							<img className="profile--without-pic-commentary" src={profile} />
 						)}
 					</div>
 				</Link>
