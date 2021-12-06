@@ -14,7 +14,7 @@ spring:
     datasource:
         username: toallmusicians
         password: senhaDoTcc*
-        url: jdbc:sqlserver://toallmusicians.database.windows.net:1433;databaseName=ToAllMusiciansDB
+        url: jdbc:sqlserver://toallmusiciansdb.database.windows.net:1433;databaseName=toallmusiciansDB
         driver-class-name: com.microsoft.sqlserver.jdbc.SQLServerDriver
         driver-class-name=com: com.microsoft.sqlserver.jdbc.SQLServerDriver
         testOnBorrow: false
@@ -50,7 +50,7 @@ cloud:
             url: https://toallmusiciansbase.s3.sa-east-1.amazonaws.com/
     azure:
         storage-account:
-            access-key: DefaultEndpointsProtocol=https;AccountName=toallmusiciansstorage;AccountKey=4RgomKQ4F0YFDFiUijlhSrhv6HnkeTnF3fV3bigro8xEhEMlLJyUKySs+H7ivBGFMyPjpvUSqAH9WruxMTqV/g==;EndpointSuffix=core.windows.net
+            access-key: DefaultEndpointsProtocol=https;AccountName=toallmusiciansstorage;AccountKey=azuw9Z4ptlWUd2l6/1N5m4xGKc6qQSa+zjtT2bRpCqJEGs3syhV7/BtYFRztuB+Ywwzv4npGVjVX3FmqyACbKQ==;EndpointSuffix=core.windows.net
 
 management:
     endpoint:
