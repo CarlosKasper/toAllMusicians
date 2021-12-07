@@ -18,6 +18,7 @@ function App() {
 
 	return (
 		<div>
+      <meta httpEquiv="Content-Security-Policy" content="upgrade-insecure-requests"/>
 			<Switch>
 				<Provider store={store}>
 					<Route path="/" exact>
