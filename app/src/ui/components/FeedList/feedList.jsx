@@ -177,7 +177,7 @@ export function FeedList({ post, like, commentary, likePost, unlikePost }) {
 				: null}
 
 			<div className="feedList__input">
-        {userInfo && userInfo.imagem.url  ? (
+        {userInfo && userInfo.imagem  ? (
             <img
               className="profile-image"
               src={userInfo.imagem.url}
