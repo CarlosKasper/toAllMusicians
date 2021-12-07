@@ -7,7 +7,7 @@ export function useApi() {
 	const token = user;
 	const apiUrl = window.location.href.includes('localhost')
 		? 'http://localhost:8090'
-		: 'https://toallmusiciansapi.azurewebsites.net';
+		: 'http://toallmusicians.brazilsouth.azurecontainer.io';
 	const axios = useAxios(apiUrl, {
 		Authorization: 'Bearer ' + token,
 	});
